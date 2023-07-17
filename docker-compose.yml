@@ -1,4 +1,4 @@
-version: '2'
+version: '3.1'
 services:
   mysql:
     image: mysql:8.0.33-debian
@@ -14,11 +14,16 @@ services:
     working_dir: /var/www/laravel
     volumes:
       - ./phatology-app:/var/www/laravel
+    ports:
+        - "9000:9000"
+    depends_on: 
+      - mysql
 
   nginx:
     build: ./docker-nginx
     working_dir: /var/www/laravel
-    volumes_from:
+    depends_on: 
       - php82
     ports:
       - 8080:80
+    
