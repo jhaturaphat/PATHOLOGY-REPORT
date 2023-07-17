@@ -3,10 +3,10 @@ services:
   mysql:
     image: mysql:8.0.33-debian
     environment:
-      - MYSQL_ROOT_PASSWORD: $8GkdF9k
-      - MYSQL_DATABASE: phatology_db
-      - MYSQL_USER: phatology
-      - MYSQL_PASSWORD: JhtijL090
+      MYSQL_ROOT_PASSWORD: $8GkdF9k
+      MYSQL_DATABASE: phatology_db
+      MYSQL_USER: phatology
+      MYSQL_PASSWORD: JhtijL090
     volumes:
       - ./mysql/data:/var/lib/mysql
     ports:
