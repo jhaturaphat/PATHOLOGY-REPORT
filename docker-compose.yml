@@ -1,0 +1,24 @@
+version: '2'
+services:
+  mysql:
+    image: mysql:8.0.33-debian
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+    ports:
+      - 3307:3306
+  
+  php82:
+    build: ./docker-php
+    working_dir: /var/www/laravel
+    volumes:
+      - ./phatology-app:/var/www/laravel
+
+  nginx:
+    build: ./docker-nginx
+    working_dir: /var/www/laravel
+    volumes_from:
+      - php82
+    ports:
+      - 8080:80

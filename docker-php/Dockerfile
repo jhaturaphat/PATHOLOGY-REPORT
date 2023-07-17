@@ -1,0 +1,22 @@
+#php ใช้ version 8.2 สามารถเปลี่ยนได้ตามที่เราต้องการแต่ต้องเป็นตัว fpm นะครับ เพื่อที่จะให้กับ nginx
+FROM php:8.2-fpm
+
+#Install คำสั่งสำหรับการลง package ที่ laravel required ไว้นะครับ
+RUN apt-get update \
+  && apt-get install -y \
+    cron \
+    libfreetype6-dev \
+    libicu-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev \
+    libmcrypt-dev \    
+    libxslt1-dev \
+    openssh-server \
+    openssh-client \
+    rsync
+
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+
+# อันนี้ลงเพิ่มเติมคือ composer นั้นเอง เป็นตัว package manager สำหรับการจัดการพวก dependency ของภาษา php ครับ
+RUN curl -sS https://getcomposer.org/installer | \
+  php -- --install-dir=/usr/local/bin --filename=composer
