@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('phatology_diag')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา');
             $table->string('gross_examination')->nullable()->comment('การตรวจสอบขั้นต้น');
             $table->string('gross_examiner')->nullable()->comment('ผู้ตรวจสอบขั้นต้น');
-            $table->timestamps()->comment('วันที่สร้าง');
+            $table->timestamps();
 
         });
     }

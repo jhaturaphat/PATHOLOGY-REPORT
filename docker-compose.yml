@@ -1,32 +1,43 @@
 version: '3.1'
 services:
+
   mysql:
-    image: mysql:8.0.33-debian
-    environment:
-      MYSQL_ROOT_PASSWORD: $8GkdF9k
-      MYSQL_DATABASE: phatology_db
-      MYSQL_USER: phatology
-      MYSQL_PASSWORD: JhtijL090
+    image: mariadb:10.9
+    environment:  
+      MARIADB_DATABASE: phatology_db  
+      MARIADB_USER: phatology 
+      MARIADB_PASSWORD: Jko0Tr23
+      MARIADB_ROOT_PASSWORD: SJhf0964R   
     volumes:
       - ./mysql/data:/var/lib/mysql
     ports:
-      - 3307:3306
+      - 3333:3306
+    networks:
+      - app-network
   
   php82:
     build: ./docker-php
     working_dir: /var/www/laravel
     volumes:
-      - ./phatology-app:/var/www/laravel
-    #ports:
-    #    - "9000:9000" 
+      - ./phatology-app:/var/www/laravel    
     depends_on: 
       - mysql
+    networks:
+      - app-network
 
   nginx:
     build: ./docker-nginx
     working_dir: /var/www/laravel
+    volumes:
+      - ./docker-nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on: 
       - php82
     ports:
       - 8080:80
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
     

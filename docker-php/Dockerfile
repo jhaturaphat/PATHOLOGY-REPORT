@@ -13,10 +13,16 @@ RUN apt-get update \
     libxslt1-dev \
     openssh-server \
     openssh-client \
-    rsync
+    rsync \
+    && rm -r /var/lib/apt/lists/* \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+	  && docker-php-ext-install -j$(nproc) gd
 
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+#RUN docker-php-ext-install mysqli mysql gd pdo pdo_mysql
+RUN docker-php-ext-install pdo_mysql && docker-php-ext-enable pdo_mysql \
+    && docker-php-ext-install gd && docker-php-ext-enable gd 
 
 # อันนี้ลงเพิ่มเติมคือ composer นั้นเอง เป็นตัว package manager สำหรับการจัดการพวก dependency ของภาษา php ครับ
-RUN curl -sS https://getcomposer.org/installer | \
+RUN a2enmod rewrite \
+ curl -sS https://getcomposer.org/installer | \
   php -- --install-dir=/usr/local/bin --filename=composer
