@@ -14,4 +14,8 @@ class LabOrderImageController extends Controller
         $model = LabOrderImage::limit(1)->get();
         return view('his.laborderimage.index')->with('model', $model);
     }
+
+    public function template1(){
+        return view('his.laborderimage.template1');
+    }
 }

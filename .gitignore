@@ -18,3 +18,5 @@
 /phatology-app/.fleet
 /phatology-app/.idea
 /phatology-app/.vscode
+
+/docker-nginx/log/*

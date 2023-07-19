@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,300&display=swap');
+
+page {
+    font-family: 'Roboto', sans-serif; 
+    background: white;
+    display: block; margin: 0 auto;
+    margin-bottom: 0.5cm;     
+    box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+    margin-top: 8px;
+    z-index: 99;
+  }
+
+page[size="A4"] {  
+    width: 21cm; height: 29.7cm;  
+    color: rgb(92, 91, 91);
+}
+page .header-logo {
+    display: flex;  justify-content: space-around;
+    flex-direction: row; align-items: center;
+}
+/* Logo */
+.header-logo {
+    width: 500px;
+    padding-top: 10px;
+    /* background-color: aqua; */
+    margin: 0 auto;    
+}
+.header-logo img {
+    width: 120px;
+}
+.header-logo p {
+    font-weight: 300;
+}
+/* รายละเอียดชื่อผู้ป่วย */
+.pt-detail {
+    display: flex; justify-content: center; align-items: baseline; margin-top: -6px;   
+}
+table tr td {
+    font-weight: 300;
+    color: rgb(13, 14, 14);
+    padding: 0.57mm;
+}
+table tr td b {
+    /* font-weight: 100 bold; */
+    font-size: .9rem; color: rgb(100, 99, 99);
+}
+
+.hn-input {
+    outline: none; box-sizing: border-box; border: 2px solid #ccc;
+    -webkit-transition: 0.5s; transition: 0.5s;
+}

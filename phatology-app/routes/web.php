@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('/laborderimage/index', [LabOrderImageController::class, 'index']);
+Route::get('/laborderimage/template1', [LabOrderImageController::class, 'template1']);
