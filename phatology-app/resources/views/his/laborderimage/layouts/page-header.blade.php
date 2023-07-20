@@ -15,7 +15,7 @@
         <table style="width: 100%; padding: 0 45px 0 45px;">
             <tr>
                 <td>Surgical number:<b>LAB-569585</b></td>
-                <td>HN: <input class="hn-input" type="text"></td>
+                <td>HN: <input class="hn-input" id="hn" type="text"></td>
             </tr>
             <tr>
                 <td>Name:<b>Ms.TAYUWEEN</b></td>
@@ -43,9 +43,12 @@
 
 <script src="{{asset('/js/plugins/html2canvas.js')}}"></script>
     <script>
-        document.getElementById("downloadpng").onclick = function(){            
+        document.getElementById("downloadpng").onclick = function(){    
+            const inputHn = document.getElementById('hn');  
+            const oldStyleInput = inputHn.style.border;
+            inputHn.style.border = 'none';    
             let screenshotTarget = document.getElementById("page1");
-            const oldShadow = screenshotTarget.style.boxShadow;
+            const A4Shadow = screenshotTarget.style.boxShadow;
             screenshotTarget.style.boxShadow = "none";
             screenshotTarget = document.getElementById("page1");
             
@@ -53,12 +56,14 @@
                 allowTaint: false, imageTimeout:30000
             }).then((canvas)=>{
                 const base64image = canvas.toDataURL("image/png");
+                console.log(base64image);
                 var anchor = document.createElement('a');                
                 anchor.setAttribute("href", base64image);
                 anchor.setAttribute("download","my-image.png");
                 anchor.click();
                 anchor.remove();
-                screenshotTarget.style.boxShadow = oldShadow;
+                screenshotTarget.style.boxShadow = A4Shadow;
+                inputHn.style.border = oldStyleInput;
             })
         }
         

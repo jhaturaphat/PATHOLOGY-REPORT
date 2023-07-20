@@ -21,6 +21,7 @@ services:
     volumes:
       - ./phatology-app:/var/www/laravel    
       - ./phatology-app/public:/var/www/laravel/public
+      - ./phatology-app/vendor:/var/www/laravel/vendor
     # command: bash -c "php artisan serve --host=0.0.0.0 --port=8080"
     #command: bash -c "chmod 777 -R /var/www/laravel/public && chown -R www-data:www-data /var/www/laravel"
     ports:
@@ -43,6 +44,9 @@ services:
       - 8080:80
     networks:
       - app-network
+
+volumes:
+    exclude_vendor:
 
 networks:
   app-network:

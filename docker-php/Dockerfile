@@ -20,7 +20,8 @@ RUN apt-get update \
 
 #RUN docker-php-ext-install mysqli mysql gd pdo pdo_mysql
 RUN docker-php-ext-install pdo_mysql && docker-php-ext-enable pdo_mysql \
-    && docker-php-ext-install gd && docker-php-ext-enable gd 
+    && docker-php-ext-install gd && docker-php-ext-enable gd \
+    && docker-php-ext-install opcache && docker-php-ext-enable opcache
 
 # อันนี้ลงเพิ่มเติมคือ composer นั้นเอง เป็นตัว package manager สำหรับการจัดการพวก dependency ของภาษา php ครับ
 RUN a2enmod rewrite \
