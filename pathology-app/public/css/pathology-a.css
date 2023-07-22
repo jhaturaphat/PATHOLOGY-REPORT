@@ -12,7 +12,8 @@ page {
 
 page[size="A4"] {  
     position: relative;
-    width: 21cm; height: 29.7cm;  
+    /* width: 21cm; height: 29.7cm;   */
+    max-width: 21cm; min-height: 29.7cm;
     color: rgb(92, 91, 91);
 }
 page .header-logo {
@@ -35,16 +36,21 @@ page .page-number {
     width: 120px;
 }
 .header-logo p {
-    font-weight: 300;
+    font-weight: 300; letter-spacing: 2px;
 }
 /* รายละเอียดชื่อผู้ป่วย */
 .pt-detail {
     display: flex; justify-content: center; align-items: baseline; margin-top: -6px;   
 }
+table tr{
+    padding: 0;
+    letter-spacing: 0;
+}
 table tr td {
     font-weight: 300;
     color: rgb(13, 14, 14);
-    padding: 0.57mm;
+    padding: 0;
+    /* letter-spacing: 0px; */
 }
 table tr td b {
     /* font-weight: 100 bold; */
