@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PhatologyReports extends Model
+class PathologyReports extends Model
 {
     use HasFactory;
 
     protected $connection =  'mysql';
-    protected $table = 'phatology_reports';
+    protected $table = 'pathology_reports';
 }

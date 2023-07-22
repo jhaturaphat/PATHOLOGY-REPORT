@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LabOrderImageController;
+use App\Http\Controllers\pathologyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +20,6 @@ Route::get('/', function () {
 });
 
 Route::get('/laborderimage/index', [LabOrderImageController::class, 'index']);
-Route::get('/laborderimage/template1', [LabOrderImageController::class, 'template1']);
+Route::get('/laborderimage/image1', [LabOrderImageController::class, 'image']);
+
+Route::get('/pathology-a/index', [pathologyController::class, 'index']);

@@ -4,8 +4,8 @@ services:
   mysql:
     image: mariadb:10.9
     environment:  
-      MARIADB_DATABASE: phatology_db  
-      MARIADB_USER: phatology 
+      MARIADB_DATABASE: pathology_db  
+      MARIADB_USER: pathology 
       MARIADB_PASSWORD: Jko0Tr23
       MARIADB_ROOT_PASSWORD: SJhf0964R   
     volumes:
@@ -19,9 +19,9 @@ services:
     build: ./docker-php
     working_dir: /var/www/laravel
     volumes:
-      - ./phatology-app:/var/www/laravel    
-      - ./phatology-app/public:/var/www/laravel/public
-      - ./phatology-app/vendor:/var/www/laravel/vendor
+      - ./pathology-app:/var/www/laravel    
+      - ./pathology-app/public:/var/www/laravel/public
+      - ./pathology-app/vendor:/var/www/laravel/vendor
     # command: bash -c "php artisan serve --host=0.0.0.0 --port=8080"
     #command: bash -c "chmod 777 -R /var/www/laravel/public && chown -R www-data:www-data /var/www/laravel"
     ports:

@@ -11,12 +11,18 @@ page {
   }
 
 page[size="A4"] {  
+    position: relative;
     width: 21cm; height: 29.7cm;  
     color: rgb(92, 91, 91);
 }
 page .header-logo {
     display: flex;  justify-content: space-around;
     flex-direction: row; align-items: center;
+}
+page .page-number {
+    position: absolute;
+    top: 15px;
+    right: 15px;
 }
 /* Logo */
 .header-logo {
