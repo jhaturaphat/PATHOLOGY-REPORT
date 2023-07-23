@@ -11,7 +11,7 @@
     <h3>SURGICAL PHATOLOGY REPORT</h3>
 </div>
 <div class="pt-detail">
-    <table style="width: 100%; padding: 0 45px 0 45px;">
+    <table style="width: 100%;">
         <tr>
             <td>Surgical number:<b>LAB-569585</b></td>
             <td>HN: <input class="hn-input" id="hn" type="text"></td>
@@ -34,4 +34,4 @@
         </tr>
     </table>        
 </div>
-<hr style="margin: 5px 45px 10px 45px; border: 1px solid rgb(180, 177, 177);">
+<hr style="border: 1px solid rgb(180, 177, 177);">
