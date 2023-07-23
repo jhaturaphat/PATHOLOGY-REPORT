@@ -34,4 +34,4 @@
         </tr>
     </table>        
 </div>
-<hr style="border: 1px solid rgb(180, 177, 177);">
+<hr style="border: 1px solid gainsboro;">
