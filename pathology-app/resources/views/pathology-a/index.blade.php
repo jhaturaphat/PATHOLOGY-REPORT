@@ -18,5 +18,13 @@
     <button id="release" style="position: fixed; top:0; left:0; z-index:100">Release</button>
 
     <script src="{{asset('js/pathology-a.js')}}"></script>
+    <script src="{{asset('js/plugins/ckeditor/ckeditor.js')}}"></script>
+
+    <script>        
+        CKEDITOR.replace( 'editor', {
+            // extraPlugins: 'uicolor,colorbutton,colordialog,font',
+        } );
+        CKEDITOR.addCss(".cke_editable { cursor:text; font-size: 25px; font-family: 'Roboto', sans-serif;  color: #FFFFFF;background-color: #006991;}");
+    </script>
 </body>
 </html>

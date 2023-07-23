@@ -34,4 +34,4 @@
         </tr>
     </table>        
 </div>
-<hr style="margin: 5px 50px 10px 50px">
+<hr style="margin: 5px 45px 10px 45px; border: 1px solid rgb(180, 177, 177);">
