@@ -71,7 +71,20 @@ table tr td b {
     font-size: 1rem; color: rgb(100, 99, 99); font-weight: 600;
     -webkit-transition: 0.5s; transition: 0.5s;
 }
+.container section{
+    position: relative;
+}
+.container section span{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 textarea{
     width: 100%;
     resize: none;
+    margin: 0 auto;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid gainsboro;
+    line-height: 130%;
 }
