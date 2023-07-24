@@ -12,5 +12,9 @@ class PathologyController extends Controller
         return view('pathology-a.index')->with('model',$model);
     }
 
+    public function patient(){
+        
+    }
+
     
 }
