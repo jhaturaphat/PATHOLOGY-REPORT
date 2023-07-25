@@ -37,16 +37,16 @@
                         }
                     });
                 },
-                minLength: 2,
+                minLength: 1,
                 select: function( event, ui ) {
                     console.log(ui);
                     // console.log( "Selected: " + ui.item.fname + " aka " + ui.item.lname );
                 }
-            }).autocomplete("instance")._renderItem = function (table, item) {
+            }).autocomplete("instance")._renderItem = function (card, item) {
                 return $("<li>")
                 .data("item.autocomplete", item)
-                .append("<div class='listFullName'>" + item.fname + "</div>" + "<div class='listEmployeeID'>" + item.lname + "</div>"  + "<div class='listJobTitle'>" + item.hn + "</div>")
-                .appendTo(table);
+                .append("<div'> <p>" + item.fname + " " + item.lname + "</p>"  + "<h4>" + item.hn + "</h4> </div>")
+                .appendTo(card);
             };
            
         });

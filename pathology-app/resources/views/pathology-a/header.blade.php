@@ -12,7 +12,7 @@
 </div>
 <div class="pt-detail">
     <table style="width: 100%;">
-        <tbody>
+        <tbody>            
             <tr>
                 <td>Surgical number:<b>LAB-569585</b></td>
                 <td>HN: <input class="hn-input" id="hn" type="text"></td>
@@ -31,7 +31,7 @@
             </tr>
             <tr>
                 <td>Date of reported: <b>2023-08-07</b></td>
-                <td>Requesting Physician: <b>Dr. Kendrick Mcelravy cccxcxcxcxcxcxcxc</b></td>
+                <td>Requesting Physician: <b>Dr. Kendrick Mcelravy</b></td>
             </tr>
         </tbody>
     </table>        

@@ -46,11 +46,17 @@ page .page-number {
 }
 /* รายละเอียดชื่อผู้ป่วย */
 .pt-detail {
-    display: flex; justify-content: center; align-items: baseline; margin-top: -6px;  
-    
+    display: flex; justify-content: center; align-items: baseline; margin-top: -6px;      
 }
 
-.hn-input {
+.pt-detail table tbody tr td:nth-child(2){
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+}
+
+.hn-input {  
+    width: 100%;  
     outline: none; box-sizing: border-box; border: 2px solid #ccc;
     font-size: 1rem; color: rgb(100, 99, 99); font-weight: 600;
     -webkit-transition: 0.5s; transition: 0.5s;
@@ -134,4 +140,11 @@ textarea{
 .line-footer{
     margin-top: 12px;
     border-top: 1px solid rgb(128,128,128);
+}
+
+.ui-menu-item li div{
+    padding: 0 !important;
+}
+.ui-menu-item-wrapper :where(p,h4){
+    margin: 0;
 }
