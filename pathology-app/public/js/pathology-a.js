@@ -5,4 +5,4 @@ document.getElementById('release').onclick = function(){
     console.log(screenshotTarget);
 }
 
-const search = document.getElementById('hn-input');
+
