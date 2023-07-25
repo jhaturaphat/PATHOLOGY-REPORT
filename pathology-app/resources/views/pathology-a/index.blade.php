@@ -22,34 +22,71 @@
     <script src="{{asset('js/jquery/jquery-ui/jquery-ui.min.js')}}"></script>
     <script src="{{asset('js/pathology-a.js')}}"></script>
     <script>
-        $(function(){
-            $("#hn").autocomplete({
-                source: function(request, response){
-                    $.ajax({
-                        url:"{{route('findorder')}}",
-                        dataType: "json",
-                        data: {
-                            term:request.term
-                        },
-                        success: function(data){
-                            console.error(data);
-                            response(data);
-                        }
-                    });
-                },
-                minLength: 1,
-                select: function( event, ui ) {
-                    console.log(ui);
-                    // console.log( "Selected: " + ui.item.fname + " aka " + ui.item.lname );
-                }
-            }).autocomplete("instance")._renderItem = function (card, item) {
-                return $("<li>")
-                .data("item.autocomplete", item)
-                .append("<div'> <p>" + item.fname + " " + item.lname + "</p>"  + "<h4>" + item.hn + "</h4> </div>")
-                .appendTo(card);
-            };
+        let canPass = false;
+        $(function(){            
+            // กำหนดให้ element id ทุกตัวเป็น autocomplete โดยใช้ each function
+            $("[id='hn']").each(function(){
+                    $(this).autocomplete({
+                    source: function(request, response){
+                        $.ajax({
+                            url:"{{route('findorder')}}",
+                            dataType: "json",
+                            data: {
+                                term:request.term
+                            },
+                            success: function(data){
+                                // console.log(data);
+                                response(data);
+                            }
+                        });
+                    },
+                    minLength: 1,
+                    select: function( event, ui ) {
+                        // console.log(ui.item.hn);  
+                        // this.value = ui.item.hn;                    
+                        $('[id="hn"]').each(function() {                        
+                            $(this).val(ui.item.hn);
+                        });
+                        $('[id="fname"]').each(function() {                        
+                            $(this).text(ui.item.fname);
+                        });
+                        $('[id="lname"]').each(function() {                        
+                            $(this).text(ui.item.lname);
+                        });
+                        $('[id="age"]').each(function() {                        
+                            $(this).text(ui.item.age);
+                        });
+                        $('[id="gender"]').each(function() {                        
+                            $(this).text(ui.item.gender);
+                        });
+                        $('[id="cdate"]').each(function() {                        
+                            $(this).text(ui.item.rdate);
+                        });
+                        $('[id="rcdate"]').each(function() {                        
+                            $(this).text(ui.item.srdate);
+                        });    
+                        return false;   //ใส่บรรทัด return false; เพื่อให้สามารถกำหนดค่าให้กับ input ได้            
+                        
+                    },
+                    search:function(event){
+                        (!canPass) ? event.preventDefault() : canPass = false;
+                    }
+                }).keypress(function(e){
+                    if (e.keyCode === 13) {
+                        canPass = true;
+                        $(this).autocomplete("search", $(this).val());
+                    }
+                }).autocomplete("instance")._renderItem = function (card, item) {
+                    return $("<li>")
+                    .data("item.autocomplete", item)
+                    .append("<div'> <p>" + item.fname + " " + item.lname + "</p>"  + "<h4>" + item.hn + "</h4> </div>")
+                    .appendTo(card);
+                };
+            });
            
         });
+
+        
     </script>
 
     

@@ -18,20 +18,20 @@
                 <td>HN: <input class="hn-input" id="hn" type="text"></td>
             </tr>
             <tr>
-                <td>Name:<b>Ms.TAYUWEEN</b></td>
-                <td>Last name:<b>GOLASTSAIHJUOII</b></td>
+                <td>Name:<b id="fname">Ms.TAYUWEEN</b></td>
+                <td>Last name:<b id="lname">GOLASTSAIHJUOII</b></td>
             </tr>
             <tr>
-                <td>Age:<b>30</b></td>
-                <td>Gender:<b>FEMALE</b></td>
+                <td>Age:<b id="age">30</b></td>
+                <td>Gender:<b id="gender">FEMALE</b></td>
             </tr>
             <tr>
-                <td>Date of specimen collected: <b>2023-08-07</b></td>
-                <td>Date of specimen received: <b>2023-08-07</b></td>
+                <td>Date of specimen collected: <b id="cdate">2023-08-07</b></td>
+                <td>Date of specimen received: <b id="rcdate">2023-08-07</b></td>
             </tr>
             <tr>
-                <td>Date of reported: <b>2023-08-07</b></td>
-                <td>Requesting Physician: <b>Dr. Kendrick Mcelravy</b></td>
+                <td>Date of reported: <b id="rtdate">2023-08-07</b></td>
+                <td>Requesting Physician: <b id="doctor">Dr. Kendrick Mcelravy</b></td>
             </tr>
         </tbody>
     </table>        
