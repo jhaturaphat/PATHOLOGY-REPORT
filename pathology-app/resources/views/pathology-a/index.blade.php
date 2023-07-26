@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="/js/jquery/jquery-ui/jquery-ui.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/pathology-a.css">
+    <link rel="stylesheet" href="/css/image2.css">
 </head>
 <body>
     @include('pathology-a.image1')
     @include('pathology-a.image2')
-    @include('pathology-a.image3')
-    @include('pathology-a.image4')
-    @include('pathology-a.image5')
+    {{-- @include('pathology-a.image3') --}}
+    {{-- @include('pathology-a.image4') --}}
+    {{-- @include('pathology-a.image5') --}}
 
     <button id="release" style="position: fixed; top:0; left:0; z-index:100">Release</button>
 

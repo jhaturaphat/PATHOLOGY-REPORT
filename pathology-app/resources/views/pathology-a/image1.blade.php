@@ -1,6 +1,6 @@
 <page size="A4" id="image1">
     <div class="container">
-        <div class="page-number">1/5</div>
+        <div class="page-number">1/2</div>
         @include('pathology-a.header')         
             <section>
                 <span><b>CLINICAL HISTORY:</b></span>

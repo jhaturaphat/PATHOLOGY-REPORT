@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,300&display=swap');
 
-.container{
+html, body{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container{    
     max-width: 18.5cm;
     margin: 0 auto;
 }
@@ -14,7 +20,7 @@ page {
     z-index: 99;
   }
 
-page[size="A4"] {  
+page[size="A4"] {      
     position: relative;
     width: 21cm; height: 29.7cm; 
     min-width: 21cm; min-height: 29.7cm;
@@ -89,6 +95,11 @@ table b {
     top: 0;
     left: 0;
 }
+
+#image1{
+    position: relative;
+}
+
 section b{
     font-size: .9rem; color: rgb(92, 91, 91);
 }
@@ -120,6 +131,7 @@ textarea{
     justify-content: flex-end; 
     align-items: flex-end; 
     margin-top: 10px;  
+    width: 100%;
 }
 
 .rt-footer input{
@@ -159,3 +171,4 @@ textarea{
     margin: 0;
     transition: .5 ease-out;
 }
+
