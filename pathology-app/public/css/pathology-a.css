@@ -105,11 +105,11 @@ section b{
 }
 textarea{
     width: 100%;
-    resize: none;
+    resize: vertical;
     margin: 0 auto;
     outline: none;
     border: none;
-    border-bottom: 1px solid gainsboro;
+    /* border-bottom: 1px solid gainsboro; */
     line-height: 130%;
 }
 #editor_dx{
@@ -122,7 +122,7 @@ textarea{
     height: 450px;
     border: none;
     /* border: 1px dotted rgb(128,128,128); */
-    resize: none;
+    resize: vertical;
 }
 
 .rt-footer{
