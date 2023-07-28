@@ -6,8 +6,8 @@ services:
     environment:  
       MARIADB_DATABASE: pathology_db  
       MARIADB_USER: pathology 
-      MARIADB_PASSWORD: Jko0Tr23
-      MARIADB_ROOT_PASSWORD: SJhf0964R   
+      MARIADB_PASSWORD: fdgdhdhd
+      MARIADB_ROOT_PASSWORD: root   
     volumes:
       - ./mysql/data:/var/lib/mysql
     ports:

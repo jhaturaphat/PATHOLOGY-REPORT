@@ -6,9 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>pathology report</title>
     <link rel="stylesheet" href="/js/jquery/jquery-ui/jquery-ui.min.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/pathology-a.css">
-    <link rel="stylesheet" href="/css/image2.css">
+    <link rel="stylesheet" href="/css/pathology-a/style.css">
+    <link rel="stylesheet" href="/css/pathology-a/header.css">
+    <link rel="stylesheet" href="/css/pathology-a/image1.css">
+    <link rel="stylesheet" href="/css/pathology-a/image2.css">
 </head>
 <body>
     @include('pathology-a.image1')
@@ -21,6 +22,7 @@
 
     <script src="{{asset('js/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('js/jquery/jquery-ui/jquery-ui.min.js')}}"></script>
+    <script src="{{asset('js/plugins/html2canvas.js')}}"></script>
     <script src="{{asset('js/pathology-a.js')}}"></script>
     <script>
         let canPass = false;
@@ -43,8 +45,7 @@
                     },
                     minLength: 1,
                     select: function( event, ui ) {
-                        // console.log(ui.item.hn);  
-                        // this.value = ui.item.hn;                    
+                                           
                         $('[id="hn"]').each(function() {                        
                             $(this).val(ui.item.hn);
                         });

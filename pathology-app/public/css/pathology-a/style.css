@@ -1,0 +1,41 @@
+html, body{
+    background: rgb(204,204,204); 
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+#watermark{
+    display: none;
+    position: absolute;
+    top: 100px;
+    left: -5px;
+    width: 100%;
+    margin: 0 auto;
+    z-index: 99;
+    filter: grayscale(100%);
+    opacity: .1;
+}
+
+.container{    
+    max-width: 18.5cm;
+    margin: 0 auto;
+}
+
+page {
+    font-family: 'Roboto', sans-serif; 
+    background: white;
+    display: block; margin: 0 auto;
+    margin-bottom: 0.5cm;     
+    box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+    margin-top: 8px;
+    z-index: 99;
+  }
+
+page[size="A4"] {      
+    position: relative;
+    width: 21cm; height: 29.7cm; 
+    min-width: 21cm; min-height: 29.7cm;
+    max-width: 21cm; max-height: 29.7cm; 
+    /* overflow-y: hidden; */
+    color: rgb(92, 91, 91);
+}

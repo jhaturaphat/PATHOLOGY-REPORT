@@ -1,5 +1,6 @@
 <page size="A4" id="image1">
     <div class="container">
+    <img id="watermark" src="{{URL::asset('/images/logo.png')}}" alt="logo">
         <div class="page-number">1/2</div>
         @include('pathology-a.header')         
             <section>
