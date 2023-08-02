@@ -14,7 +14,7 @@
                 <label for="">Gross examiner:</label>
                 <input type="text">
                 <label for="">Date:</label>
-                <input type="text">
+                <input type="text" id="img2_date" data-calendar='1'>
             </div>
         </section>
         <section id="microscropic">

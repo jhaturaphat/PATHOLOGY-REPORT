@@ -40,21 +40,21 @@ page .page-number {
     font-size: 1rem; color: rgb(100, 99, 99); font-weight: 600;
     -webkit-transition: 0.5s; transition: 0.5s;
 }
-table{
+.pt-detail table{
     width: 100%;
 }
-table tr{
+.pt-detail table tr{
     padding: 0;
     letter-spacing: 1px;
 }
-table tr td {
+.pt-detail table tr td {
     width: 50%;
     font-weight: 300;
     color: rgb(13, 14, 14);
     padding: 0;
     /* letter-spacing: 0px; */
 }
-table b {
+.pt-detail table b {
     /* font-weight: 100 bold; */
     font-size: .9rem; color: rgb(100, 99, 99);
 }

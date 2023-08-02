@@ -5,16 +5,18 @@
         @include('pathology-a.header')         
             <section>
                 <span><b>CLINICAL HISTORY:</b></span>
-                <textarea name="" id="" cols="30" rows="5" >                  </textarea>
+                <textarea name="" id="history" cols="30" rows="5" >                  </textarea>
             <section>
                 <span><b>CLINICAL DIAGNOSIS:</b></span>
-                <textarea name="" id="" cols="30" rows="5">                    </textarea>
+                <textarea name="" id="diag" cols="30" rows="5">                    </textarea>
             </section>
             
         <div style="text-align: center"><b>PATHOLOGICAL DIAGNOSIS</b></div>
         <div id="editor_dx">
-            <textarea></textarea>    
+            <textarea id="text_dx" rows="20"></textarea>    
         </div>   
-        @include('pathology-a.footer')
+        <div class="image2-footer">
+            @include('pathology-a.footer')
+        </div>
     </div>  
 </page>

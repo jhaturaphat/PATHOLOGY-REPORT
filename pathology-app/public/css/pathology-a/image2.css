@@ -1,5 +1,8 @@
 /* Page 2 */
-
+#image2{
+    position: relative;
+    z-index: 4;
+}
 #editor_gross{
     width: 100%;
     /* height: 350px; */
@@ -21,10 +24,12 @@
 }
 #microscropic textarea {
     resize: vertical;
+    width: 100%;
 }
 .image2-footer{
     position: absolute;
     bottom: 10px;
     left: 40px;
     width: 90%;
+    
 }
