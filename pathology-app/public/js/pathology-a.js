@@ -2,21 +2,25 @@
 
 document.getElementById('release').onclick = async function(){
     const screenshotTarget = document.getElementsByTagName('page');
-    const image1 = document.getElementById('image1');
-    console.log('XXX', screenshotTarget[0]);
-    // console.log(image1);
-    
+    const inputele = document.getElementsByTagName('input');
 
+
+    const hn = document.getElementById('hn');
     const watermark = document.getElementById('watermark');
     watermark.style.display = 'inline-block';
-    setTimeout(() => {
-        watermark.style.display = 'none';
-    }, 3000);
-    
+    hn.style.border = 'none';
 
+    for(var i =0;i<inputele.length; i++){
+        inputele[i].style.border = 'none';
+    }
+    
     for(var i=0; i<screenshotTarget.length; i++){       
       await convertpng(screenshotTarget[i]);
     }
+
+    setTimeout(() => {
+        watermark.style.display = 'none';
+    }, 3000);
    
 };
 

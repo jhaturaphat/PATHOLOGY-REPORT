@@ -5,7 +5,6 @@
 /pathology-app/public/storage
 /pathology-app/storage/*.key
 /pathology-app/vendor
-/mysql/data/*
 /pathology-app/.env
 /pathology-app/.env.backup
 /pathology-app/.env.production
@@ -20,3 +19,5 @@
 /pathology-app/.vscode
 
 /docker-nginx/log/*
+
+/mysql/data/*

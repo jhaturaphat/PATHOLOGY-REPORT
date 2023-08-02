@@ -27,7 +27,12 @@ return new class extends Migration
             $table->string('phatology_diag')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา');
             $table->string('gross_examination')->nullable()->comment('การตรวจสอบขั้นต้น');
             $table->string('gross_examiner')->nullable()->comment('ผู้ตรวจสอบขั้นต้น');
-            $table->enum('choices', array('image1', 'image2','image3', 'image4','image5'))->default('image1')->comment('ตัวเลือกสำหรับนำเข้า field lab_order_image default is image1');
+            // $table->enum('choices', array('image1', 'image2','image3', 'image4','image5'))->default('image1')->comment('ตัวเลือกสำหรับนำเข้า field lab_order_image default is image1');
+            $table->binary('image1')->comment('รูปที่ 1');
+            $table->binary('image2')->comment('รูปที่ 2');
+            $table->binary('image3')->comment('รูปที่ 3');
+            $table->binary('image4')->comment('รูปที่ 4');
+            $table->binary('image5')->comment('รูปที่ 5');
             $table->timestamps();
 
         });

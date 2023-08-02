@@ -15,7 +15,7 @@
         <tbody>            
             <tr>
                 <td>Surgical number:<b>LAB-569585</b></td>
-                <td>HN: <input class="hn-input" id="hn" type="text"></td>
+                <td>HN: <input class="hn-input" id="hn" type="text" pattern="[0-9]{9}"></td>
             </tr>
             <tr>
                 <td>Name:<b id="fname">Ms.TAYUWEEN</b></td>
