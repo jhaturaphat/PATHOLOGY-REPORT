@@ -22,6 +22,7 @@
 
     <script src="{{asset('js/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('js/jquery/jquery-ui/jquery-ui.min.js')}}"></script>
+    <script src="{{asset('js/jquery/jquery-ui/i18n/datepicker-th.js')}}"></script>
     <script src="{{asset('js/plugins/html2canvas.js')}}"></script>
     <script src="{{asset('js/pathology-a.js')}}"></script>
     <script>
@@ -85,8 +86,22 @@
                     .appendTo(card);
                 };
             });
-           
+
+            $( "input[data-calendar='1']" ).datepicker({
+                timepicker:false,
+                lang:'th',
+                yearOffset:543,
+                dateFormat:'dd-mm-yy',
+                showAnim: 'clip',
+                // changeMonth: true,
+                // changeYear: true,
+                minDate: '-120',
+                maxDate: "+0D",   
+            });
+
+                      
         });
+        
 
         
     </script>
