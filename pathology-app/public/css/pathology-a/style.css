@@ -86,4 +86,5 @@ textarea{
     margin-top: 12px;
     border-top: 1px solid rgb(128,128,128);
     z-index: 0;
+    text-align: center;
 }

@@ -62,3 +62,25 @@
     transition: .5 ease-out;
 }
 
+#add-page{
+    position: absolute;
+    right: -20px;
+    bottom: -20px; 
+    transition: .7s ease-out;
+    font-size: 20px;
+    display: block;
+}
+#add-page .fa-trash-can{
+    display: none;
+}
+
+#text_blank{
+    
+    width: 100%;
+    height: 700px;
+}
+#blank_page{
+    display: none;
+}
+
+

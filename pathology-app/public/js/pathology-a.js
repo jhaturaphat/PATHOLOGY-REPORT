@@ -51,5 +51,46 @@ $(window).on("mouseup", function(e) {
     }
     // resizeEvent();
 });
+// เพิ่มหน้าสำหรับกรอกข้อมูล
+const addpage = document.getElementById('add');
+addpage.addEventListener("mouseup", function(){
+    document.getElementById('blank_page').style.display = 'block';  
+    this.style.display = "none"; 
+    document.getElementById('del').style.display = 'block';
+    setTimeout(() => {
+        const page = document.querySelectorAll('page');
+        for(let i = 0; i < page.length; i++){            
+            if(page[i].style.display !== 'none'){                
+                page[i].querySelector('.page-number').innerHTML = "".concat(i+1,'/',page.length);
+            }
+        }        
+    }, 100);
+});
+// ลบหน้าที่เพิ่มมา
+const delpage = document.getElementById('del');
+delpage.addEventListener("mouseup", function(){
+    const blank_page = document.getElementById('blank_page');    
+    blank_page.classList.remove('animate__fadeInLeft');
+    blank_page.classList.add('animate__backOutUp');
+    setTimeout(() => {        
+        blank_page.classList.remove('animate__backOutUp');
+        blank_page.classList.add('animate__fadeInLeft');
+        blank_page.style.display = 'none'; 
+    }, 500);
+    this.style.display = "none";     
+    document.getElementById('add').style.display = 'block';
+    setTimeout(() => {        
+        const page = document.querySelectorAll('page');        
+        let pn = 0;
+        for(let i = 0; i < page.length; i++){ if(page[i].style.display !== 'none') pn++;}
+        let pc = 1;
+        for(let i = 0; i < page.length; i++){            
+            if(page[i].style.display !== 'none'){     
+                page[i].querySelector('.page-number').innerHTML = "".concat(pc,'/',pn);
+                pc++; 
+            }
+        }        
+    }, 600);
+});
 
 

@@ -1,4 +1,4 @@
-<page size="A4" id="image2">
+<page size="A4" id="image2" >
     <div class="container">
     <img id="watermark" src="{{URL::asset('/images/logo.png')}}" alt="logo">
         <div class="page-number">2/2</div>
