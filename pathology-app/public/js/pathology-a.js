@@ -80,7 +80,7 @@ delpage.addEventListener("mouseup", function(){
     this.style.display = "none";     
     document.getElementById('add').style.display = 'block';
     setTimeout(() => {        
-        const page = document.querySelectorAll('page');        
+        const page = document.querySelectorAll('page'); 
         let pn = 0;
         for(let i = 0; i < page.length; i++){ if(page[i].style.display !== 'none') pn++;}
         let pc = 1;

@@ -6,7 +6,7 @@ html, body{
     margin: 0;
     padding: 0;
     font-family: 'Martian Mono', monospace;
-    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
 }
 #watermark{
     display: none;
@@ -20,7 +20,8 @@ html, body{
     opacity: .1;
 }
 
-.container{    
+.container{   
+    /* position: relative;  */
     max-width: 18.5cm;
     margin: 0 auto;
 }
@@ -55,6 +56,9 @@ textarea{
     border: none;
     outline: none;
     width: 100%;
+    font-family: 'Martian Mono', monospace;
+    font-size: 14px;
+    color: rgb(92, 91, 91);
 }
 
 /* Footer */

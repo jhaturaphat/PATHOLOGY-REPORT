@@ -7,6 +7,7 @@
             <section>
                 <span><b>CLINICAL HISTORY:</b></span>
                 <textarea name="" id="history" cols="30" rows="5" >                  </textarea>
+            </section>
             <section>
                 <span><b>CLINICAL DIAGNOSIS:</b></span>
                 <textarea name="" id="diag" cols="30" rows="5">                    </textarea>
@@ -16,7 +17,7 @@
         <div id="editor_dx">
             <textarea id="text_dx" rows="20"></textarea>    
         </div>   
-        <div class="image2-footer">
+        <div class="image1-footer">
             @include('pathology-a.footer')
         </div>
     </div> 

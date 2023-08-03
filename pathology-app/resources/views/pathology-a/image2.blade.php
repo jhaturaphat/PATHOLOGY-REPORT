@@ -11,9 +11,9 @@
             <div style="text-align: left; margin:20px 0 0 0;"><b>GROSS EXAMINTION </b></div>
             <textarea></textarea>    
             <div class="gross_footer">
-                <label for="">Gross examiner:</label>
+                <label for=""><b>Gross examiner:</b></label>
                 <input type="text">
-                <label for="">Date:</label>
+                <label for=""><b>Date:</b></label>
                 <input type="text" id="img2_date" data-calendar='1'>
             </div>
         </section>
