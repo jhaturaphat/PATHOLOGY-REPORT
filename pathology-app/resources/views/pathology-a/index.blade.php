@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>pathology report</title>
     <link rel="stylesheet" href="/js/jquery/jquery-ui/jquery-ui.min.css">
     <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">
@@ -19,6 +20,7 @@
     @include('pathology-a.image1')
     @include('pathology-a.blank')
     @include('pathology-a.image2')
+    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
     
     {{-- @include('pathology-a.image3') --}}
     {{-- @include('pathology-a.image4') --}}

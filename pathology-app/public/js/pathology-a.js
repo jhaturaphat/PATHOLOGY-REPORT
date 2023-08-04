@@ -1,34 +1,57 @@
 "use strict";
 // แปลง html เป็นรูปภาพ png
+let pngObj = [];
 document.getElementById('release').onclick = async function(){
+    pngObj = [];
     const screenshotTarget = document.getElementsByTagName('page');
     const inputele = document.getElementsByTagName('input');
 
-
-    const hn = document.getElementById('hn');
-    const watermark = document.getElementById('watermark');
-    watermark.style.display = 'inline-block';
-    hn.style.border = 'none';
+    const hn = document.getElementById('hn');  
+    hn.style.border = 'none';  
+    screenshotTarget[0].style.boxShadow = 'none';    
+    
+    
 
     for(var i =0;i<inputele.length; i++){
         inputele[i].style.border = 'none';
     }
     
-    for(var i=0; i<screenshotTarget.length; i++){       
-      await convertpng(screenshotTarget[i]);
+    for(var i=0; i<screenshotTarget.length; i++){ 
+        if(window.getComputedStyle(screenshotTarget[i]).display !== 'none'){
+            screenshotTarget[i].style.boxShadow = 'none';
+            screenshotTarget[i].classList.remove('animate__animated');      
+            await convertpng(screenshotTarget[i]); //แปลงรูปภาพ
+            screenshotTarget[i].classList.add('animate__animated');
+            screenshotTarget[i].style.boxShadow = '0 0 0.5cm rgba(0,0,0,0.5)';
+        }      
     }
+    console.log(pngObj);
 
     setTimeout(() => {
-        watermark.style.display = 'none';
-    }, 3000);
+        $.ajaxSetup({
+            headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+         });
+        $.ajax({
+            type: "POST",
+            dataType: 'json',            
+            url: '/pathology-a/html2canvas',
+            data: JSON.stringify(pngObj),
+            success: function(data, textStatus,jqXHR){
+                console.log(data);
+            }            
+          });
+    }, 100);
    
 };
 
 // html2canvas
 async function convertpng(ele){
-    await html2canvas(ele).then(function (canvas) {
+    //scale: 2 ทำให้ภาพชัดขึ้นเวลาขยายรูป
+    await html2canvas(ele,{scale: 2}).then(function (canvas) {
             const imgData = canvas.toDataURL('image/png');
-            console.log(imgData);
+            pngObj.push(imgData);
         });
 }
 

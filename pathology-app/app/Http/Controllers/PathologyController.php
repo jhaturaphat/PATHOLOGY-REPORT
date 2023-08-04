@@ -12,7 +12,9 @@ class PathologyController extends Controller
         return view('pathology-a.index')->with('model',$model);
     }
 
-    
+    public function html2canvas(Request $request){
+        dd(json_decode($request));
+    }
 
     
 }

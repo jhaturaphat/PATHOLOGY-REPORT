@@ -69,8 +69,9 @@
 }
 
 .image1-footer{
+    /* background-color: aliceblue; */
     position: absolute;
-    bottom: 0px !important;
+    bottom: 10px !important;
     left: 0px !important;
     width: 100%;
 }
@@ -94,6 +95,7 @@
 }
 #blank_page{
     display: none;
+    z-index: 5;
 }
 
 

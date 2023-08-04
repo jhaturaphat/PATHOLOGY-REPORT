@@ -22,8 +22,10 @@ html, body{
 
 .container{   
     /* position: relative;  */
+    /* background-color: aquamarine; */
     max-width: 18.5cm;
     margin: 0 auto;
+    height: 100%;
 }
 
 page {
@@ -56,9 +58,10 @@ textarea{
     border: none;
     outline: none;
     width: 100%;
-    font-family: 'Martian Mono', monospace;
-    font-size: 14px;
-    color: rgb(92, 91, 91);
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    font-weight: inherit;   
 }
 
 /* Footer */
