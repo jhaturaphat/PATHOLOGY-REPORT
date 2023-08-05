@@ -25,7 +25,7 @@ document.getElementById('release').onclick = async function(){
             screenshotTarget[i].style.boxShadow = '0 0 0.5cm rgba(0,0,0,0.5)';
         }      
     }
-    console.log(pngObj);
+    // console.log(pngObj);
 
     setTimeout(() => {
         $.ajaxSetup({

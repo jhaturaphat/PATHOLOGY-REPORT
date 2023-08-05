@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LabOrderImage extends Model
 {
     use HasFactory;
-    protected $connection = 'mysql_his';  // ตั้งค่าใน config/databases.php
+    protected $connection = 'mysql_his';  // ตั้งค่าใน config/databases.php สำหรับฐานข้อมูลโรงบาล
     protected $table = 'lab_order_image'; // ชื่อ table ที่อยู่บนฐานข้อมูลที่เราเชื่อมต่อ พิมพ์ใส่ให้ตรงกัน
 
     protected $fillable = [
