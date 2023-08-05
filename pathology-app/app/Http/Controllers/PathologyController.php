@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use \app\models\PathologyReports;
 
 class PathologyController extends Controller
 {
@@ -13,7 +18,21 @@ class PathologyController extends Controller
     }
 
     public function html2canvas(Request $request){
-        dd(json_decode($request));
+        $base64Image = json_decode($request->getContent());
+        $imageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64Image[0]));
+        
+        $imageName = 'image_' . time() . '.png'; // กำหนดชื่อไฟล์รูปภาพ
+        
+        $imagePath = 'images/uploads/' . $imageName;
+        File::put(public_path($imagePath), $imageData);
+
+        // บันทึกข้อมูลรูปภาพในฐานข้อมูล
+        $image = new PathologyReports();
+        $image->image_data = $imageData;
+        $image->image_name = $imageName;
+        $image->save();
+
+
     }
 
     
