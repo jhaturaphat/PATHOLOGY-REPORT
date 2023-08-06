@@ -108,7 +108,7 @@ delpage.addEventListener("mouseup", function(){
         for(let i = 0; i < page.length; i++){ if(page[i].style.display !== 'none') pn++;}
         let pc = 1;
         for(let i = 0; i < page.length; i++){            
-            if(page[i].style.display !== 'none'){     
+            if(window.getComputedStyle(page[i].style.display !== 'none')){     
                 page[i].querySelector('.page-number').innerHTML = "".concat(pc,'/',pn);
                 pc++; 
             }
