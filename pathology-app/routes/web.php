@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/laborderimage/index', [LabOrderImageController::class, 'index']);
-Route::get('/laborderimage/findorder', [LabOrderImageController::class, 'findLabOrder'])->name('findorder');
+Route::get('/laborderimage/findlaborder', [LabOrderImageController::class, 'findLabOrder'])->name('findlaborder');
 
 Route::get('/pathology-a/index', [pathologyController::class, 'index']);
 Route::post('/pathology-a/html2canvas', [pathologyController::class, 'html2canvas']);

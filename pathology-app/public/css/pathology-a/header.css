@@ -42,17 +42,20 @@ page .page-number {
 }
 .pt-detail table{
     width: 100%;
+    overflow-x: hidden;
 }
 .pt-detail table tr{
     padding: 0;
     letter-spacing: 1px;
 }
-.pt-detail table tr td {
-    width: 50%;
+.pt-detail table tr td {    
     font-weight: 300;
     color: rgb(13, 14, 14);
     padding: 0;
-    /* letter-spacing: 0px; */
+    letter-spacing: .1mm;
+}
+.pt-detail table tr td:first{
+    width: 310px;
 }
 .pt-detail table b {
     /* font-weight: 100 bold; */

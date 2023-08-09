@@ -37,11 +37,11 @@
         let canPass = false;
         $(function(){            
             // กำหนดให้ element id ทุกตัวเป็น autocomplete โดยใช้ each function
-            $("[id='hn']").each(function(){
+            $("input[id='hn']").each(function(){
                     $(this).autocomplete({
                     source: function(request, response){
                         $.ajax({
-                            url:"{{route('findorder')}}",
+                            url:"{{route('findlaborder')}}",
                             dataType: "json",
                             data: {
                                 term:request.term
@@ -71,10 +71,10 @@
                             $(this).text(ui.item.gender);
                         });
                         $('[id="cdate"]').each(function() {                        
-                            $(this).text(ui.item.rdate);
+                            $(this).text(ui.item.order_date);
                         });
-                        $('[id="rcdate"]').each(function() {                        
-                            $(this).text(ui.item.srdate);
+                        $('[id="doctor"]').each(function() {                        
+                            $(this).text(ui.item.doctor_name);
                         });    
                         return false;   //ใส่บรรทัด return false; เพื่อให้สามารถกำหนดค่าให้กับ input ได้            
                         
@@ -90,21 +90,24 @@
                 }).autocomplete("instance")._renderItem = function (card, item) {
                     return $("<li>")
                     .data("item.autocomplete", item)
-                    .append("<div'> <p>" + item.fname + " " + item.lname + "</p>"  + "<h4>" + item.hn + "</h4> </div>")
+                    .append("<div'>" +item.hn +" "+ item.fname + " " + item.lname + "</div>")
+                    .append("<div'>" +item.lab_items_name +" แพทย์ผู้สั่ง "+ item.doctor_name + " วันที่สั่ง " + item.order_date + "</div>")
                     .appendTo(card);
                 };
             });
 
-            $( "input[data-calendar='1']" ).datepicker({
-                timepicker:false,
-                lang:'th',
-                yearOffset:543,
-                dateFormat:'dd-mm-yy',
-                showAnim: 'clip',
-                // changeMonth: true,
-                // changeYear: true,
-                minDate: '-120',
-                maxDate: "+0D",   
+            $( "input[data-calendar='1']" ).each(function(){
+                $(this).datepicker({
+                    timepicker:false,
+                    lang:'th',
+                    yearOffset:543,
+                    dateFormat:'dd-mm-yy',
+                    showAnim: 'clip',
+                    // changeMonth: true,
+                    // changeYear: true,
+                    minDate: '-120',
+                    maxDate: "+0D",   
+                })
             });
 
                       
