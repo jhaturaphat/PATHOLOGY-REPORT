@@ -17,9 +17,11 @@ class PathologyController extends Controller
         return view('pathology-a.index')->with('model',$model);
     }
 
-    public function html2canvas(Request $request){
-        $base64Image = json_decode($request->getContent());
-        $imageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64Image[0]));
+    public function store(Request $request){
+        $palyload = json_decode($request->input('report'));
+        $item = json_decode($request->input('item'));
+
+        $imageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $palyload[0]));
         
         $imageName = 'image_' . time() . '.png'; // กำหนดชื่อไฟล์รูปภาพ
         

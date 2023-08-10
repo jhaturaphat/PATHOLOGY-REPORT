@@ -32,9 +32,11 @@
     <script src="{{asset('js/jquery/jquery-ui/jquery-ui.min.js')}}"></script>
     <script src="{{asset('js/jquery/jquery-ui/i18n/datepicker-th.js')}}"></script>
     <script src="{{asset('js/plugins/html2canvas.js')}}"></script>
+    <script src="{{asset('js/utils.js')}}"></script>
     <script src="{{asset('js/pathology-a.js')}}"></script>
     <script>
         let canPass = false;
+        let lab_order = [];
         $(function(){            
             // กำหนดให้ element id ทุกตัวเป็น autocomplete โดยใช้ each function
             $("input[id='hn']").each(function(){
@@ -54,6 +56,8 @@
                     },
                     minLength: 1,
                     select: function( event, ui ) {
+                        ui.item.lis_id = $('#lis_id').val();
+                        lab_order = ui.item; 
                                            
                         $('[id="hn"]').each(function() {                        
                             $(this).val(ui.item.hn);
@@ -71,8 +75,8 @@
                             $(this).text(ui.item.gender);
                         });
                         $('[id="cdate"]').each(function() {                        
-                            $(this).text(ui.item.order_date);
-                        });
+                            $(this).text(Utils.DDMMYYYY(ui.item.order_date));
+                        });                        
                         $('[id="doctor"]').each(function() {                        
                             $(this).text(ui.item.doctor_name);
                         });    
@@ -107,7 +111,12 @@
                     // changeYear: true,
                     minDate: '-120',
                     maxDate: "+0D",   
-                })
+                    onSelect: function(date, datepicker){
+                        $("input[id="+this.id+"]").each(function(){
+                            $(this).val(date);
+                        });
+                    }
+                });               
             });
 
                       

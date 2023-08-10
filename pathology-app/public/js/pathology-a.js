@@ -1,4 +1,5 @@
 "use strict";
+// import { Utils } from "./utils.js";
 // แปลง html เป็นรูปภาพ png
 let pngObj = [];
 document.getElementById('release').onclick = async function(){
@@ -36,8 +37,8 @@ document.getElementById('release').onclick = async function(){
         $.ajax({
             type: "POST",
             dataType: 'json',            
-            url: '/pathology-a/html2canvas',
-            data: JSON.stringify(pngObj),
+            url: '/pathology-a',
+            data: {item: JSON.stringify(lab_order), report: JSON.stringify(pngObj)},
             success: function(data, textStatus,jqXHR){
                 console.log(data);
             }            
@@ -105,15 +106,16 @@ delpage.addEventListener("mouseup", function(){
     setTimeout(() => {        
         const page = document.querySelectorAll('page'); 
         let pn = 0;
-        for(let i = 0; i < page.length; i++){ if(page[i].style.display !== 'none') pn++;}
+        for(let i = 0; i < page.length; i++){ if(window.getComputedStyle(page[i].display !== 'none')) pn++;}
         let pc = 1;
         for(let i = 0; i < page.length; i++){            
-            if(window.getComputedStyle(page[i].style.display !== 'none')){     
+            if(window.getComputedStyle(page[i].display !== 'none')){     
                 page[i].querySelector('.page-number').innerHTML = "".concat(pc,'/',pn);
                 pc++; 
             }
         }        
     }, 600);
 });
+
 
 
