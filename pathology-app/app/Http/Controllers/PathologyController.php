@@ -7,7 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-use \app\models\PathologyReports;
+use \App\Models\PathologyReports;
 
 class PathologyController extends Controller
 {
@@ -20,20 +20,60 @@ class PathologyController extends Controller
     public function store(Request $request){
         $palyload = json_decode($request->input('report'));
         $item = json_decode($request->input('item'));
+        // return response()->json($item->hn);
+        $model = new PathologyReports();
 
-        $imageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $palyload[0]));
+        switch (count($palyload)) {
+            case 1 :
+                $model->image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $palyload[0]));
+            break;
+            case 2 :
+                $model->image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $palyload[0]));
+                $model->image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $palyload[1]));
+            break;
+            case 3 :
+                $model->image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $palyload[0]));
+                $model->image2 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $palyload[1]));
+                $model->image3 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $palyload[2]));
+            break;
+            case 4 :
+                $model->image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $palyload[0]));
+                $model->image2 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $palyload[1]));
+                $model->image3 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $palyload[2]));
+                $model->image4 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $palyload[3]));
+            break;            
+            default:
+                $model->image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $palyload[0]));
+                $model->image2 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $palyload[1]));
+                $model->image3 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $palyload[2]));
+                $model->image4 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $palyload[3]));
+                $model->image5 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $palyload[4]));
+                
+        }        
         
-        $imageName = 'image_' . time() . '.png'; // กำหนดชื่อไฟล์รูปภาพ
-        
-        $imagePath = 'images/uploads/' . $imageName;
-        File::put(public_path($imagePath), $imageData);
+        //$imageName = 'image_' . time() . '.png'; // กำหนดชื่อไฟล์รูปภาพ        
+        //$imagePath = 'images/uploads/' . $imageName;
+        //File::put(public_path($imagePath), $imageData);
 
         // บันทึกข้อมูลรูปภาพในฐานข้อมูล
-        $image = new PathologyReports();
-        $image->image_data = $imageData;
-        $image->image_name = $imageName;
-        $image->save();
+        $model->id = $item->lab_id;
+        $model->lab_order_number = $item->lab_order_number;
+        $model->hn = $item->hn;
+        $model->name = $item->name;
+        $model->lastname = $item->lastname;
+        $model->age = $item->age;
+        $model->gender = $item->gender;
+        $model->collected_at = $item->collected_at;
+        $model->received_at = $item->received_at;
+        $model->physician = $item->hn;
+        $model->clinical_history = $item->hn;
+        $model->clinical_diagnosis = $item->hn;
+        $model->phatology_diag = $item->hn;
+        $model->gross_examination = $item->hn;
+        $model->gross_examiner = $item->hn;
+        $model->save();
 
+        // return response()->json($key);
 
     }
 

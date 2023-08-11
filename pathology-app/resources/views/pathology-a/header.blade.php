@@ -15,7 +15,7 @@
         <input type="hidden" id="lab_order_number">
         <tbody>            
             <tr>
-                <td>Surgical number:<input type="text" id="lis_id" value="LAB-123456" style="width: 180px;"></td>
+                <td>Surgical number:<input type="text" id="id" value="LAB-123456" style="width: 180px;"></td>
                 <td>HN: <input class="hn-input" id="hn" type="text" pattern="[0-9]{9}" value="000478449"></td>
             </tr>
             <tr>

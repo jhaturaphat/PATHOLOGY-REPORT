@@ -56,10 +56,10 @@
                     },
                     minLength: 1,
                     select: function( event, ui ) {
-                        ui.item.lis_id = $('#lis_id').val();
+                        ui.item.lis_id = $('#id').val();
                         lab_order = ui.item; 
                                            
-                        $('[id="hn"]').each(function() {                        
+                        $('input[id="hn"]').each(function() {                        
                             $(this).val(ui.item.hn);
                         });
                         $('[id="fname"]').each(function() {                        
