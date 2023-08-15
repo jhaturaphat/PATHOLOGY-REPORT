@@ -27,12 +27,12 @@
                 <td>Gender:<b id="gender">FEMALE</b></td>
             </tr>
             <tr>
-                <td>Date of specimen collected: <b id="cdate">2023-08-07</b></td>
-                <td>Date of specimen received: <input type="text" id="rcdate" data-calendar='1' style="width: 180px;"></td>
+                <td>Date of specimen collected: <b id="speci_collected_at">2023-08-07</b></td>
+                <td>Date of specimen received: <input type="text" id="speci_received_at" data-calendar='1' style="width: 180px;"></td>
             </tr>
             <tr>
                 <td>Date of reported: <input type="text" id="rdate" data-calendar='1' style="width: 120px;"></td>
-                <td>Requesting Physician: <b id="doctor">Dr. Kendrick Mcelravy</b></td>
+                <td>Requesting Physician: <b id="physician">Dr. Kendrick Mcelravy</b></td>
             </tr>
         </tbody>
     </table>        

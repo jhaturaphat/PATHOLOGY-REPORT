@@ -57,24 +57,24 @@ async function convertpng(ele){
 }
 
 // เมือลากเปลี่ยนขนาด textarea 
-let resizeInt = null;
-const diag = document.getElementById('diag');
-var resizeEvent = function() {    
-    console.log(diag.outerHeight);
-    document.getElementById('text_dx').rows = '9';
-};
+// let resizeInt = null;
+// const diag = document.getElementById('diag');
+// var resizeEvent = function() {    
+//     console.log(diag.outerHeight);
+//     document.getElementById('text_dx').rows = '9';
+// };
 
-diag.addEventListener("mousedown", function(e) {
-    resizeInt = setInterval(resizeEvent, 1000/15);
-    console.log(e);
-});
+// diag.addEventListener("mousedown", function(e) {
+//     resizeInt = setInterval(resizeEvent, 1000/15);
+//     console.log(e);
+// });
 
-$(window).on("mouseup", function(e) {
-    if (resizeInt !== null) {
-        clearInterval(resizeInt);
-    }
-    // resizeEvent();
-});
+// $(window).on("mouseup", function(e) {
+//     if (resizeInt !== null) {
+//         clearInterval(resizeInt);
+//     }
+//     // resizeEvent();
+// });
 // เพิ่มหน้าสำหรับกรอกข้อมูล
 const addpage = document.getElementById('add');
 addpage.addEventListener("mouseup", function(){

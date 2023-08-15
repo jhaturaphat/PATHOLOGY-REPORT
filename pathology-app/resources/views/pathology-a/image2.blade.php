@@ -6,7 +6,7 @@
         
         <section id="editor_gross" style="border-bottom: 1px solid rgb(205, 201, 201); padding-bottom:15px">
             <div style="text-align: left; margin:20px 0 0 0;"><b>GROSS EXAMINTION </b></div>
-            <textarea></textarea>    
+            <textarea id="gross_examination"></textarea>    
             <div class="gross_footer">
                 <label for=""><b>Gross examiner:</b></label>
                 <input type="text">
@@ -16,7 +16,7 @@
         </section>
         <section id="microscropic">
             <div><b>MICROSCOPIC DESCRIPTION</b> </div>
-            <textarea></textarea>
+            <textarea id="microscopic_description"></textarea> MICROSCOPIC DESCRIPTION
         </section>
         <div class="image2-footer">
             @include('pathology-a.footer')

@@ -74,10 +74,10 @@
                         $('[id="gender"]').each(function() {                        
                             $(this).text(ui.item.gender);
                         });
-                        $('[id="cdate"]').each(function() {                        
+                        $('[id="speci_collected_at"]').each(function() {                        
                             $(this).text(Utils.DDMMYYYY(ui.item.order_date));
                         });                        
-                        $('[id="doctor"]').each(function() {                        
+                        $('[id="physician"]').each(function() {                        
                             $(this).text(ui.item.doctor_name);
                         });    
                         return false;   //ใส่บรรทัด return false; เพื่อให้สามารถกำหนดค่าให้กับ input ได้            

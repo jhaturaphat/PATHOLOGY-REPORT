@@ -6,16 +6,16 @@
           
             <section>
                 <span><b>CLINICAL HISTORY:</b></span>
-                <textarea name="" id="history" cols="30" rows="5" >                  </textarea>
+                <textarea name="" id="clinical_history" cols="30" rows="5" >                  </textarea>
             </section>
             <section>
                 <span><b>CLINICAL DIAGNOSIS:</b></span>
-                <textarea name="" id="diag" cols="30" rows="5">                    </textarea>
+                <textarea name="" id="clinical_diagnosis" cols="30" rows="5">                    </textarea>
             </section>
             
         <div style="text-align: center"><b>PATHOLOGICAL DIAGNOSIS</b></div>
         <div id="editor_dx">
-            <textarea id="text_dx" rows="20"></textarea>    
+            <textarea id="phatology_diag" rows="20"></textarea>    
         </div>   
         <div class="image1-footer">
             @include('pathology-a.footer')
