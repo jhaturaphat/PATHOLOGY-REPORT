@@ -27,9 +27,11 @@ return new class extends Migration
             $table->string('physician')->nullable()->comment('แพทย์ผู้สั่งตรวจ doctor_code');
             $table->text('clinical_history')->nullable()->comment('ประวัติทางคลินิก');
             $table->text('clinical_diagnosis')->nullable()->comment('การวินิจฉัยทางคลินิก');
-            $table->text('phatology_diag')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา');
-            $table->mediumText('phatology_diag2')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา');
-            $table->string('gross_examination')->nullable()->comment('การตรวจสอบขั้นต้น');
+            $table->jsonb('phatology_diag')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา');
+            //$table->mediumText('phatology_diag')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา');
+            $table->string('gross_examination')->nullable()->comment('ผลการตรวจสอบขั้นต้น');
+            $table->string('gross_examiner')->nullable()->comment('ผู้ตรวจสอบขั้นต้น');
+            $table->string('gross_date')->nullable()->comment('ลงวันที่ตรวจสอบขั้นต้น');
             $table->string('microscopic_description')->nullable()->comment('คำอธิบายด้วยกล้องจุลทรรศน์');
             $table->string('pathologist')->nullable()->comment('ผู้ตรวจสอบ');
             // $table->enum('choices', array('image1', 'image2','image3', 'image4','image5'))->default('image1')->comment('ตัวเลือกสำหรับนำเข้า field lab_order_image default is image1');

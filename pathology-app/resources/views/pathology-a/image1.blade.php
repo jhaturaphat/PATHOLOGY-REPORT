@@ -1,9 +1,7 @@
-<page size="A4" id="image1">
-    <div class="container">
-        <img id="watermark" src="{{URL::asset('/images/logo.png')}}" alt="logo">
+<page size="A4" id="image1" class="animate__animated animate__fadeInLeft">
+    <div class="container">        
         <div class="page-number">1/2</div>
-        @include('pathology-a.header')    
-          
+        @include('pathology-a.header')   
             <section>
                 <span><b>CLINICAL HISTORY:</b></span>
                 <textarea name="" id="clinical_history" cols="30" rows="5" >                  </textarea>

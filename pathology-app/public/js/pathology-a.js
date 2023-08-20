@@ -4,21 +4,54 @@
 let pngObj = [];
 document.getElementById('release').onclick = async function(){
     pngObj = [];
+    let phatology_diag_obj = [];
+    let data_item = {};
+
+    // data items
+    data_item['id'] = $('#id').val();
+    data_item['lab_order_number'] = $('#lab_order_number').val();
+    data_item['hn'] = $('#hn').val();
+    data_item['fname'] = $('#fname').text();
+    data_item['lanme'] = $('#lname').text();
+    data_item['age'] = $('#age').text();
+    data_item['gendeer'] = $('#gender').text();
+    data_item['speci_collected_at'] = $('#speci_collected_at').text();
+    data_item['speci_received_at'] = $('#speci_received_at').val();
+    data_item['date_of_report'] = $('#date_of_report').val();
+    data_item['physician'] = $('#physician').text();
+    data_item['clinical_history'] = $('#clinical_history').val();
+    data_item['clinical_diagnosis'] = $('#clinical_diagnosis').val();
+    data_item['gross_examination'] = $('#gross_examination').val();
+    data_item['gross_examiner'] = $('#gross_examiner').val();
+    data_item['gross_date'] = $('#gross_date').val();
+    data_item['microscopic_description'] = $('#microscopic_description').val();
+    data_item['pathologist'] = $('#pathologist').val();
+
     const screenshotTarget = document.getElementsByTagName('page');
     const inputele = document.getElementsByTagName('input');
 
     const hn = document.getElementById('hn');  
     hn.style.border = 'none';  
-    screenshotTarget[0].style.boxShadow = 'none';    
-    
-    
+    screenshotTarget[0].style.boxShadow = 'none';  
 
     for(var i =0;i<inputele.length; i++){
         inputele[i].style.border = 'none';
     }
+
+    const phatologys_diag = document.querySelectorAll('#phatology_diag');
+    phatologys_diag.forEach(function(ele, index){       
+        const parent = ele.closest('page'); //ย้อนกลับขึ้นไปที่ element แม่
+        let cssObj = window.getComputedStyle(parent);
+        if(cssObj.getPropertyValue('display') !== 'none'){  //ดูก่อนว่าได้กำหนดค่าให้แสดงไหม
+            phatology_diag_obj.push(ele.value);
+        }
+    });
+
+    data_item['phatology_diag'] = phatology_diag_obj;
     
     for(var i=0; i<screenshotTarget.length; i++){ 
-        if(window.getComputedStyle(screenshotTarget[i]).display !== 'none'){
+        let cssObj = window.getComputedStyle(screenshotTarget[i]);
+        if(cssObj.getPropertyValue('display') !== 'none'){
             screenshotTarget[i].style.boxShadow = 'none';
             screenshotTarget[i].classList.remove('animate__animated');      
             await convertpng(screenshotTarget[i]); //แปลงรูปภาพ
@@ -26,8 +59,12 @@ document.getElementById('release').onclick = async function(){
             screenshotTarget[i].style.boxShadow = '0 0 0.5cm rgba(0,0,0,0.5)';
         }      
     }
-    // console.log(pngObj);
+    console.log(JSON.stringify(pngObj));
+    console.log(data_item);
+if(data_item < 5){
 
+}
+// return;
     setTimeout(() => {
         $.ajaxSetup({
             headers: {
@@ -38,7 +75,7 @@ document.getElementById('release').onclick = async function(){
             type: "POST",
             dataType: 'json',            
             url: '/pathology-a',
-            data: {item: JSON.stringify(lab_order), report: JSON.stringify(pngObj)},
+            data: {items: JSON.stringify(data_item)/*, report: JSON.stringify(pngObj)*/},
             success: function(data, textStatus,jqXHR){
                 console.log(data);
             }            
@@ -75,47 +112,41 @@ async function convertpng(ele){
 //     }
 //     // resizeEvent();
 // });
-// เพิ่มหน้าสำหรับกรอกข้อมูล
+// เพิ่มหน้าสำหรับกรอกข้อมูล <i class="fa-solid fa-circle-xmark"></i>
 const addpage = document.getElementById('add');
 addpage.addEventListener("mouseup", function(){
-    document.getElementById('blank_page').style.display = 'block';  
+    const blank_page = document.querySelectorAll('#blank_page');  
+    for(let i=0; i< blank_page.length; i++){
+        blank_page[i].querySelector('.eraser')
+        .innerHTML = '<i id="eraser-'+i+'" class="fa-solid fa-circle-xmark" onclick="return PageControl.FnEraser(\'eraser-'+i+'\')"></i>';
+        blank_page[i].style.display = 'block';
+    }
     this.style.display = "none"; 
     document.getElementById('del').style.display = 'block';
     setTimeout(() => {
-        const page = document.querySelectorAll('page');
-        for(let i = 0; i < page.length; i++){            
-            if(page[i].style.display !== 'none'){                
-                page[i].querySelector('.page-number').innerHTML = "".concat(i+1,'/',page.length);
-            }
-        }        
+        PageControl.FnCalPage();
     }, 100);
 });
 // ลบหน้าที่เพิ่มมา
 const delpage = document.getElementById('del');
 delpage.addEventListener("mouseup", function(){
-    const blank_page = document.getElementById('blank_page');    
-    blank_page.classList.remove('animate__fadeInLeft');
-    blank_page.classList.add('animate__backOutUp');
-    setTimeout(() => {        
-        blank_page.classList.remove('animate__backOutUp');
-        blank_page.classList.add('animate__fadeInLeft');
-        blank_page.style.display = 'none'; 
-    }, 500);
+    const blank_page = document.querySelectorAll('#blank_page'); 
+    for(let i=0; i< blank_page.length; i++){ 
+        blank_page[i].classList.remove('animate__fadeInLeft');
+        blank_page[i].classList.add('animate__backOutUp');
+        setTimeout(() => {        
+            blank_page[i].classList.remove('animate__backOutUp');
+            blank_page[i].classList.add('animate__fadeInLeft');
+            blank_page[i].style.display = 'none'; 
+        }, 200);
+    }
     this.style.display = "none";     
     document.getElementById('add').style.display = 'block';
-    setTimeout(() => {        
-        const page = document.querySelectorAll('page'); 
-        let pn = 0;
-        for(let i = 0; i < page.length; i++){ if(window.getComputedStyle(page[i].display !== 'none')) pn++;}
-        let pc = 1;
-        for(let i = 0; i < page.length; i++){            
-            if(window.getComputedStyle(page[i].display !== 'none')){     
-                page[i].querySelector('.page-number').innerHTML = "".concat(pc,'/',pn);
-                pc++; 
-            }
-        }        
-    }, 600);
+    PageControl.FnCalPage();
 });
+
+// PATHOLOGIST
+
 
 
 

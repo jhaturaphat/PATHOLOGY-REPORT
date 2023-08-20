@@ -1,6 +1,6 @@
-<page size="A4" id="image2" >
+<page size="A4" id="image2" class="animate__animated animate__fadeInLeft">
     <div class="container">
-    <img id="watermark" src="{{URL::asset('/images/logo.png')}}" alt="logo">
+        
         <div class="page-number">2/2</div>        
         @include('pathology-a.header')
         
@@ -8,15 +8,15 @@
             <div style="text-align: left; margin:20px 0 0 0;"><b>GROSS EXAMINTION </b></div>
             <textarea id="gross_examination"></textarea>    
             <div class="gross_footer">
-                <label for=""><b>Gross examiner:</b></label>
-                <input type="text">
+                <label for="gross_examiner"><b>Gross examiner:</b></label>
+                <input type="text" id="gross_examiner">
                 <label for=""><b>Date:</b></label>
-                <input type="text" id="img2_date" data-calendar='1'>
+                <input type="text" id="gross_date" data-calendar='1'>
             </div>
         </section>
         <section id="microscropic">
             <div><b>MICROSCOPIC DESCRIPTION</b> </div>
-            <textarea id="microscopic_description"></textarea> MICROSCOPIC DESCRIPTION
+            <textarea id="microscopic_description"></textarea> 
         </section>
         <div class="image2-footer">
             @include('pathology-a.footer')

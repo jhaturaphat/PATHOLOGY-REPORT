@@ -64,6 +64,21 @@ textarea{
     font-weight: inherit;   
 }
 
+/* Blank Page */
+.add_plus{
+    display: none;
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+}
+i[id^="eraser"] {
+    position: absolute;
+    top: -8px;
+    /* color: orangered; */
+    
+    right: -8px;
+}
+
 /* Footer */
 .rt-footer{
     display: flex;

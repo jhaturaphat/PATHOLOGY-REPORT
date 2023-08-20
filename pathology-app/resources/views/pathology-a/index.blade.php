@@ -8,7 +8,9 @@
     <title>pathology report</title>
     <link rel="stylesheet" href="/js/jquery/jquery-ui/jquery-ui.min.css">
     <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.26/dist/sweetalert2.min.css" integrity="sha256-VJuwjrIWHWsPSEvQV4DiPfnZi7axOaiWwKfXaJnR5tA=" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="/js/plugins/sweetalert2/sweetalert2.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/pathology-a/style.css">
     <link rel="stylesheet" href="/css/pathology-a/header.css">
@@ -19,6 +21,7 @@
     
     @include('pathology-a.image1')
     @include('pathology-a.blank')
+    @include('pathology-a.blank')    
     @include('pathology-a.image2')
     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
     
@@ -32,12 +35,14 @@
     <script src="{{asset('js/jquery/jquery-ui/jquery-ui.min.js')}}"></script>
     <script src="{{asset('js/jquery/jquery-ui/i18n/datepicker-th.js')}}"></script>
     <script src="{{asset('js/plugins/html2canvas.js')}}"></script>
+    <script src="{{asset('js/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('js/utils.js')}}"></script>
     <script src="{{asset('js/pathology-a.js')}}"></script>
     <script>
         let canPass = false;
         let lab_order = [];
-        $(function(){            
+        $(function(){    
+            PageControl.FnCalPage(); //คำนวณ หน้า Page           
             // กำหนดให้ element id ทุกตัวเป็น autocomplete โดยใช้ each function
             $("input[id='hn']").each(function(){
                     $(this).autocomplete({
@@ -58,7 +63,10 @@
                     select: function( event, ui ) {
                         ui.item.lis_id = $('#id').val();
                         lab_order = ui.item; 
-                                           
+
+                        $('input[id="lab_order_number"]').each(function() {                        
+                            $(this).val(ui.item.lab_order_number);
+                        });                
                         $('input[id="hn"]').each(function() {                        
                             $(this).val(ui.item.hn);
                         });
@@ -121,6 +129,8 @@
 
                       
         });
+
+        
         
 
         

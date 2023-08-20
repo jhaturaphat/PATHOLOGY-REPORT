@@ -21,9 +21,7 @@
 #image1{
     position: relative;
 }
-#image1 .container{
-    position: relative;
-}
+
 
 #image1 section b{
     font-size: .9rem; color: rgb(92, 91, 91);
@@ -81,10 +79,14 @@
     bottom: -20px; 
     transition: .7s ease-out;
     font-size: 20px;
-    display: block;
+    display: block;    
+}
+#add-page #add{
+    color: rgb(39, 54, 184);
 }
 #add-page .fa-trash-can{
     display: none;
+    color: chocolate;
 }
 
 #text_blank{
