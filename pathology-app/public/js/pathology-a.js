@@ -4,28 +4,28 @@
 let pngObj = [];
 document.getElementById('release').onclick = async function(){
     pngObj = [];
-    let phatology_diag_obj = [];
+    let phatology_diag_obj = {};
     let data_item = {};
 
     // data items
-    data_item['id'] = $('#id').val();
-    data_item['lab_order_number'] = $('#lab_order_number').val();
-    data_item['hn'] = $('#hn').val();
-    data_item['fname'] = $('#fname').text();
-    data_item['lanme'] = $('#lname').text();
-    data_item['age'] = $('#age').text();
-    data_item['gendeer'] = $('#gender').text();
-    data_item['speci_collected_at'] = $('#speci_collected_at').text();
-    data_item['speci_received_at'] = $('#speci_received_at').val();
-    data_item['date_of_report'] = $('#date_of_report').val();
-    data_item['physician'] = $('#physician').text();
-    data_item['clinical_history'] = $('#clinical_history').val();
-    data_item['clinical_diagnosis'] = $('#clinical_diagnosis').val();
-    data_item['gross_examination'] = $('#gross_examination').val();
-    data_item['gross_examiner'] = $('#gross_examiner').val();
-    data_item['gross_date'] = $('#gross_date').val();
-    data_item['microscopic_description'] = $('#microscopic_description').val();
-    data_item['pathologist'] = $('#pathologist').val();
+    data_item.id = $('#id').val();
+    data_item.lab_order_number = $('#lab_order_number').val();
+    data_item.hn = $('#hn').val();
+    data_item.fname = $('#fname').text();
+    data_item.lname = $('#lname').text();
+    data_item.age = $('#age').text();
+    data_item.gender = $('#gender').text();
+    data_item.speci_collected_at = $('#speci_collected_at').text();
+    data_item.speci_received_at = $('#speci_received_at').val();
+    data_item.date_of_report = $('#date_of_report').val();
+    data_item.physician = $('#physician').text();
+    data_item.clinical_history = $('#clinical_history').val();
+    data_item.clinical_diagnosis = $('#clinical_diagnosis').val();
+    data_item.gross_examination = $('#gross_examination').val();
+    data_item.gross_examiner = $('#gross_examiner').val();
+    data_item.gross_date = $('#gross_date').val();
+    data_item.microscopic_description = $('#microscopic_description').val();
+    data_item.pathologist = $('#pathologist').val();
 
     const screenshotTarget = document.getElementsByTagName('page');
     const inputele = document.getElementsByTagName('input');
@@ -39,11 +39,13 @@ document.getElementById('release').onclick = async function(){
     }
 
     const phatologys_diag = document.querySelectorAll('#phatology_diag');
+    let diagnosis_id = 0;
     phatologys_diag.forEach(function(ele, index){       
         const parent = ele.closest('page'); //ย้อนกลับขึ้นไปที่ element แม่
         let cssObj = window.getComputedStyle(parent);
-        if(cssObj.getPropertyValue('display') !== 'none'){  //ดูก่อนว่าได้กำหนดค่าให้แสดงไหม
-            phatology_diag_obj.push(ele.value);
+        if(cssObj.getPropertyValue('display') !== 'none'){  //ดูก่อนว่าได้กำหนดค่าให้แสดงไหมs            
+            phatology_diag_obj[diagnosis_id] = ele.value;
+            diagnosis_id++;
         }
     });
 
@@ -75,7 +77,7 @@ if(data_item < 5){
             type: "POST",
             dataType: 'json',            
             url: '/pathology-a',
-            data: {items: JSON.stringify(data_item)/*, report: JSON.stringify(pngObj)*/},
+            data: {items: JSON.stringify(data_item), report: JSON.stringify(pngObj)},
             success: function(data, textStatus,jqXHR){
                 console.log(data);
             }            

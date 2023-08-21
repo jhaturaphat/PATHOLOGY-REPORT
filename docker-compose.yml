@@ -2,12 +2,13 @@ version: '3.1'
 services:
 
   mysql:
-    image: mariadb:10.9
+    image: mysql:8.0-debian
     environment:  
-      MARIADB_DATABASE: pathology_db  
-      MARIADB_USER: pathology 
-      MARIADB_PASSWORD: fdgdhdhd
-      MARIADB_ROOT_PASSWORD: root   
+      MYSQL_DATABASE: pathology_db  
+      MYSQL_USER: pathology 
+      MYSQL_PASSWORD: fdgdhdhd
+      MYSQL_ROOT_PASSWORD: root   
+      # MYSQL_ALLOW_EMPTY_PASSWORD: yes
     volumes:
       - ./mysql/data:/var/lib/mysql
     ports:
