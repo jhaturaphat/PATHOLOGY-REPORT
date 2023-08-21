@@ -20,62 +20,111 @@ class PathologyController extends Controller
     public function store(Request $request){
         $images = json_decode($request->input('report'));
         $item = json_decode($request->input('items'));
-        return response()->json(count($item->phatology_diag));
-        $model = new PathologyReports();
+        // return response()->json($item->phatology_diag);
+        // return @json_decode(json_encode($item->phatology_diag), true);
+        
+        
+        // $model = new PathologyReports();
+
+        $image1 = "";
+        $image2 = "";
+        $image3 = "";
+        $image4 = "";
+        $image5 = "";
 
         switch (count($images)) {
             case 1 :
-                $model->image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[0]));
+                $image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[0]));
             break;
             case 2 :
-                $model->image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[0]));
-                $model->image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[1]));
+                $image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[0]));
+                $image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[1]));
             break;
             case 3 :
-                $model->image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[0]));
-                $model->image2 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[1]));
-                $model->image3 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[2]));
+                $image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[0]));
+                $image2 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[1]));
+                $image3 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[2]));
             break;
             case 4 :
-                $model->image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[0]));
-                $model->image2 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[1]));
-                $model->image3 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[2]));
-                $model->image4 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[3]));
+                $image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[0]));
+                $image2 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[1]));
+                $image3 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[2]));
+                $image4 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[3]));
             break;            
             case 5:
-                $model->image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[0]));
-                $model->image2 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[1]));
-                $model->image3 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[2]));
-                $model->image4 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[3]));
-                $model->image5 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[4]));
+                $image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[0]));
+                $image2 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[1]));
+                $image3 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[2]));
+                $image4 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[3]));
+                $image5 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[4]));
             default:
                 return;
-        }        
+        }     
+        
         
         //$imageName = 'image_' . time() . '.png'; // กำหนดชื่อไฟล์รูปภาพ        
         //$imagePath = 'images/uploads/' . $imageName;
         //File::put(public_path($imagePath), $imageData);
-
+        
         // บันทึกข้อมูลรูปภาพในฐานข้อมูล
-        $model->id = $item->lab_id;
+       /*$model->id = $item->id;
         $model->lab_order_number = $item->lab_order_number;
         $model->hn = $item->hn;
-        $model->name = $item->name;
-        $model->lastname = $item->lastname;
+        $model->fname = $item->fname;
+        $model->lname = $item->lname;
         $model->age = $item->age;
         $model->gender = $item->gender;
-        $model->collected_at = $item->collected_at;
-        $model->received_at = $item->received_at;
-        $model->physician = $item->hn;
-        $model->clinical_history = $item->hn;
-        $model->clinical_diagnosis = $item->hn;
-        $model->phatology_diag = $item->hn;
-        $model->gross_examination = $item->hn;
-        $model->gross_examiner = $item->hn;
-        $model->save();
+        $model->speci_collected_at = $item->speci_collected_at;
+        $model->speci_received_at = $item->speci_received_at;
+        $model->date_of_report = $item->date_of_report;
+        $model->physician = $item->physician;
+        $model->clinical_history = $item->clinical_history;
+        $model->clinical_diagnosis = $item->clinical_diagnosis;
+        $model->phatology_diag = ['1'=>'AAAA', '2'=>'BBBBB']; //เก็บเป็น Object json JSON_FORCE_OBJECT
+        $model->gross_examination = $item->gross_examination;
+        $model->gross_examiner = $item->gross_examiner;
+        $model->gross_date = $item->gross_date;
+        $model->microscopic_description = $item->microscopic_description;
+        $model->pathologist = $item->pathologist;
+        $model->save();*/
+
+        $item_phatology_diag = [];
+        foreach((array)$item->phatology_diag as $key => $value){
+            $item_phatology_diag[$key] = $value;
+        }
+        return json_code($item_phatology_diag);
+        $model = [
+            'id'                    => $item->id,
+            'lab_order_number'      => $item->lab_order_number,
+            'hn'                    => $item->hn,
+            'fname'                 => $item->fname,
+            'lname'                 => $item->lname,
+            'age'                   => $item->age,
+            'gender'                => $item->gender,
+            'speci_collected_at'    => $item->speci_collected_at,
+            'speci_received_at'     => $item->speci_received_at,
+            'date_of_report'        => $item->date_of_report,
+            'physician'             => $item->physician,
+            'clinical_history'      => $item->clinical_history,
+            'clinical_diagnosis'    => $item->clinical_diagnosis,
+            'phatology_diag'        => $item_phatology_diag,
+            'gross_examination'     => $item->gross_examination,
+            'gross_examiner'        => $item->gross_examiner,
+            'gross_date'            => $item->gross_date,
+            'microscopic_description'=>$item->microscopic_description,
+            'pathologist'           => $item->pathologist,
+            'image1'                => $image1,
+            'image2'                => $image2,
+            'image3'                => $image3,
+            'image4'                => $image4,
+            'image5'                => $image5
+        ];
+
+        // https://www.youtube.com/watch?v=Mzl8i-gs6ZQ   ตัวอย่าง
+        $post = PathologyReports::create($model);
+
 
         // return response()->json($key);
-
     }
 
     
