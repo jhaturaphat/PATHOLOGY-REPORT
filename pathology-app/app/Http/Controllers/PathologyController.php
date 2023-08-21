@@ -89,10 +89,16 @@ class PathologyController extends Controller
         $model->save();*/
 
         $item_phatology_diag = [];
-        foreach((array)$item->phatology_diag as $key => $value){
+        foreach((array)$item->phatology_diag as $key => $value){           
             $item_phatology_diag[$key] = $value;
-        }
-        return json_code($item_phatology_diag);
+        }        
+
+        $json = [
+            "key" => "value",
+            "another_key" => "another_value"
+        ];
+        $data = json_encode($json, true);
+        // return json_decode( json_encode($item->phatology_diag), true);
         $model = [
             'id'                    => $item->id,
             'lab_order_number'      => $item->lab_order_number,
@@ -107,7 +113,7 @@ class PathologyController extends Controller
             'physician'             => $item->physician,
             'clinical_history'      => $item->clinical_history,
             'clinical_diagnosis'    => $item->clinical_diagnosis,
-            'phatology_diag'        => $item_phatology_diag,
+            'phatology_diag'        => $data,
             'gross_examination'     => $item->gross_examination,
             'gross_examiner'        => $item->gross_examiner,
             'gross_date'            => $item->gross_date,
@@ -121,7 +127,7 @@ class PathologyController extends Controller
         ];
 
         // https://www.youtube.com/watch?v=Mzl8i-gs6ZQ   ตัวอย่าง
-        $post = PathologyReports::create($model);
+        $post = PathologyReports::create($model,200, array('Content-Type'=>'application/json; charset=utf-8' ));
 
 
         // return response()->json($key);

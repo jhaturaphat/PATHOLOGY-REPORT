@@ -29,7 +29,7 @@
     {{-- @include('pathology-a.image4') --}}
     {{-- @include('pathology-a.image5') --}}
 
-    <button id="release" style="position: fixed; top:0; left:0; z-index:100">Release</button>
+    <button id="release" style="position: fixed; top:20px; right:0; z-index:100">Release</button>
 
     <script src="{{asset('js/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('js/jquery/jquery-ui/jquery-ui.min.js')}}"></script>

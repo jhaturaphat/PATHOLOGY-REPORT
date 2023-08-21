@@ -2,7 +2,8 @@
 // import { Utils } from "./utils.js";
 // แปลง html เป็นรูปภาพ png
 let pngObj = [];
-document.getElementById('release').onclick = async function(){
+document.getElementById('release').onclick = async function(e){
+    e.preventDefault();
     pngObj = [];
     let phatology_diag_obj = {};
     let data_item = {};
@@ -75,7 +76,8 @@ if(data_item < 5){
          });
         $.ajax({
             type: "POST",
-            dataType: 'json',            
+            dataType: 'json',   
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",         
             url: '/pathology-a',
             data: {items: JSON.stringify(data_item), report: JSON.stringify(pngObj)},
             success: function(data, textStatus,jqXHR){
