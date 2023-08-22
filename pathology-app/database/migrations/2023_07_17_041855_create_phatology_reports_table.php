@@ -27,7 +27,9 @@ return new class extends Migration
             $table->string('physician')->nullable()->comment('แพทย์ผู้สั่งตรวจ doctor_code');
             $table->text('clinical_history')->nullable()->comment('ประวัติทางคลินิก');
             $table->text('clinical_diagnosis')->nullable()->comment('การวินิจฉัยทางคลินิก');
-            $table->json('phatology_diag')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา');
+            $table->json('phatology_diag_1')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_1');
+            $table->json('phatology_diag_2')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_2');
+            $table->json('phatology_diag_3')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_3');
             //$table->mediumText('phatology_diag')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา');
             $table->string('gross_examination')->nullable()->comment('ผลการตรวจสอบขั้นต้น');
             $table->string('gross_examiner')->nullable()->comment('ผู้ตรวจสอบขั้นต้น');

@@ -24,7 +24,7 @@ class PathologyController extends Controller
         // return @json_decode(json_encode($item->phatology_diag), true);
         
         
-        // $model = new PathologyReports();
+        $model = new PathologyReports();
 
         $image1 = "";
         $image2 = "";
@@ -58,7 +58,7 @@ class PathologyController extends Controller
                 $image4 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[3]));
                 $image5 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[4]));
             default:
-                return;
+                return response("รูปภาพไม่เข้าเงื่อนไข", 200)->header('Content-Type', 'text/plain');
         }     
         
         
@@ -67,7 +67,7 @@ class PathologyController extends Controller
         //File::put(public_path($imagePath), $imageData);
         
         // บันทึกข้อมูลรูปภาพในฐานข้อมูล
-       /*$model->id = $item->id;
+       $model->id = $item->id;
         $model->lab_order_number = $item->lab_order_number;
         $model->hn = $item->hn;
         $model->fname = $item->fname;
@@ -80,13 +80,20 @@ class PathologyController extends Controller
         $model->physician = $item->physician;
         $model->clinical_history = $item->clinical_history;
         $model->clinical_diagnosis = $item->clinical_diagnosis;
-        $model->phatology_diag = ['1'=>'AAAA', '2'=>'BBBBB']; //เก็บเป็น Object json JSON_FORCE_OBJECT
+        //$model->phatology_diag = ['1'=>'AAAA', '2'=>'BBBBB']; //เก็บเป็น Object json JSON_FORCE_OBJECT
         $model->gross_examination = $item->gross_examination;
         $model->gross_examiner = $item->gross_examiner;
         $model->gross_date = $item->gross_date;
         $model->microscopic_description = $item->microscopic_description;
         $model->pathologist = $item->pathologist;
-        $model->save();*/
+        $model->image1 = $image1;
+        $model->image2 = $image2;
+        $model->image3 = $image3;
+        $model->image4 = $image4;
+        $model->image5 = $image5;
+        $model->save();
+
+        return;
 
         $item_phatology_diag = [];
         foreach((array)$item->phatology_diag as $key => $value){           
@@ -113,7 +120,7 @@ class PathologyController extends Controller
             'physician'             => $item->physician,
             'clinical_history'      => $item->clinical_history,
             'clinical_diagnosis'    => $item->clinical_diagnosis,
-            'phatology_diag'        => $data,
+            // 'phatology_diag'        => $data,
             'gross_examination'     => $item->gross_examination,
             'gross_examiner'        => $item->gross_examiner,
             'gross_date'            => $item->gross_date,
@@ -127,7 +134,7 @@ class PathologyController extends Controller
         ];
 
         // https://www.youtube.com/watch?v=Mzl8i-gs6ZQ   ตัวอย่าง
-        $post = PathologyReports::create($model,200, array('Content-Type'=>'application/json; charset=utf-8' ));
+        $post = PathologyReports::create($model);
 
 
         // return response()->json($key);
