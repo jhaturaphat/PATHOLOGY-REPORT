@@ -1,12 +1,12 @@
 "use strict";
 // import { Utils } from "./utils.js";
 // แปลง html เป็นรูปภาพ png
-let pngObj = [];
+var pngObj = [];
 document.getElementById('release').onclick = async function(e){
     e.preventDefault();
     pngObj = [];
-    let phatology_diag_obj = {};
-    let data_item = {};
+    var phatology_diag_obj = {};
+    var data_item = {};
 
     // data items
     data_item.id = $('#id').val();
@@ -16,15 +16,15 @@ document.getElementById('release').onclick = async function(e){
     data_item.lname = $('#lname').text();
     data_item.age = $('#age').text();
     data_item.gender = $('#gender').text();
-    data_item.speci_collected_at = $('#speci_collected_at').text();
-    data_item.speci_received_at = $('#speci_received_at').val();
-    data_item.date_of_report = $('#date_of_report').val();
+    data_item.speci_collected_at = Utils.YYYYMMDD($('#speci_collected_at').text());
+    data_item.speci_received_at = Utils.YYYYMMDD($('#speci_received_at').val());
+    data_item.date_of_report = Utils.YYYYMMDD($('#date_of_report').val());
     data_item.physician = $('#physician').text();
     data_item.clinical_history = $('#clinical_history').val();
     data_item.clinical_diagnosis = $('#clinical_diagnosis').val();
     data_item.gross_examination = $('#gross_examination').val();
     data_item.gross_examiner = $('#gross_examiner').val();
-    data_item.gross_date = $('#gross_date').val();
+    data_item.gross_date = Utils.YYYYMMDD($('#gross_date').val());
     data_item.microscopic_description = $('#microscopic_description').val();
     data_item.pathologist = $('#pathologist').val();
 
@@ -62,11 +62,9 @@ document.getElementById('release').onclick = async function(e){
             screenshotTarget[i].style.boxShadow = '0 0 0.5cm rgba(0,0,0,0.5)';
         }      
     }
-    console.log(JSON.stringify(pngObj));
-    console.log(data_item);
-if(data_item < 5){
-
-}
+    // console.log(JSON.stringify(pngObj));
+    // console.log(data_item);
+ 
 // return;
     setTimeout(() => {
         $.ajaxSetup({
@@ -77,9 +75,9 @@ if(data_item < 5){
         $.ajax({
             type: "POST",
             dataType: 'json',   
-            contentType: "application/x-www-form-urlencoded; charset=UTF-8",         
+            contentType: "application/json; charset=utf-8",         
             url: '/pathology-a',
-            data: {items: JSON.stringify(data_item), report: JSON.stringify(pngObj)},
+            data: JSON.stringify({item: data_item, image: pngObj}),
             success: function(data, textStatus,jqXHR){
                 console.log(data);
             }            

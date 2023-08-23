@@ -17,12 +17,16 @@ class PathologyController extends Controller
         return view('pathology-a.index')->with('model',$model);
     }
 
-    public function store(Request $request){
-        $images = json_decode($request->input('report'));
-        $item = json_decode($request->input('items'));
+    public function crerate(Request $request){
+        $jsonDataObject = $request->json()->all();
+        return response()->json($jsonDataObject); 
+        $item = $jsonDataObject['item'];
+        $images = $jsonDataObject['image'];
+        
+        // return json_encode($request->input('report'));
         // return response()->json($item->phatology_diag);
         // return @json_decode(json_encode($item->phatology_diag), true);
-        
+        /*
         
         $model = new PathologyReports();
 
@@ -67,6 +71,7 @@ class PathologyController extends Controller
         //File::put(public_path($imagePath), $imageData);
         
         // บันทึกข้อมูลรูปภาพในฐานข้อมูล
+        /*
        $model->id = $item->id;
         $model->lab_order_number = $item->lab_order_number;
         $model->hn = $item->hn;
@@ -135,9 +140,10 @@ class PathologyController extends Controller
 
         // https://www.youtube.com/watch?v=Mzl8i-gs6ZQ   ตัวอย่าง
         $post = PathologyReports::create($model);
-
+*/
 
         // return response()->json($key);
+        
     }
 
     
