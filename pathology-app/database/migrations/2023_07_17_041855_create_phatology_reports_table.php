@@ -14,12 +14,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pathology_reports', function (Blueprint $table) {
-            $table->id()->comment('Surgical number หมายเลขการผ่าตัด เอามาจาก outlab');
+            $table->string('id')->primary()->comment('Surgical number หมายเลขการผ่าตัด เอามาจาก outlab');
             $table->string('lab_order_number')->nullable()->comment('lab_order_number จาก Hosxp')->index();
             $table->string('hn')->nullable()->comment('HN')->index();
             $table->string('fname')->nullable()->comment('ชื่อ');
             $table->string('lname')->nullable()->comment('นามสกุล');
-            $table->integer('age')->nullable()->comment('อายุ');
+            $table->string('age')->nullable()->comment('อายุ');
             $table->string('gender')->nullable()->comment('เพศ');
             $table->dateTime('speci_collected_at')->nullable()->comment('วันที่เก็บสิ่งส่งตรวจ วันผ่าตัด');
             $table->dateTime('speci_received_at')->nullable()->comment('วันที่ได้รับสิ่งส่งตรวจ เอามาจาก outlab');
@@ -27,9 +27,10 @@ return new class extends Migration
             $table->string('physician')->nullable()->comment('แพทย์ผู้สั่งตรวจ doctor_code');
             $table->text('clinical_history')->nullable()->comment('ประวัติทางคลินิก');
             $table->text('clinical_diagnosis')->nullable()->comment('การวินิจฉัยทางคลินิก');
-            $table->json('phatology_diag_1')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_1');
-            $table->json('phatology_diag_2')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_2');
-            $table->json('phatology_diag_3')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_3');
+            $table->json('phatology_diag')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา');
+            // $table->json('phatology_diag_1')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_1');
+            // $table->json('phatology_diag_2')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_2');
+            // $table->json('phatology_diag_3')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_3');
             //$table->mediumText('phatology_diag')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา');
             $table->string('gross_examination')->nullable()->comment('ผลการตรวจสอบขั้นต้น');
             $table->string('gross_examiner')->nullable()->comment('ผู้ตรวจสอบขั้นต้น');

@@ -19,14 +19,16 @@ class PathologyController extends Controller
 
     public function crerate(Request $request){
         $jsonDataObject = $request->json()->all();
-        return response()->json($jsonDataObject); 
-        $item = $jsonDataObject['item'];
-        $images = $jsonDataObject['image'];
         
+        $item = (object)$jsonDataObject['item'];
+        $images = $jsonDataObject['image'];
+
+        return response()->json($this->B64toImage($images[0])); 
+
         // return json_encode($request->input('report'));
         // return response()->json($item->phatology_diag);
         // return @json_decode(json_encode($item->phatology_diag), true);
-        /*
+        
         
         $model = new PathologyReports();
 
@@ -38,29 +40,29 @@ class PathologyController extends Controller
 
         switch (count($images)) {
             case 1 :
-                $image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[0]));
+                $image1 = B64toImage($images[0]); //data:image\/png;base64,                
             break;
             case 2 :
-                $image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[0]));
-                $image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[1]));
+                $image1 = $this->B64toImage($images[0]); 
+                $image2 = $this->B64toImage($images[1]); 
             break;
             case 3 :
-                $image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[0]));
-                $image2 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[1]));
-                $image3 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[2]));
+                $image1 = $this->B64toImage($images[0]); 
+                $image2 = $this->B64toImage($images[1]);
+                $image2 = $this->B64toImage($images[2]);
             break;
             case 4 :
-                $image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[0]));
-                $image2 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[1]));
-                $image3 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[2]));
-                $image4 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[3]));
+                $image1 = $this->B64toImage($images[0]); 
+                $image2 = $this->B64toImage($images[1]);
+                $image2 = $this->B64toImage($images[2]);
+                $image2 = $this->B64toImage($images[3]);
             break;            
             case 5:
-                $image1 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[0]));
-                $image2 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[1]));
-                $image3 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[2]));
-                $image4 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[3]));
-                $image5 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[4]));
+                $image1 = $this->B64toImage($images[0]); 
+                $image2 = $this->B64toImage($images[1]);
+                $image2 = $this->B64toImage($images[2]);
+                $image2 = $this->B64toImage($images[3]);
+                $image2 = $this->B64toImage($images[4]);
             default:
                 return response("รูปภาพไม่เข้าเงื่อนไข", 200)->header('Content-Type', 'text/plain');
         }     
@@ -71,8 +73,8 @@ class PathologyController extends Controller
         //File::put(public_path($imagePath), $imageData);
         
         // บันทึกข้อมูลรูปภาพในฐานข้อมูล
-        /*
-       $model->id = $item->id;
+        
+        $model->id = $item->id;
         $model->lab_order_number = $item->lab_order_number;
         $model->hn = $item->hn;
         $model->fname = $item->fname;
@@ -97,7 +99,8 @@ class PathologyController extends Controller
         $model->image4 = $image4;
         $model->image5 = $image5;
         $model->save();
-
+        
+        /*
         return;
 
         $item_phatology_diag = [];
@@ -144,6 +147,16 @@ class PathologyController extends Controller
 
         // return response()->json($key);
         
+    }
+
+
+    protected function B64toImage($data = ""){
+        $b64 = str_replace('data:image/png;base64,', '', $data);       
+        $imageBinary = base64_decode($b64, ture);
+        $fileName = uniqid() . '.png';
+        Storage::disk('local')->put('images/'.$fileName, $imageBinary);
+        $content = Storage::disk('local')->get('images/'.$fileName);
+        return file_get_contents($content);
     }
 
     
