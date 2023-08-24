@@ -18,7 +18,11 @@
     <link rel="stylesheet" href="/css/pathology-a/image2.css">
 </head>
 <body>
-    
+    <form action="{{ route('upload-image') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="image">
+        <button type="submit">Upload</button>`1
+    </form>
     @include('pathology-a.image1')
     @include('pathology-a.blank')
     @include('pathology-a.blank')    

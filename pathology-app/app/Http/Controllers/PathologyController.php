@@ -23,7 +23,7 @@ class PathologyController extends Controller
         $item = (object)$jsonDataObject['item'];
         $images = $jsonDataObject['image'];
 
-        return response()->json($this->B64toImage($images[0])); 
+        // return base64_decode(str_replace('data:image/png;base64,', '',$images[0])); 
 
         // return json_encode($request->input('report'));
         // return response()->json($item->phatology_diag);
@@ -32,15 +32,15 @@ class PathologyController extends Controller
         
         $model = new PathologyReports();
 
-        $image1 = "";
-        $image2 = "";
-        $image3 = "";
-        $image4 = "";
-        $image5 = "";
+        $image1 = null;
+        $image2 = null;
+        $image3 = null;
+        $image4 = null;
+        $image5 = null;
 
         switch (count($images)) {
             case 1 :
-                $image1 = B64toImage($images[0]); //data:image\/png;base64,                
+                $image1 = $this->B64toImage($images[0]); //data:image\/png;base64,                
             break;
             case 2 :
                 $image1 = $this->B64toImage($images[0]); 
@@ -64,7 +64,7 @@ class PathologyController extends Controller
                 $image2 = $this->B64toImage($images[3]);
                 $image2 = $this->B64toImage($images[4]);
             default:
-                return response("รูปภาพไม่เข้าเงื่อนไข", 200)->header('Content-Type', 'text/plain');
+                return response("จำนวนรูปภาพไม่เข้าเงื่อนไข", 200)->header('Content-Type', 'text/plain');
         }     
         
         
@@ -73,7 +73,7 @@ class PathologyController extends Controller
         //File::put(public_path($imagePath), $imageData);
         
         // บันทึกข้อมูลรูปภาพในฐานข้อมูล
-        
+        /*
         $model->id = $item->id;
         $model->lab_order_number = $item->lab_order_number;
         $model->hn = $item->hn;
@@ -100,8 +100,8 @@ class PathologyController extends Controller
         $model->image5 = $image5;
         $model->save();
         
-        /*
-        return;
+        
+        */
 
         $item_phatology_diag = [];
         foreach((array)$item->phatology_diag as $key => $value){           
@@ -143,7 +143,7 @@ class PathologyController extends Controller
 
         // https://www.youtube.com/watch?v=Mzl8i-gs6ZQ   ตัวอย่าง
         $post = PathologyReports::create($model);
-*/
+
 
         // return response()->json($key);
         
@@ -152,11 +152,12 @@ class PathologyController extends Controller
 
     protected function B64toImage($data = ""){
         $b64 = str_replace('data:image/png;base64,', '', $data);       
-        $imageBinary = base64_decode($b64, ture);
+        $imageBinary = base64_decode(str_replace('data:image/png;base64,', '', mb_convert_encoding($data, 'UTF-8', 'UTF-8')), false);
         $fileName = uniqid() . '.png';
         Storage::disk('local')->put('images/'.$fileName, $imageBinary);
         $content = Storage::disk('local')->get('images/'.$fileName);
-        return file_get_contents($content);
+        $imageData = file_get_contents($content);
+        return $imageData;
     }
 
     
