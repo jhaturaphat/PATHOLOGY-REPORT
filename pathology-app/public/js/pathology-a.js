@@ -5,7 +5,7 @@ var pngObj = [];
 document.getElementById('release').onclick = async function(e){
     e.preventDefault();
     pngObj = [];
-    var phatology_diag_obj = {};
+    var phatology_diag_obj = [];
     var data_item = {};
 
     // data items
@@ -44,13 +44,13 @@ document.getElementById('release').onclick = async function(e){
     phatologys_diag.forEach(function(ele, index){       
         const parent = ele.closest('page'); //ย้อนกลับขึ้นไปที่ element แม่
         let cssObj = window.getComputedStyle(parent);
-        if(cssObj.getPropertyValue('display') !== 'none'){  //ดูก่อนว่าได้กำหนดค่าให้แสดงไหมs            
+        if(cssObj.getPropertyValue('display') !== 'none'){  //ดูก่อนว่าได้กำหนดค่าให้แสดงไหม  
             phatology_diag_obj[diagnosis_id] = ele.value;
             diagnosis_id++;
         }
     });
 
-    data_item['phatology_diag'] = phatology_diag_obj;
+    data_item.phatology_diag = phatology_diag_obj;
     
     for(var i=0; i<screenshotTarget.length; i++){ 
         let cssObj = window.getComputedStyle(screenshotTarget[i]);
@@ -88,8 +88,10 @@ document.getElementById('release').onclick = async function(e){
 
 // html2canvas
 async function convertpng(ele){
-    //scale: 2 ทำให้ภาพชัดขึ้นเวลาขยายรูป
-    await html2canvas(ele,{scale: 2}).then(function (canvas) {
+    const textarea = document.querySelector('#phatology_diag');
+    const textWithBreaks = textarea.value.replace(/\n/g, '<br>');   
+    //scale: 2 ทำให้ภาพชัดขึ้นเวลาขยายรูป   
+    await html2canvas(ele, {scale: 1.2, removeContainer:false}).then(function (canvas) {
             const imgData = canvas.toDataURL('image/png');
             pngObj.push(imgData);
         });

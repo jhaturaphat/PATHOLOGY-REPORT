@@ -12,9 +12,11 @@
             </section>
             
         <div style="text-align: center"><b>PATHOLOGICAL DIAGNOSIS</b></div>
-        <div id="editor_dx">
-            <textarea id="phatology_diag" rows="20"></textarea>    
-        </div>   
+        <div id="cke_wow">
+            <textarea id="phatology_diag" rows="20">การวินิจฉัยทางพยาธิวิทยา
+                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB</textarea>    
+        </div> 
+        <div id="diag_content"></div>  
         <div class="image1-footer">
             @include('pathology-a.footer')
         </div>

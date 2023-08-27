@@ -34,15 +34,38 @@
     {{-- @include('pathology-a.image5') --}}
 
     <button id="release" style="position: fixed; top:20px; right:0; z-index:100">Release</button>
+    <button id="preview" style="position: fixed; top:20px; right:20; z-index:100">preview</button>
 
     <script src="{{asset('js/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('js/jquery/jquery-ui/jquery-ui.min.js')}}"></script>
     <script src="{{asset('js/jquery/jquery-ui/i18n/datepicker-th.js')}}"></script>
+    <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('js/plugins/html2canvas.js')}}"></script>
     <script src="{{asset('js/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('js/utils.js')}}"></script>
     <script src="{{asset('js/pathology-a.js')}}"></script>
     <script>
+
+            CKEDITOR.replace('phatology_diag',{
+                contentsCss: ['/css/ckeditor.css'],                
+                height: 400,
+                toolbar: [
+                    { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
+                    //{ name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                    { name: 'tools', items: ['Maximize']},
+                    { name: 'basicstyles', items: ['Bold','Italic','Strike','-','RemoveFormat']},
+                    { name: 'paragraph', items: ['NumberedList','BulletedList']}
+                ],
+            });            
+            const preview = document.getElementById('preview');
+            preview.addEventListener("click", function(){
+                var editorData = CKEDITOR.instances.phatology_diag.getData();
+                $("#cke_wow").hide();
+                document.getElementById("diag_content").innerHTML = editorData;
+
+                 
+            });
+
         let canPass = false;
         let lab_order = [];
         $(function(){    
@@ -133,6 +156,7 @@
 
                       
         });
+
 
         
         

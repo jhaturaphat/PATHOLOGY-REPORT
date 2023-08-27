@@ -38,11 +38,11 @@ return new class extends Migration
             $table->string('microscopic_description')->nullable()->comment('คำอธิบายด้วยกล้องจุลทรรศน์');
             $table->string('pathologist')->nullable()->comment('ผู้ตรวจสอบ');
             // $table->enum('choices', array('image1', 'image2','image3', 'image4','image5'))->default('image1')->comment('ตัวเลือกสำหรับนำเข้า field lab_order_image default is image1');
-            $table->binary('image1')->comment('รูปที่ 1');
-            $table->binary('image2')->comment('รูปที่ 2');
-            $table->binary('image3')->comment('รูปที่ 3');
-            $table->binary('image4')->comment('รูปที่ 4');
-            $table->binary('image5')->comment('รูปที่ 5');
+            $table->binary('image1')->nullable()->comment('รูปที่ 1');
+            $table->binary('image2')->nullable()->comment('รูปที่ 2');
+            $table->binary('image3')->nullable()->comment('รูปที่ 3');
+            $table->binary('image4')->nullable()->comment('รูปที่ 4');
+            $table->binary('image5')->nullable()->comment('รูปที่ 5');
             $table->timestamps();
            
         });

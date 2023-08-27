@@ -1,3 +1,7 @@
 i{
     color: #121312;
 }
+
+textarea{
+    white-space: pre-line;
+}
