@@ -41,7 +41,7 @@ class LabOrderImageController extends Controller
         ,lo.lab_items_sub_group_code, lo.order_type
         ,li.lab_items_name, li.lab_items_unit, li.lab_items_normal_value, li.possible_value, li.lab_items_sub_group_code
         ,li.specimen_code, li.display_order, li.ecode, li.sub_group_list
-        ,dt.`name` as doctor_name
+        ,IF(opi.request_doctor != '' OR opi.request_doctor != NULL, (SELECT `name` FROM doctor WHERE `code` = opi.request_doctor), dt.`name`) as doctor_name
         FROM lab_head as lh
         INNER JOIN lab_order as lo ON lh.lab_order_number = lo.lab_order_number
         INNER JOIN lab_items as li ON lo.lab_items_code = li.lab_items_code

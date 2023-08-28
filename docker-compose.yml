@@ -20,9 +20,7 @@ services:
     build: ./docker-php
     working_dir: /var/www/laravel
     volumes:
-      - ./pathology-app:/var/www/laravel    
-      - ./pathology-app/public:/var/www/laravel/public
-      - ./pathology-app/vendor:/var/www/laravel/vendor
+      - ./pathology-app:/var/www/laravel  
     # command: bash -c "php artisan serve --host=0.0.0.0 --port=8080"
     #command: bash -c "chmod 777 -R /var/www/laravel/public && chown -R www-data:www-data /var/www/laravel"
     ports:

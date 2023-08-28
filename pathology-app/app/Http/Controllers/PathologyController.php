@@ -23,13 +23,6 @@ class PathologyController extends Controller
         
         $item = (object)$jsonDataObject['item'];
         $images = $jsonDataObject['image'];
-
-        // return base64_decode(str_replace('data:image/png;base64,', '',$images[0])); 
-
-        // return json_encode($request->input('report'));
-        // return response()->json($item->phatology_diag);
-        // return @json_decode(json_encode($item->phatology_diag), true);
-        
         
         $model = new PathologyReports();
 
@@ -39,15 +32,6 @@ class PathologyController extends Controller
         $image4 = null;
         $image5 = null;
 
-        // $test = new Image();
-        // $test->image_data = $this->B64toImage($images[3]);
-        // $test->save();
-        // Image::create([
-        //     'image_data' => $this->B64toImage($images[0]),
-        // ]);
-
-        //return response()->json(['message' => 'Image uploaded successfully']);
-            //return response()->json(['message' => count($images)]);
         switch (count($images)) {
             case 1 :
                 $image1 = $this->B64toImage($images[0]); //data:image\/png;base64,                
@@ -74,17 +58,8 @@ class PathologyController extends Controller
                 $image4 = $this->B64toImage($images[3]);
                 $image5 = $this->B64toImage($images[4]);
             default:
-                return response("จำนวนรูปภาพไม่เข้าเงื่อนไข", 200)->header('Content-Type', 'text/plain');
+                return reponse()->json(['message'=>'จำนวนรูปภาพไม่เข้าเงื่อนไข'], 201);
         }     
-        
-        
-        //$imageName = 'image_' . time() . '.png'; // กำหนดชื่อไฟล์รูปภาพ        
-        //$imagePath = 'images/uploads/' . $imageName;
-        //File::put(public_path($imagePath), $imageData);
-        
-        // บันทึกข้อมูลรูปภาพในฐานข้อมูล
-
-        
         
         $model->id = uniqid(); //trim($item->id);
         $model->lab_order_number = $item->lab_order_number;
@@ -112,52 +87,6 @@ class PathologyController extends Controller
         $model->image5 = $image5;
         $model->save();
         
-        
-        /*
-       
-        $item_phatology_diag = [];
-        foreach((array)$item->phatology_diag as $key => $value){           
-            $item_phatology_diag[$key] = $value;
-        }        
-
-        $json = [
-            "key" => "value",
-            "another_key" => "another_value"
-        ];
-        $data = json_encode($json, true);
-        // return json_decode( json_encode($item->phatology_diag), true);
-        $model = [
-             'id'                    => $item->id,
-            'lab_order_number'      => $item->lab_order_number,
-            'hn'                    => $item->hn,
-            'fname'                 => $item->fname,
-            'lname'                 => $item->lname,
-            'age'                   => $item->age,
-            'gender'                => $item->gender,
-            'speci_collected_at'    => $item->speci_collected_at,
-            'speci_received_at'     => $item->speci_received_at,
-            'date_of_report'        => $item->date_of_report,
-            'physician'             => $item->physician,
-            'clinical_history'      => $item->clinical_history,
-            'clinical_diagnosis'    => $item->clinical_diagnosis,
-            'phatology_diag'        => $data,
-            'gross_examination'     => $item->gross_examination,
-            'gross_examiner'        => $item->gross_examiner,
-            'gross_date'            => $item->gross_date,
-            'microscopic_description'=>$item->microscopic_description,
-            'pathologist'           => $item->pathologist,
-            'image1'                => $image1,
-            'image2'                => $image2,
-            'image3'                => $image3,
-            'image4'                => $image4,
-            'image5'                => $image5
-        ];
-
-        // https://www.youtube.com/watch?v=Mzl8i-gs6ZQ   ตัวอย่าง
-        $post = PathologyReports::create($model);
-     */
-
-        // return response()->json($key);
         
     }
 
