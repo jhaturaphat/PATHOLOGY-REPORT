@@ -8,15 +8,15 @@
             </section>
             <section>
                 <span><b>CLINICAL DIAGNOSIS:</b></span>
-                <textarea name="" id="clinical_diagnosis" cols="30" rows="5">                    </textarea>
+                <textarea name="" id="clinical_diagnosis" cols="30" rows="5"></textarea>
             </section>
             
         <div style="text-align: center"><b>PATHOLOGICAL DIAGNOSIS</b></div>
-        <div id="cke_wow">
+        <div id="tx_phatology_diag">
             <textarea id="phatology_diag" rows="20">การวินิจฉัยทางพยาธิวิทยา
                 BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB</textarea>    
         </div> 
-        <div id="diag_content"></div>  
+        <div id="rx_phatology_diag"></div>  
         <div class="image1-footer">
             @include('pathology-a.footer')
         </div>

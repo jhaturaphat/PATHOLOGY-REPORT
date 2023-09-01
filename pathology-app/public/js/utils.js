@@ -41,7 +41,7 @@ const Alert = {
             icon: 'info',
             title: msg,
             showConfirmButton: false,
-            timer: 1500
+            timer: 2000
         });
     },
     question: function(msg = 'question'){
@@ -50,7 +50,7 @@ const Alert = {
             icon: 'question',
             title: msg,
             showConfirmButton: false,
-            timer: 1500
+            timer: 2000
         });
     }
 };
@@ -90,5 +90,8 @@ const PageControl = {
                 }
             }); 
         }, 300);
+    },
+    Preview :function(){
+        
     }
 }

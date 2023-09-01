@@ -1,0 +1,12 @@
+/* Custom css */
+.cke_editable {
+    line-height: 1 !important; /* ปรับค่าตามที่คุณต้องการ */
+    
+}
+.cke_editable p{
+    border: none !important;
+    margin: 0 !important;
+}
+.ck-editor {
+    width: 100px !important;
+}

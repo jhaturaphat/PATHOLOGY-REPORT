@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="/js/plugins/sweetalert2/sweetalert2.min.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/ckeditor.css">
     <link rel="stylesheet" href="/css/pathology-a/style.css">
     <link rel="stylesheet" href="/css/pathology-a/header.css">
     <link rel="stylesheet" href="/css/pathology-a/image1.css">
@@ -44,34 +45,23 @@
     <script src="{{asset('js/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('js/utils.js')}}"></script>
     <script src="{{asset('js/pathology-a.js')}}"></script>
+    <script src="{{asset('js/script.js')}}"></script>
     <script>
 
-            CKEDITOR.replace('phatology_diag',{
-                contentsCss: ['/css/ckeditor.css'],                
-                height: 400,
-                toolbar: [
-                    { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
-                    //{ name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
-                    { name: 'tools', items: ['Maximize']},
-                    { name: 'basicstyles', items: ['Bold','Italic','Strike','-','RemoveFormat']},
-                    { name: 'paragraph', items: ['NumberedList','BulletedList']}
-                ],
-            });            
-            const preview = document.getElementById('preview');
-            preview.addEventListener("click", function(){
-                var editorData = CKEDITOR.instances.phatology_diag.getData();
-                $("#cke_wow").hide();
-                document.getElementById("diag_content").innerHTML = editorData;
-
-                 
-            });
+                    
+            // const preview = document.getElementById('preview');
+            // preview.addEventListener("click", function(){
+            //     var editorData = CKEDITOR.instances.phatology_diag.getData();
+            //     $("#cke_wow").hide();
+            //     document.getElementById("diag_content").innerHTML = editorData;
+            // });
 
         let canPass = false;
         let lab_order = [];
         $(function(){    
             PageControl.FnCalPage(); //คำนวณ หน้า Page           
-            // กำหนดให้ element id ทุกตัวเป็น autocomplete โดยใช้ each function
-            $("input[id='hn']").each(function(){
+            
+            $("input[id='hn']").each(function(){ // กำหนดให้ element id="hn" ทุกตัวเป็น autocomplete โดยใช้ each function
                     $(this).autocomplete({
                     source: function(request, response){
                         $.ajax({
@@ -81,8 +71,9 @@
                                 term:request.term
                             },
                             success: function(data){
-                                // console.log(data);
-                                response(data);
+                                if(data.length == 0){
+                                    Alert.info('ไม่พบข้อมูลที่ต้องการ');
+                                }
                             }
                         });
                     },
