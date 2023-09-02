@@ -19,20 +19,11 @@
     <link rel="stylesheet" href="/css/pathology-a/image2.css">
 </head>
 <body>
-    <form action="{{ route('upload-image') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <input type="file" name="image">
-        <button type="submit">Upload</button>`1
-    </form>
-    @include('pathology-a.image1')
-    @include('pathology-a.blank')
-    @include('pathology-a.blank')    
+    @include('pathology-a.image1')  
     @include('pathology-a.image2')
-    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-    
-    {{-- @include('pathology-a.image3') --}}
-    {{-- @include('pathology-a.image4') --}}
-    {{-- @include('pathology-a.image5') --}}
+    @include('pathology-a.image3')
+    @include('pathology-a.image4')
+    @include('pathology-a.image5')
 
     <button id="release" style="position: fixed; top:20px; right:0; z-index:100">Release</button>
     <button id="preview" style="position: fixed; top:20px; right:20; z-index:100">preview</button>
@@ -45,21 +36,20 @@
     <script src="{{asset('js/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('js/utils.js')}}"></script>
     <script src="{{asset('js/pathology-a.js')}}"></script>
-    <script src="{{asset('js/script.js')}}"></script>
-    <script>
+    <script>    
+            const preview = document.getElementById('preview');
+            preview.addEventListener("click", function(){
+                CKE.Preview();  
 
-                    
-            // const preview = document.getElementById('preview');
-            // preview.addEventListener("click", function(){
-            //     var editorData = CKEDITOR.instances.phatology_diag.getData();
-            //     $("#cke_wow").hide();
-            //     document.getElementById("diag_content").innerHTML = editorData;
-            // });
-
+                setTimeout(() => {
+                    CKE.Undo();
+                }, 3000);
+            });
+// JSON.stringify
         let canPass = false;
         let lab_order = [];
         $(function(){    
-            PageControl.FnCalPage(); //คำนวณ หน้า Page           
+            PageControl.FnCalPage(); //คำนวณ หน้า Page
             
             $("input[id='hn']").each(function(){ // กำหนดให้ element id="hn" ทุกตัวเป็น autocomplete โดยใช้ each function
                     $(this).autocomplete({
@@ -73,6 +63,11 @@
                             success: function(data){
                                 if(data.length == 0){
                                     Alert.info('ไม่พบข้อมูลที่ต้องการ');
+                                }
+                            },
+                            error: function (jqXHR, textStatus, err){
+                                if (jqXHR.status == 500){
+                                    Alert.error(err);
                                 }
                             }
                         });
@@ -148,11 +143,6 @@
                       
         });
 
-
-        
-        
-
-        
     </script>
 
     

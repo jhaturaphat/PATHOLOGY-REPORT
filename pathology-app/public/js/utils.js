@@ -90,8 +90,51 @@ const PageControl = {
                 }
             }); 
         }, 300);
-    },
-    Preview :function(){
-        
-    }
+    },   
 }
+
+
+const CKE = {
+    Use :function(id, h = 400){
+        CKEDITOR.replace(id,{
+            contentsCss: ['../ckeditor/style.css'],                
+            height: h,
+            toolbar: [
+                { name: 'document', items: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates'] },
+                //{ name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                { name: 'tools', items: ['Maximize']},
+                { name: 'basicstyles', items: ['Bold','Italic','Strike','-','RemoveFormat']},
+                { name: 'paragraph', items: ['NumberedList','BulletedList']}
+            ],
+        })
+    },
+    Preview:function(){
+        // CKEDITOR.instances.phatology_diag.getData();
+        CKE.Default();
+        const diag = document.querySelectorAll('[id^=phatology_diag]')
+        const tx  = document.querySelectorAll("[id^=tx_]");
+        const rx_phatology_diag  = document.querySelectorAll("#rx_phatology_diag");        
+        const rx_microscopic_description  = document.getElementById("rx_microscopic_description");
+        
+        tx.forEach((ele)=>ele.style.display = 'none'); 
+
+        diag.forEach((ele, index)=>{
+            let content =  CKEDITOR.instances['phatology_diag'+'_'+(index + 1)].getData();            
+            rx_phatology_diag[index].innerHTML = content;
+        });        
+        rx_microscopic_description.innerHTML = CKEDITOR.instances['microscopic_description'].getData();
+    },
+    Undo:function(){
+        const rx  = document.querySelectorAll("[id^=rx_]");
+        const tx  = document.querySelectorAll("[id^=tx_]");
+        rx.forEach((ele) => ele.style.display = 'none');
+        tx.forEach((ele) => ele.style.display = 'block');        
+    },
+    Default:function(){       
+        const rx  = document.querySelectorAll("[id^=rx_]");
+        const tx  = document.querySelectorAll("[id^=tx_]");
+        tx.forEach((ele)=>ele.style.display = 'none');  
+        rx.forEach((ele)=>ele.style.display = 'block');
+          
+    }
+} ;

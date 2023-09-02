@@ -149,7 +149,13 @@ delpage.addEventListener("mouseup", function(){
     PageControl.FnCalPage();
 });
 
-// PATHOLOGIST
+// CKEDITOR
+const diag = document.querySelectorAll('[id^=phatology_diag]');  //เลือก ทุก Element ที่ขึ้นต้นด้วย phatology_diag
+diag.forEach(function(ele, index){
+    CKE.Use(ele, 450);
+});
+
+CKE.Use("microscopic_description", 450);
 
 
 
