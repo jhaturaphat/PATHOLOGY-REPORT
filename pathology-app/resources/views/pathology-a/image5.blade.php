@@ -14,7 +14,7 @@
         </section>
         <div id="microscropic">
             <div><b>MICROSCOPIC DESCRIPTION</b> </div>
-            <div id="tx_microscopic_description">
+            <div id="tx_microscopic_description" data-html2canvas-ignore>
                 <textarea id="microscopic_description">XXXXXXXXXXXXXXXXXXXXXXmicroscopic_description</textarea> 
             </div>
             <div id="rx_microscopic_description"></div>

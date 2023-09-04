@@ -2,6 +2,7 @@
 .cke_editable {
     line-height: 1 !important; /* ปรับค่าตามที่คุณต้องการ */
     
+    border: 0;
 }
 .cke_editable p{
     border: none !important;

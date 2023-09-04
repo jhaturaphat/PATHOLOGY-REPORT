@@ -32,7 +32,6 @@ return new class extends Migration
             $table->mediumText('phatology_diag_2')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_2');
             $table->mediumText('phatology_diag_3')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_3');
             $table->mediumText('phatology_diag_4')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_4');
-            $table->mediumText('phatology_diag_5')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_5');
             
             $table->string('gross_examination')->nullable()->comment('ผลการตรวจสอบขั้นต้น');
             $table->string('gross_examiner')->nullable()->comment('ผู้ตรวจสอบขั้นต้น');

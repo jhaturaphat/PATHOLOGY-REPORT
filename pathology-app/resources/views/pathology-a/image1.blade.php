@@ -12,7 +12,7 @@
             </section>
             
         <div style="text-align: center"><b>PATHOLOGICAL DIAGNOSIS</b></div>
-        <div id="tx_phatology_diag">
+        <div id="tx_phatology_diag" data-html2canvas-ignore>
             <textarea id="phatology_diag_1" rows="20">TEST1</textarea>    
         </div> 
         <div id="rx_phatology_diag"></div>  

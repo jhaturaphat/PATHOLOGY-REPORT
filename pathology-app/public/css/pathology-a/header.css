@@ -37,7 +37,7 @@ page .page-number {
     /* outline: none;  */
     box-sizing: border-box; 
     border: 0px solid #ccc;
-    font-size: 1rem; color: rgb(100, 99, 99); font-weight: 600;
+    font-size: .9rem; color: rgb(100, 99, 99); font-weight: 600;
     -webkit-transition: 0.5s; transition: 0.5s;
 }
 .pt-detail table{

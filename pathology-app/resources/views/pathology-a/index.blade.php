@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="/js/plugins/sweetalert2/sweetalert2.min.css">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/ckeditor.css">
+    <link rel="stylesheet" href="/css/ckeditor.css">    
     <link rel="stylesheet" href="/css/pathology-a/style.css">
     <link rel="stylesheet" href="/css/pathology-a/header.css">
     <link rel="stylesheet" href="/css/pathology-a/image1.css">
@@ -26,7 +26,7 @@
     @include('pathology-a.image4')
     @include('pathology-a.image5')
 
-    <div class="check-page">
+    <div class="check-page" data-html2canvas-ignore>
         <label for="cpage1">
             <input type="checkbox" name="cpage1" id="cpage1" onclick="CKE.Choose(this, 'image1')" checked>1            
         </label>
@@ -45,14 +45,16 @@
     </div>
     </div>
     
-        <button id="release" style="position: fixed; top:20px; right:0; z-index:100">Release</button>
-        <button id="preview" style="position: fixed; top:20px; right:20; z-index:100">preview</button>
+        <button id="release" style="position: fixed; top:20px; right:0; z-index:100" data-html2canvas-ignore>Release</button>
+        <button id="preview" style="position: fixed; top:20px; right:20; z-index:100" data-html2canvas-ignore>preview</button>
+        <button id="udo" style="position: fixed; top:40px; right:50; z-index:100" data-html2canvas-ignore>Undo</button>
     
 
     <script src="{{asset('js/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('js/jquery/jquery-ui/jquery-ui.min.js')}}"></script>
     <script src="{{asset('js/jquery/jquery-ui/i18n/datepicker-th.js')}}"></script>
     <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
+    <script src="http://example.com/ckeditor/plugins/justify"></script>
     <script src="{{asset('js/plugins/html2canvas.js')}}"></script>
     <script src="{{asset('js/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('js/utils.js')}}"></script>
@@ -60,11 +62,11 @@
     <script>    
             const preview = document.getElementById('preview');
             preview.addEventListener("click", function(){
-                CKE.Preview();  
-
-                setTimeout(() => {
+                CKE.Preview(); 
+            });
+            const udo = document.getElementById('udo');
+            udo.addEventListener("click", function(){               
                     CKE.Undo();
-                }, 3000);
             });
 // JSON.stringify
         let canPass = false;
