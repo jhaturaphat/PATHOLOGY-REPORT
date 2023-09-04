@@ -71,7 +71,6 @@ const PageControl = {
             PageControl.FnCalPage();
         }, 500);
         
-        
     },
     FnCalPage: function(){
         const page = document.querySelectorAll('page');
@@ -90,7 +89,13 @@ const PageControl = {
                 }
             }); 
         }, 300);
-    },   
+    },  
+    ExportPNG: async function(ele){
+        await html2canvas(ele, {scale: 1.2, removeContainer:false}).then(function (canvas) {
+            const imgData = canvas.toDataURL('image/png');
+            pngObj.push(imgData);
+        });
+    }
 }
 
 
@@ -134,7 +139,18 @@ const CKE = {
         const rx  = document.querySelectorAll("[id^=rx_]");
         const tx  = document.querySelectorAll("[id^=tx_]");
         tx.forEach((ele)=>ele.style.display = 'none');  
-        rx.forEach((ele)=>ele.style.display = 'block');
-          
+        rx.forEach((ele)=>ele.style.display = 'block');          
+    },
+    Choose: function(ele, val){        
+        const select = document.getElementById(val);
+        switch(ele.checked){
+            case true :
+                select.style.display = 'block';
+                PageControl.FnCalPage(); //คำเลขหน้าใหม่
+                break;
+            default:
+                select.style.display = 'none';
+                PageControl.FnCalPage(); //คำเลขหน้าใหม่
+        }    
     }
 } ;

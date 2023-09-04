@@ -19,10 +19,6 @@
         <div class="image1-footer">
             @include('pathology-a.footer')
         </div>
-    </div> 
-    <span id="add-page">
-        <i id="add" class="fa-solid fa-circle-plus"></i>
-        <i id="del" class="fa-regular fa-trash-can"></i>
-    </span>    
+    </div>     
 
 </page>

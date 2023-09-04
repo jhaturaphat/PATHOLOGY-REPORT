@@ -19,14 +19,35 @@
     <link rel="stylesheet" href="/css/pathology-a/image2.css">
 </head>
 <body>
+    <div class="layout">
     @include('pathology-a.image1')  
     @include('pathology-a.image2')
     @include('pathology-a.image3')
     @include('pathology-a.image4')
     @include('pathology-a.image5')
 
-    <button id="release" style="position: fixed; top:20px; right:0; z-index:100">Release</button>
-    <button id="preview" style="position: fixed; top:20px; right:20; z-index:100">preview</button>
+    <div class="check-page">
+        <label for="cpage1">
+            <input type="checkbox" name="cpage1" id="cpage1" onclick="CKE.Choose(this, 'image1')" checked>1            
+        </label>
+        <label for="cpage2">
+            <input type="checkbox" name="cpage2" id="cpage2" onclick="CKE.Choose(this, 'image2')" checked>2 
+        </label>
+        <label for="cpage3">
+            <input type="checkbox" name="cpage3" id="cpage3" onclick="CKE.Choose(this, 'image3')" checked>3 
+        </label>
+        <label for="cpage4">
+            <input type="checkbox" name="cpage4" id="cpage4" onclick="CKE.Choose(this, 'image4')" checked>4 
+        </label>
+        <label for="cpage5">
+            <input type="checkbox" name="cpage5" id="cpage5" onclick="CKE.Choose(this, 'image5')" checked>5 
+        </label> 
+    </div>
+    </div>
+    
+        <button id="release" style="position: fixed; top:20px; right:0; z-index:100">Release</button>
+        <button id="preview" style="position: fixed; top:20px; right:20; z-index:100">preview</button>
+    
 
     <script src="{{asset('js/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('js/jquery/jquery-ui/jquery-ui.min.js')}}"></script>

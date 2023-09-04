@@ -27,17 +27,19 @@ return new class extends Migration
             $table->string('physician')->nullable()->comment('แพทย์ผู้สั่งตรวจ doctor_code');
             $table->text('clinical_history')->nullable()->comment('ประวัติทางคลินิก');
             $table->text('clinical_diagnosis')->nullable()->comment('การวินิจฉัยทางคลินิก');
-            $table->json('phatology_diag')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา');
-            // $table->json('phatology_diag_1')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_1');
-            // $table->json('phatology_diag_2')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_2');
-            // $table->json('phatology_diag_3')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_3');
-            //$table->mediumText('phatology_diag')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา');
+            
+            $table->mediumText('phatology_diag_1')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_1');
+            $table->mediumText('phatology_diag_2')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_2');
+            $table->mediumText('phatology_diag_3')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_3');
+            $table->mediumText('phatology_diag_4')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_4');
+            $table->mediumText('phatology_diag_5')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_5');
+            
             $table->string('gross_examination')->nullable()->comment('ผลการตรวจสอบขั้นต้น');
             $table->string('gross_examiner')->nullable()->comment('ผู้ตรวจสอบขั้นต้น');
             $table->string('gross_date')->nullable()->comment('ลงวันที่ตรวจสอบขั้นต้น');
             $table->string('microscopic_description')->nullable()->comment('คำอธิบายด้วยกล้องจุลทรรศน์');
             $table->string('pathologist')->nullable()->comment('ผู้ตรวจสอบ');
-            // $table->enum('choices', array('image1', 'image2','image3', 'image4','image5'))->default('image1')->comment('ตัวเลือกสำหรับนำเข้า field lab_order_image default is image1');
+            
             $table->binary('image1')->nullable()->comment('รูปที่ 1');
             $table->binary('image2')->nullable()->comment('รูปที่ 2');
             $table->binary('image3')->nullable()->comment('รูปที่ 3');

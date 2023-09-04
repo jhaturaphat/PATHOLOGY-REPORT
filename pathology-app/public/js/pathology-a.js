@@ -4,7 +4,7 @@
 var pngObj = [];
 document.getElementById('release').onclick = async function(e){
     e.preventDefault();
-    pngObj = [];
+    var pngObj = [];    
     var phatology_diag_obj = [];
     var data_item = {};
 
@@ -27,45 +27,58 @@ document.getElementById('release').onclick = async function(e){
     data_item.gross_date = Utils.YYYYMMDD($('#gross_date').val());
     data_item.microscopic_description = $('#microscopic_description').val();
     data_item.pathologist = $('#pathologist').val();
+    data_item.phatology_diag_1 = CKEDITOR.instances['phatology_diag_1'].getData();
+    data_item.phatology_diag_2 = CKEDITOR.instances['phatology_diag_2'].getData();
+    data_item.phatology_diag_3 = CKEDITOR.instances['phatology_diag_3'].getData();
+    data_item.phatology_diag_4 = CKEDITOR.instances['phatology_diag_4'].getData();
 
     const screenshotTarget = document.getElementsByTagName('page');
     const inputele = document.getElementsByTagName('input');
-
-    const hn = document.getElementById('hn');  
-    hn.style.border = 'none';  
-    screenshotTarget[0].style.boxShadow = 'none';  
 
     for(var i =0;i<inputele.length; i++){
         inputele[i].style.border = 'none';
     }
 
-    const phatologys_diag = document.querySelectorAll('#phatology_diag');
-    let diagnosis_id = 0;
+    const phatologys_diag = document.querySelectorAll('[id^=phatology_diag]');
+    
     phatologys_diag.forEach(function(ele, index){       
         const parent = ele.closest('page'); //ย้อนกลับขึ้นไปที่ element แม่
         let cssObj = window.getComputedStyle(parent);
         if(cssObj.getPropertyValue('display') !== 'none'){  //ดูก่อนว่าได้กำหนดค่าให้แสดงไหม  
-            phatology_diag_obj[diagnosis_id] = ele.value;
-            diagnosis_id++;
+            switch(ele.id){
+                case 'phatology_diag_1':
+                    data_item.phatology_diag_1 = CKEDITOR.instances['phatology_diag_1'].getData();
+                break;
+                case 'phatology_diag_2':
+                    data_item.phatology_diag_2 = CKEDITOR.instances['phatology_diag_2'].getData();
+                break;
+                case 'phatology_diag_3':
+                    data_item.phatology_diag_3 = CKEDITOR.instances['phatology_diag_3'].getData();
+                break;
+                case 'phatology_diag_4':
+                    data_item.phatology_diag_4 = CKEDITOR.instances['phatology_diag_4'].getData();
+                break;
+            }            
         }
     });
-
-    data_item.phatology_diag = phatology_diag_obj;
     
+    //จัดการ style สำหรับส่งออกเป็นรูปภาพ
     for(var i=0; i<screenshotTarget.length; i++){ 
         let cssObj = window.getComputedStyle(screenshotTarget[i]);
         if(cssObj.getPropertyValue('display') !== 'none'){
             screenshotTarget[i].style.boxShadow = 'none';
             screenshotTarget[i].classList.remove('animate__animated');      
-            await convertpng(screenshotTarget[i]); //แปลงรูปภาพ
+           // await convertpng(screenshotTarget[i]); //แปลงรูปภาพ
             screenshotTarget[i].classList.add('animate__animated');
             screenshotTarget[i].style.boxShadow = '0 0 0.5cm rgba(0,0,0,0.5)';
         }      
     }
     // console.log(JSON.stringify(pngObj));
-    // console.log(data_item);
+    let newhtml = data_item.phatology_diag_1+data_item.phatology_diag_2+data_item.phatology_diag_3+data_item.phatology_diag_4;
+    CKEDITOR.instances['phatology_diag_4'].setData(newhtml);
+    console.log(data_item);
  
-// return;
+return;
     setTimeout(() => {
         $.ajaxSetup({
             headers: {
@@ -85,17 +98,6 @@ document.getElementById('release').onclick = async function(e){
     }, 100);
    
 };
-
-// html2canvas
-async function convertpng(ele){
-    const textarea = document.querySelector('#phatology_diag');
-    const textWithBreaks = textarea.value.replace(/\n/g, '<br>');   
-    //scale: 2 ทำให้ภาพชัดขึ้นเวลาขยายรูป   
-    await html2canvas(ele, {scale: 1.2, removeContainer:false}).then(function (canvas) {
-            const imgData = canvas.toDataURL('image/png');
-            pngObj.push(imgData);
-        });
-}
 
 // เมือลากเปลี่ยนขนาด textarea 
 // let resizeInt = null;
@@ -117,37 +119,7 @@ async function convertpng(ele){
 //     // resizeEvent();
 // });
 // เพิ่มหน้าสำหรับกรอกข้อมูล <i class="fa-solid fa-circle-xmark"></i>
-const addpage = document.getElementById('add');
-addpage.addEventListener("mouseup", function(){
-    const blank_page = document.querySelectorAll('#blank_page');  
-    for(let i=0; i< blank_page.length; i++){
-        blank_page[i].querySelector('.eraser')
-        .innerHTML = '<i id="eraser-'+i+'" class="fa-solid fa-circle-xmark" onclick="return PageControl.FnEraser(\'eraser-'+i+'\')"></i>';
-        blank_page[i].style.display = 'block';
-    }
-    this.style.display = "none"; 
-    document.getElementById('del').style.display = 'block';
-    setTimeout(() => {
-        PageControl.FnCalPage();
-    }, 100);
-});
-// ลบหน้าที่เพิ่มมา
-const delpage = document.getElementById('del');
-delpage.addEventListener("mouseup", function(){
-    const blank_page = document.querySelectorAll('#blank_page'); 
-    for(let i=0; i< blank_page.length; i++){ 
-        blank_page[i].classList.remove('animate__fadeInLeft');
-        blank_page[i].classList.add('animate__backOutUp');
-        setTimeout(() => {        
-            blank_page[i].classList.remove('animate__backOutUp');
-            blank_page[i].classList.add('animate__fadeInLeft');
-            blank_page[i].style.display = 'none'; 
-        }, 200);
-    }
-    this.style.display = "none";     
-    document.getElementById('add').style.display = 'block';
-    PageControl.FnCalPage();
-});
+
 
 // CKEDITOR
 const diag = document.querySelectorAll('[id^=phatology_diag]');  //เลือก ทุก Element ที่ขึ้นต้นด้วย phatology_diag

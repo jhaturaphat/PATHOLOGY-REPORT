@@ -20,6 +20,15 @@ html, body{
     opacity: .1;
 }
 
+.layout{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    justify-content: center;
+    width: 21cm;
+    min-width: 21cm;
+}
+
 .container{   
     /* position: relative;  */
     /* background-color: aquamarine; */
@@ -34,6 +43,7 @@ page {
     display: block; margin: 0 auto;
     margin-bottom: 0.5cm;     
     box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+    
     margin-top: 8px;
     z-index: 99;
   }
@@ -74,8 +84,7 @@ textarea{
 i[id^="eraser"] {
     position: absolute;
     top: -8px;
-    /* color: orangered; */
-    
+    /* color: orangered; */    
     right: -8px;
 }
 
@@ -110,5 +119,16 @@ i[id^="eraser"] {
     z-index: 0;
     text-align: center;
 }
-
+.check-page{
+    display: flex;
+    position: fixed;
+    top: 50%; 
+    transform: translateY(-50%);
+    left: 10px;   
+    display: flex;
+    flex-direction: column;
+}
+div[id^="rx_"]{
+    line-height: 4px;
+}
 
