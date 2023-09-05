@@ -18,9 +18,9 @@ CKEDITOR.editorConfig = function( config ) {
 		// { name: 'tools' },
 		// { name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
 		// { name: 'others' },
-		'/',
+		'/', 
 		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ,'paragraph', 'justify' ] },
+		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ,'paragraph', 'justify','liststyle'] },
 		// { name: 'styles' },
 		// { name: 'colors' },
 		// { name: 'about' }
@@ -35,5 +35,5 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
-	config.extraPlugins = 'justify';
+	config.extraPlugins = 'liststyle, justify';
 };
