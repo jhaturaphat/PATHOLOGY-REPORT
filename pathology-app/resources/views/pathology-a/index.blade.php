@@ -54,7 +54,6 @@
     <script src="{{asset('js/jquery/jquery-ui/jquery-ui.min.js')}}"></script>
     <script src="{{asset('js/jquery/jquery-ui/i18n/datepicker-th.js')}}"></script>
     <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
-    <script src="http://example.com/ckeditor/plugins/justify"></script>
     <script src="{{asset('js/plugins/html2canvas.js')}}"></script>
     <script src="{{asset('js/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('js/utils.js')}}"></script>

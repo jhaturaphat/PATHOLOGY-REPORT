@@ -27,10 +27,10 @@ document.getElementById('release').onclick = async function(e){
     data_item.gross_date = Utils.YYYYMMDD($('#gross_date').val());
     data_item.microscopic_description = $('#microscopic_description').val();
     data_item.pathologist = $('#pathologist').val();
-    data_item.phatology_diag_1 = CKEDITOR.instances['phatology_diag_1'].getData();
-    data_item.phatology_diag_2 = CKEDITOR.instances['phatology_diag_2'].getData();
-    data_item.phatology_diag_3 = CKEDITOR.instances['phatology_diag_3'].getData();
-    data_item.phatology_diag_4 = CKEDITOR.instances['phatology_diag_4'].getData();
+    data_item.phatology_diag_1 = "";
+    data_item.phatology_diag_2 = "";
+    data_item.phatology_diag_3 = "";
+    data_item.phatology_diag_4 = "";
 
     const screenshotTarget = document.getElementsByTagName('page');
     const inputele = document.getElementsByTagName('input');
@@ -58,6 +58,8 @@ document.getElementById('release').onclick = async function(e){
                 case 'phatology_diag_4':
                     data_item.phatology_diag_4 = CKEDITOR.instances['phatology_diag_4'].getData();
                 break;
+                default:
+                    break;
             }            
         }
     });
@@ -67,18 +69,19 @@ document.getElementById('release').onclick = async function(e){
         let cssObj = window.getComputedStyle(screenshotTarget[i]);
         if(cssObj.getPropertyValue('display') !== 'none'){
             screenshotTarget[i].style.boxShadow = 'none';
-            screenshotTarget[i].classList.remove('animate__animated');      
-           // await convertpng(screenshotTarget[i]); //แปลงรูปภาพ
+            screenshotTarget[i].classList.remove('animate__animated');   
+            let image64 = await PageControl.ExportPNG(screenshotTarget[i]);   
+            console.log(image64);
+            pngObj.push(image64); //แปลงรูปภาพ
             screenshotTarget[i].classList.add('animate__animated');
             screenshotTarget[i].style.boxShadow = '0 0 0.5cm rgba(0,0,0,0.5)';
         }      
     }
     // console.log(JSON.stringify(pngObj));
-    let newhtml = data_item.phatology_diag_1+data_item.phatology_diag_2+data_item.phatology_diag_3+data_item.phatology_diag_4;
-    CKEDITOR.instances['phatology_diag_4'].setData(newhtml);
-    console.log(data_item);
+    // let newhtml = data_item.phatology_diag_1+data_item.phatology_diag_2+data_item.phatology_diag_3+data_item.phatology_diag_4;
+    // CKEDITOR.instances['phatology_diag_4'].setData(newhtml);
+    // console.log(data_item);
  
-return;
     setTimeout(() => {
         $.ajaxSetup({
             headers: {

@@ -58,7 +58,7 @@ class PathologyController extends Controller
                 $image4 = $this->B64toImage($images[3]);
                 $image5 = $this->B64toImage($images[4]);
             default:
-                return reponse()->json(['message'=>'จำนวนรูปภาพไม่เข้าเงื่อนไข'], 201);
+                return Response()->json(['message'=>'จำนวนรูปภาพไม่เข้าเงื่อนไข หรือ ไม่ได้ส่งรูปภาพมาบันทึก'], 201);
         }     
         
         $model->id = uniqid(); //trim($item->id);
@@ -74,7 +74,10 @@ class PathologyController extends Controller
         $model->physician = $item->physician;
         $model->clinical_history = $item->clinical_history;
         $model->clinical_diagnosis = $item->clinical_diagnosis;
-        $model->phatology_diag = json_encode($item->phatology_diag); //เก็บเป็น Object json JSON_FORCE_OBJECT
+        $model->phatology_diag_1 = $item->phatology_diag_1; 
+        $model->phatology_diag_2 = $item->phatology_diag_2; 
+        $model->phatology_diag_3 = $item->phatology_diag_3; 
+        $model->phatology_diag_4 = $item->phatology_diag_4; 
         $model->gross_examination = $item->gross_examination;
         $model->gross_examiner = $item->gross_examiner;
         $model->gross_date = $item->gross_date;

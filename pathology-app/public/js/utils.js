@@ -90,10 +90,10 @@ const PageControl = {
             }); 
         }, 300);
     },  
-    ExportPNG: async function(ele){
+    ExportPNG:async function(ele){
         await html2canvas(ele, {scale: 1.2, removeContainer:false}).then(function (canvas) {
-            const imgData = canvas.toDataURL('image/png');
-            pngObj.push(imgData);
+            const image64 = canvas.toDataURL('image/png');
+            return image64;
         });
     }
 }
