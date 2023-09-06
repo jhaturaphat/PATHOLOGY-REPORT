@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('pathology_reports', function (Blueprint $table) {
             $table->string('id')->primary()->comment('Surgical number หมายเลขการผ่าตัด เอามาจาก outlab');
-            $table->string('lab_order_number')->nullable()->comment('lab_order_number จาก Hosxp')->index();
-            $table->string('hn')->nullable()->comment('HN')->index();
+            $table->string('lab_order_number')->nullable()->comment('lab_order_number จาก Hosxp');
+            $table->string('hn')->nullable()->comment('HN');
             $table->string('fname')->nullable()->comment('ชื่อ');
             $table->string('lname')->nullable()->comment('นามสกุล');
             $table->string('age')->nullable()->comment('อายุ');
@@ -36,7 +36,7 @@ return new class extends Migration
             $table->string('gross_examination')->nullable()->comment('ผลการตรวจสอบขั้นต้น');
             $table->string('gross_examiner')->nullable()->comment('ผู้ตรวจสอบขั้นต้น');
             $table->string('gross_date')->nullable()->comment('ลงวันที่ตรวจสอบขั้นต้น');
-            $table->text('microscopic_description')->nullable()->comment('คำอธิบายด้วยกล้องจุลทรรศน์');
+            $table->longText('microscopic_description')->nullable()->comment('คำอธิบายด้วยกล้องจุลทรรศน์');
             $table->string('pathologist')->nullable()->comment('ผู้ตรวจสอบ');
             
             $table->binary('image1')->nullable()->comment('รูปที่ 1');
@@ -45,6 +45,9 @@ return new class extends Migration
             $table->binary('image4')->nullable()->comment('รูปที่ 4');
             $table->binary('image5')->nullable()->comment('รูปที่ 5');
             $table->timestamps();
+
+            $table->unique(['lab_order_number']);
+            $table->index(['lab_order_number', 'hn']);
            
         });
     }

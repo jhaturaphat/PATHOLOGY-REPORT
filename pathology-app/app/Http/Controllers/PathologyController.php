@@ -7,8 +7,10 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Database\QueryException;
 use \App\Models\PathologyReports;
 use App\Models\Image;
+use PhpParser\Node\Stmt\TryCatch;
 
 class PathologyController extends Controller
 {
@@ -19,12 +21,15 @@ class PathologyController extends Controller
     }
 
     public function crerate(Request $request){
+        try {           
+        
         $jsonDataObject = $request->json()->all();
         
         $item = (object)$jsonDataObject['item'];
         $images = $jsonDataObject['image'];
         
         $model = new PathologyReports();
+
         // return Response()->json(['message'=>count($images)]);
         $image1 = null;
         $image2 = null;
@@ -94,7 +99,9 @@ class PathologyController extends Controller
          if($model->save()){
             return Response()->json(['message'=>'success'], 200);
          }
-
+        } catch (QueryException $ex) {            
+            return Response()->json(['message'=>$ex], 501);
+        }
         
         
     }

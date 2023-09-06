@@ -25,7 +25,7 @@ document.getElementById('release').onclick = async function(e){
     data_item.gross_examination = $('#gross_examination').val();
     data_item.gross_examiner = $('#gross_examiner').val();
     data_item.gross_date = Utils.YYYYMMDD($('#gross_date').val());
-    data_item.microscopic_description = $('#microscopic_description').val();
+    data_item.microscopic_description = CKEDITOR.instances['microscopic_description'].getData();
     data_item.pathologist = $('#pathologist').val();
     data_item.phatology_diag_1 = "";
     data_item.phatology_diag_2 = "";
@@ -98,8 +98,8 @@ document.getElementById('release').onclick = async function(e){
             },
             error: function (jqXHR, textStatus, err){
                 if (jqXHR.status != 200){
-                    // console.log(jqXHR.responseJSON.message);
-                    Alert.error(err, jqXHR.responseJSON.message);
+                    console.log(jqXHR.responseJSON);
+                    Alert.error(err, jqXHR.responseJSON.message.errorInfo);
                 }
             }          
           });
