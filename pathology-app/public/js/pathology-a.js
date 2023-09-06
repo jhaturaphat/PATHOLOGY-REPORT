@@ -70,8 +70,7 @@ document.getElementById('release').onclick = async function(e){
         if(cssObj.getPropertyValue('display') !== 'none'){
             screenshotTarget[i].style.boxShadow = 'none';
             screenshotTarget[i].classList.remove('animate__animated');   
-            let image64 = await PageControl.ExportPNG(screenshotTarget[i]);   
-            console.log(image64);
+            let image64 = await PageControl.ExportPNG(screenshotTarget[i]); 
             pngObj.push(image64); //แปลงรูปภาพ
             screenshotTarget[i].classList.add('animate__animated');
             screenshotTarget[i].style.boxShadow = '0 0 0.5cm rgba(0,0,0,0.5)';
@@ -95,8 +94,14 @@ document.getElementById('release').onclick = async function(e){
             url: '/pathology-a',
             data: JSON.stringify({item: data_item, image: pngObj}),
             success: function(data, textStatus,jqXHR){
-                console.log(data);
-            }            
+                Alert.success(data.message);
+            },
+            error: function (jqXHR, textStatus, err){
+                if (jqXHR.status != 200){
+                    // console.log(jqXHR.responseJSON.message);
+                    Alert.error(err, jqXHR.responseJSON.message);
+                }
+            }          
           });
     }, 100);
    

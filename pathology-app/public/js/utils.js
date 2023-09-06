@@ -16,14 +16,15 @@ const Alert = {
             icon: 'success',
             title: msg,
             showConfirmButton: false,
-            timer: 1500
+            timer: 2000
         });
     },
-    error: function(msg = 'Eror'){
+    error: function(msg = 'Eror', txt = 'เกิดข้อผิดพลาด'){
         Swal.fire({
             position: 'center',
             icon: 'error',
             title: msg,
+            text: txt,
             showConfirmButton: true            
         });
     },
@@ -91,10 +92,11 @@ const PageControl = {
         }, 300);
     },  
     ExportPNG:async function(ele){
-        await html2canvas(ele, {scale: 1.2, removeContainer:false}).then(function (canvas) {
-            const image64 = canvas.toDataURL('image/png');
-            return image64;
+        let image64 = "";
+        await html2canvas(ele, {scale: 1.5, removeContainer:false}).then(function (canvas) {
+            image64 = canvas.toDataURL('image/png');
         });
+        return image64;
     }
 }
 

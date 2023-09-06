@@ -48,11 +48,16 @@ page .page-number {
     padding: 0;
     letter-spacing: 1px;
 }
-.pt-detail table tr td {    
+.pt-detail table tr td {      
+    overflow: hidden;  
     font-weight: 300;
     color: rgb(13, 14, 14);
     padding: 0;
     letter-spacing: .1mm;
+}
+.pt-detail table tr td *{
+    border: none;
+    outline: none;
 }
 .pt-detail table tr td:first{
     width: 310px;

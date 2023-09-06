@@ -25,7 +25,7 @@ class PathologyController extends Controller
         $images = $jsonDataObject['image'];
         
         $model = new PathologyReports();
-
+        // return Response()->json(['message'=>count($images)]);
         $image1 = null;
         $image2 = null;
         $image3 = null;
@@ -35,31 +35,34 @@ class PathologyController extends Controller
         switch (count($images)) {
             case 1 :
                 $image1 = $this->B64toImage($images[0]); //data:image\/png;base64,                
-            break;
+                break;
             case 2 :
                 $image1 = $this->B64toImage($images[0]); 
                 $image2 = $this->B64toImage($images[1]); 
-            break;
+                break;
             case 3 :
                 $image1 = $this->B64toImage($images[0]); 
                 $image2 = $this->B64toImage($images[1]);
                 $image3 = $this->B64toImage($images[2]);
-            break;
+                break;
             case 4 :
                 $image1 = $this->B64toImage($images[0]); 
                 $image2 = $this->B64toImage($images[1]);
                 $image3 = $this->B64toImage($images[2]);
                 $image4 = $this->B64toImage($images[3]);
-            break;            
+                break;            
             case 5:
-                $image1 = $this->B64toImage($images[0]); 
+                $image1 = $this->B64toImage($images[0]);
                 $image2 = $this->B64toImage($images[1]);
                 $image3 = $this->B64toImage($images[2]);
                 $image4 = $this->B64toImage($images[3]);
                 $image5 = $this->B64toImage($images[4]);
+                break;  
             default:
                 return Response()->json(['message'=>'จำนวนรูปภาพไม่เข้าเงื่อนไข หรือ ไม่ได้ส่งรูปภาพมาบันทึก'], 201);
-        }     
+        }  
+        
+        // return Response()->json(['message'=>"TEST"]);
         
         $model->id = uniqid(); //trim($item->id);
         $model->lab_order_number = $item->lab_order_number;
@@ -88,7 +91,10 @@ class PathologyController extends Controller
         $model->image3 = $image3;
         $model->image4 = $image4;
         $model->image5 = $image5;
-        $model->save();
+         if($model->save()){
+            return Response()->json(['message'=>'success'], 200);
+         }
+
         
         
     }

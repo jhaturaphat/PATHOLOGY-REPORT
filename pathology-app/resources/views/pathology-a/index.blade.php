@@ -47,7 +47,7 @@
     
         <button id="release" style="position: fixed; top:20px; right:0; z-index:100" data-html2canvas-ignore>Release</button>
         <button id="preview" style="position: fixed; top:20px; right:20; z-index:100" data-html2canvas-ignore>preview</button>
-        <button id="udo" style="position: fixed; top:40px; right:50; z-index:100" data-html2canvas-ignore>Undo</button>
+        <button id="udo" style="position: fixed; top:45px; left:50; z-index:100" data-html2canvas-ignore>Undo</button>
     
 
     <script src="{{asset('js/jquery/jquery.min.js')}}"></script>
@@ -73,7 +73,7 @@
         $(function(){    
             PageControl.FnCalPage(); //คำนวณ หน้า Page
             
-            $("input[id='hn']").each(function(){ // กำหนดให้ element id="hn" ทุกตัวเป็น autocomplete โดยใช้ each function
+            $("input[id=hn]").each(function(){ // กำหนดให้ element id="hn" ทุกตัวเป็น autocomplete โดยใช้ each function
                     $(this).autocomplete({
                     source: function(request, response){
                         $.ajax({
@@ -84,12 +84,14 @@
                             },
                             success: function(data){
                                 if(data.length == 0){
-                                    Alert.info('ไม่พบข้อมูลที่ต้องการ');
+                                    Alert.info('ไม่พบข้อมูลที่ต้องการลง HN ใหม่');
+                                }else{
+                                    response( data );
                                 }
                             },
                             error: function (jqXHR, textStatus, err){
-                                if (jqXHR.status == 500){
-                                    Alert.error(err);
+                                if (jqXHR.status != 200){
+                                    Alert.error(err, jqXHR.responseJSON.message);
                                 }
                             }
                         });
@@ -98,7 +100,7 @@
                     select: function( event, ui ) {
                         ui.item.lis_id = $('#id').val();
                         lab_order = ui.item; 
-
+                        
                         $('input[id="lab_order_number"]').each(function() {                        
                             $(this).val(ui.item.lab_order_number);
                         });                
@@ -160,9 +162,7 @@
                         });
                     }
                 });               
-            });
-
-                      
+            });                      
         });
 
     </script>
