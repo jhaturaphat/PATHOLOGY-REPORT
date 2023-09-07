@@ -11,30 +11,20 @@
     <h3>SURGICAL PHATOLOGY REPORT</h3>
 </div>
 <div class="pt-detail">
-    <table style="width: 100%;">
-        <input type="hidden" id="lab_order_number">
-        <tbody>            
-            <tr>
-                <td>Surgical number:<input class="hn-input" type="text" id="id" value="LAB-123456" style="width: 180px;"></td>
-                <td>HN: <input class="hn-input" id="hn" type="text" pattern="[0-9]{9}" value="000136217"></td>
-            </tr>
-            <tr>
-                <td>Name:<b id="fname">Ms.TAYUWEEN</b></td>
-                <td>Last name:<b id="lname">GOLASTSAIHJUOII</b></td>
-            </tr>
-            <tr>
-                <td>Age:<b id="age">30</b></td>
-                <td>Gender:<b id="gender">FEMALE</b></td>
-            </tr>
-            <tr>
-                <td>Date of specimen collected: <b id="speci_collected_at">2023-08-07</b></td>
-                <td>Date of specimen received: <input type="text" id="speci_received_at" data-calendar='1' style="width: 180px;" autocomplete="off"></td>
-            </tr>
-            <tr>
-                <td>Date of reported: <input type="text" id="date_of_report" data-calendar='1' style="width: 120px;" autocomplete="off"></td>
-                <td>Requesting Physician: <b id="physician">Dr. Kendrick Mcelravy</b></td>
-            </tr>
-        </tbody>
-    </table>        
+    <input type="hidden" id="lab_order_number">    
+    <div class="pt-left" style="width: 50%">
+        <div><label>Surgical number:</label><span id="out_id"><input class="hn-input" type="text" id="id" value="LAB-123456" style="width: 180px;"></span></div>
+        <div><label>Name:</label><b id="fname">Ms.TAYUWEEN</b></div>
+        <div><label>Age:</label><b id="age">30</b></div>
+        <div><label>Date of specimen collected:</label> <b id="speci_collected_at">07-08-2023</b></div>
+        <div><label>Date of reported:</label> <input type="text" id="date_of_report" data-calendar='1' style="width: 120px;" autocomplete="off"></div>
+    </div>       
+    <div class="pt-right" style="width: 50%">
+        <div><label>HN:</label><span id="hn_id"></span><input class="hn-input" id="hn" type="text" pattern="[0-9]{9}" value="000136217"></div>
+        <div><label>Last name:</label><b id="lname">GOLASTSAIHJUOII</b></div>
+        <div><label>Gender:</label><b id="gender">FEMALE</b></div>
+        <div><label>Date of specimen received:</label> <input type="text" id="speci_received_at" data-calendar='1' style="width: 100px;" autocomplete="off"></div>
+        <div><label>Requesting Physician:</label> <b id="physician">Dr. Kendrick Mcelravy</b></div>
+    </div>       
 </div>
 <hr style="border: 1px solid gainsboro;">
