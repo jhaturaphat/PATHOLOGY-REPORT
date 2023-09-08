@@ -1,6 +1,6 @@
 <page size="A4" id="image5">
     <div class="page-number">5/5</div>
-    <div class="container">
+    <div class="page-container">
         @include('pathology-a.header')
         <section id="editor_gross" style="border-bottom: 1px solid rgb(205, 201, 201); padding-bottom:15px">
             <div style="text-align: left; margin:20px 0 0 0;"><b>GROSS EXAMINTION </b></div>

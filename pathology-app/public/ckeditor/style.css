@@ -1,7 +1,9 @@
 /* Custom css */
 .cke_editable {
     line-height: 1 !important; /* ปรับค่าตามที่คุณต้องการ */
-    
+    font-family: 'Roboto', sans-serif;
+    cursor: text;
+    font-size: 1rem;
     border: 0;
 }
 .cke_editable p{

@@ -1,5 +1,5 @@
 <page size="A4" id="image2" class="animate__animated animate__fadeInLeft">
-    <div class="container">
+    <div class="page-container">
         
         <div class="page-number">2/5</div>        
         @include('pathology-a.header')

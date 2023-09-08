@@ -13,8 +13,9 @@
     top: 1px;
 }
 #image1 section textarea{
-    font-family: 'Martian Mono', monospace;
-    font-size: 14px;
+    /* font-family: 'Martian Mono', monospace; */
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
     color: rgb(92, 91, 91);
 }
 
@@ -35,9 +36,7 @@
     /* border-bottom: 1px solid gainsboro; */
     line-height: 130%;
 }
-#editor_dx{
-    /* position: relative;     */
-}
+
 #editor_dx textarea{
     /* position: inherit; */
     width:100%; 

@@ -5,8 +5,8 @@ html, body{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Martian Mono', monospace;
-    /* font-family: 'Roboto', sans-serif; */
+    /* font-family: 'Martian Mono', monospace; */
+    font-family: 'Roboto', sans-serif;
 }
 #watermark{
     display: none;
@@ -29,7 +29,7 @@ html, body{
     min-width: 21cm;
 }
 
-.container{   
+.page-container{   
     /* position: relative;  */
     /* background-color: aquamarine; */
     max-width: 18.5cm;
@@ -129,11 +129,14 @@ i[id^="eraser"] {
     flex-direction: column;
 }
 div[id^="rx_"]{
-    padding: 0;
-    font-size: .9rem !important;
+    padding: 0;    
+    font-family: 'Roboto', sans-serif;
+    cursor: text;
+    font-size: 1rem;
 }
 div[id^="rx_"] p{
     margin: 0;
     padding: 0;
+    
 }
 

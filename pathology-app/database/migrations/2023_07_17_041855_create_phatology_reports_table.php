@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -50,6 +51,11 @@ return new class extends Migration
             $table->index(['lab_order_number', 'hn']);
            
         });
+            DB::connection('mysql')->statement("ALTER TABLE pathology_reports MODIFY COLUMN image1 MEDIUMBLOB");
+            DB::connection('mysql')->statement("ALTER TABLE pathology_reports MODIFY COLUMN image2 MEDIUMBLOB");
+            DB::connection('mysql')->statement("ALTER TABLE pathology_reports MODIFY COLUMN image3 MEDIUMBLOB");
+            DB::connection('mysql')->statement("ALTER TABLE pathology_reports MODIFY COLUMN image4 MEDIUMBLOB");
+            DB::connection('mysql')->statement("ALTER TABLE pathology_reports MODIFY COLUMN image5 MEDIUMBLOB");
     }
 
     /**
