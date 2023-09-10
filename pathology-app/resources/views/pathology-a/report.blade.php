@@ -48,6 +48,8 @@
         <button id="release" style="position: fixed; top:20px; right:0; z-index:100" data-html2canvas-ignore>Release</button>
         <button id="preview" style="position: fixed; top:20px; right:20; z-index:100" data-html2canvas-ignore>preview</button>
         <button id="udo" style="position: fixed; top:45px; left:50; z-index:100" data-html2canvas-ignore>Undo</button>
+        
+
     
 
     <script src="{{asset('js/jquery/jquery.min.js')}}"></script>
@@ -58,6 +60,28 @@
     <script src="{{asset('js/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('js/utils.js')}}"></script>
     <script src="{{asset('js/pathology-a.js')}}"></script>
+
+    @if(isset($id))
+        <script>
+            edit();
+            function edit(){
+                $.ajax({
+                    type: "GET",
+                    url:"/pathology-a/find/{{$id}}",
+                    dataType: "json",
+                    // contentType: "text/html; charset=UTF-8",
+                    data:{{$id}},
+                    success:function(data, textStatus,status){
+                        console.log(data);
+                    },
+                    error:function(data, textStatus,status){
+
+                    }
+                });
+            }
+        </script>
+    @endif
+
     <script>    
             const preview = document.getElementById('preview');
             preview.addEventListener("click", function(){
@@ -70,7 +94,7 @@
 // JSON.stringify
         let canPass = false;
         let lab_order = [];
-        $(function(){    
+        $(function(){  
             PageControl.FnCalPage(); //คำนวณ หน้า Page
             
             $("input[id=hn]").each(function(){ // กำหนดให้ element id="hn" ทุกตัวเป็น autocomplete โดยใช้ each function

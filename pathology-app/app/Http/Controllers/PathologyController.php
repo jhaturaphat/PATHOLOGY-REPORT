@@ -16,15 +16,29 @@ class PathologyController extends Controller
 {
     //
     public function index(){       
-        return view('pathology-a.index');
+        $model = PathologyReports::orderBy('lab_order_number','DESC')->paginate(15);
+        return view('pathology-a.index')->with('model',$model);
+    }
+    public function find(){
+        try {
+            $model = PathologyReports::find('64fb2008a0a4b')->toArray();
+            return Response()->json(json_encode($model));
+        } catch (QueryException $ex) {            
+            return Response()->json(['message'=>$ex], 501);
+        }
+        
+    }
+
+    public function edit(string $id){
+        return view('pathology-a.report')->with('id',$id);
     }
 
     public function show(string $id){
 
     }
-     public function report(){
+    public function report(){
         return view('pathology-a.report');
-     }
+    }
 
 
     public function store(Request $request){

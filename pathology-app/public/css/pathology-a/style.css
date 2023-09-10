@@ -140,3 +140,7 @@ div[id^="rx_"] p{
     
 }
 
+blockquote{
+    padding-left: 40px;
+}
+

@@ -9,9 +9,9 @@
 
 </head>
 <body>
-    <div class="container">
+    
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
+            <div class="container">
                 <img src="{{asset('images/logo.png')}}" alt="" width="30" class="d-inline-block align-text-top">
               <a class="navbar-brand" href="#">DUCPH LAB</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,23 +19,21 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item"><a class="nav-link active" href="#">ผลรายงาน</a></li>            
+                  <li class="nav-item"><a class="nav-link active" href="/pathology-a/index">ผลรายงาน</a></li>            
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         ห้องทำงานแพทย์
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#">เทมเพลต A</a></li>
-                      <li><a class="dropdown-item" href="#">เทมเพลต B</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">ตัวอย่างฟอร์ม</a></li>
+                      <li><a class="dropdown-item" href="/pathology-a/report">เทมเพลต A</a></li>
+                      <li><a class="dropdown-item" href="/pathology-b/report">เทมเพลต B</a></li>                      
                     </ul>
                   </li>
                 </ul>
               </div>
             </div>
           </nav>
-    </div>
+   
     <div class="container">
         @yield('content')
     </div>

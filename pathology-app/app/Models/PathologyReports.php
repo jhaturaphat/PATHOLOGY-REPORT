@@ -40,16 +40,17 @@ class PathologyReports extends Model
         'image2',
         'image3',
         'image4',
-        'image5'        
+        'image5',
+        'release'      
     ];
 
 
-    protected function phatology_diag(): Attribute{
-        return Attribute::make(
-            get: fn ($value) => json_decode($value, true),
-            set: fn ($value) => json_encode($value),
-        );
-    }
+    // protected function phatology_diag(): Attribute{
+    //     return Attribute::make(
+    //         get: fn ($value) => json_decode($value, true),
+    //         set: fn ($value) => json_encode($value),
+    //     );
+    // }
 
 
 }

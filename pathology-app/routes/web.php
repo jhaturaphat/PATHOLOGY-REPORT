@@ -25,6 +25,9 @@ Route::get('/laborderimage/findlaborder', [LabOrderImageController::class, 'find
 
 Route::get('/pathology-a/index', [pathologyController::class, 'index']);
 Route::get('/pathology-a/report', [pathologyController::class, 'report']);
-Route::post('/pathology-a', [pathologyController::class, 'crerate']);
+Route::get('/pathology-a/find/{id}', [pathologyController::class, 'find']);
+Route::get('/pathology-a/edit/{id}', [pathologyController::class, 'edit'])->name('pathology-a.edit');
+Route::post('/pathology-a', [pathologyController::class, 'store']);
+
 
 Route::post('/upload-image', [ImageController::class, 'uploadImage'])->name('upload-image');

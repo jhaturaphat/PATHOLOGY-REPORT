@@ -45,6 +45,7 @@ return new class extends Migration
             $table->binary('image3')->nullable()->comment('รูปที่ 3');
             $table->binary('image4')->nullable()->comment('รูปที่ 4');
             $table->binary('image5')->nullable()->comment('รูปที่ 5');
+            $table->enum('release', ['Y', 'N','W'])->default("N")->comment("สถานะ Confirm แล้ว");
             $table->timestamps();
 
             $table->unique(['lab_order_number']);

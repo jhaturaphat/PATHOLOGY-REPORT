@@ -9,32 +9,40 @@ body
 	/* Emoji fonts are added to visualise them nicely in Internet Explorer. */
 	/* font-family: sans-serif, Arial, Verdana, "Trebuchet MS", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */	
 	font-family: 'Roboto', sans-serif;
-    font-size: .9rem;
+    font-size: 1rem;
     
 
 	/* Text color */
-	color: rgb(100, 99, 99);
+	color: rgb(7, 174, 79);
 
 	/* Remove the background color to make it transparent. */
-	background-color: #fff;
+	background-color: #2b2c2b;
 
-	margin: 20px;
+	margin: 5px;
 }
 
 .cke_editable
 {
-	font-size: .0.9rem;
-	line-height: 1.6;
+	font-size: 1rem;
+	line-height: 1;	
+	cursor: text;
+	border: 0;
 
 	/* Fix for missing scrollbars with RTL texts. (#10488) */
 	word-wrap: break-word;
+}
+
+.cke_editable p{
+    border: none !important;
+    margin: 1px 0 !important;
 }
 
 blockquote
 {
 	font-style: italic;
 	font-family: Georgia, Times, "Times New Roman", serif;
-	padding: 2px 0;
+	padding: 0px 0;
+	margin: 0px;
 	border-style: solid;
 	border-color: #ccc;
 	border-width: 0;
@@ -42,8 +50,8 @@ blockquote
 
 .cke_contents_ltr blockquote
 {
-	padding-left: 20px;
-	padding-right: 8px;
+	padding-left: 40px;
+	padding-right: 0px;
 	border-left-width: 5px;
 }
 
