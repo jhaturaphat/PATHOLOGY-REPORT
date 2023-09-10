@@ -19,10 +19,18 @@ class PathologyController extends Controller
         $model = PathologyReports::orderBy('lab_order_number','DESC')->paginate(15);
         return view('pathology-a.index')->with('model',$model);
     }
-    public function find(){
-        try {
-            $model = PathologyReports::find('64fb2008a0a4b')->toArray();
-            return Response()->json(json_encode($model));
+    public function show(Request $request){
+        
+        try {           
+            $model = PathologyReports::find($request->id, [
+                'id','lab_order_number','hn','fname','lname','age','gender','speci_collected_at',
+                'speci_received_at','date_of_report','physician','clinical_history','clinical_diagnosis',
+                'phatology_diag_1','phatology_diag_2','phatology_diag_3','phatology_diag_4',
+                'gross_examination','gross_examiner','gross_date','microscopic_description','pathologist',
+                'release','created_at','updated_at'
+            ]);
+            return $model->toJson();
+            // retuen $model->toArray());
         } catch (QueryException $ex) {            
             return Response()->json(['message'=>$ex], 501);
         }
@@ -33,9 +41,6 @@ class PathologyController extends Controller
         return view('pathology-a.report')->with('id',$id);
     }
 
-    public function show(string $id){
-
-    }
     public function report(){
         return view('pathology-a.report');
     }

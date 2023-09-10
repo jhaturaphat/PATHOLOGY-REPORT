@@ -67,12 +67,16 @@
             function edit(){
                 $.ajax({
                     type: "GET",
-                    url:"/pathology-a/find/{{$id}}",
-                    dataType: "json",
                     // contentType: "text/html; charset=UTF-8",
-                    data:{{$id}},
+                    url:"{{route('show')}}",
+                    dataType: "json",     
+                    data:{id:{{$id}}},
                     success:function(data, textStatus,status){
-                        console.log(data);
+                        CKEDITOR.instances['phatology_diag_1'].setData(data.phatology_diag_1);
+                        CKEDITOR.instances['phatology_diag_2'].setData(data.phatology_diag_2);
+                        CKEDITOR.instances['phatology_diag_3'].setData(data.phatology_diag_3);
+                        CKEDITOR.instances['phatology_diag_4'].setData(data.phatology_diag_4);
+                        
                     },
                     error:function(data, textStatus,status){
 
