@@ -26,28 +26,31 @@
     @include('pathology-a.image4')
     @include('pathology-a.image5')
 
-    <div class="check-page" data-html2canvas-ignore>
-        <label for="cpage1">
-            <input type="checkbox" name="cpage1" id="cpage1" onclick="CKE.Choose(this, 'image1')" checked>1            
-        </label>
-        <label for="cpage2">
-            <input type="checkbox" name="cpage2" id="cpage2" onclick="CKE.Choose(this, 'image2')" checked>2 
-        </label>
-        <label for="cpage3">
-            <input type="checkbox" name="cpage3" id="cpage3" onclick="CKE.Choose(this, 'image3')" checked>3 
-        </label>
-        <label for="cpage4">
-            <input type="checkbox" name="cpage4" id="cpage4" onclick="CKE.Choose(this, 'image4')" checked>4 
-        </label>
-        <label for="cpage5">
-            <input type="checkbox" name="cpage5" id="cpage5" onclick="CKE.Choose(this, 'image5')" checked>5 
-        </label> 
+        <div class="check-page" data-html2canvas-ignore>
+            <label for="cpage1">
+                <input type="checkbox" name="cpage1" id="cpage1" onclick="CKE.Choose(this, 'image1')" checked>1            
+            </label>
+            <label for="cpage2">
+                <input type="checkbox" name="cpage2" id="cpage2" onclick="CKE.Choose(this, 'image2')" checked>2 
+            </label>
+            <label for="cpage3">
+                <input type="checkbox" name="cpage3" id="cpage3" onclick="CKE.Choose(this, 'image3')" checked>3 
+            </label>
+            <label for="cpage4">
+                <input type="checkbox" name="cpage4" id="cpage4" onclick="CKE.Choose(this, 'image4')" checked>4 
+            </label>
+            <label for="cpage5">
+                <input type="checkbox" name="cpage5" id="cpage5" onclick="CKE.Choose(this, 'image5')" checked>5 
+            </label> 
+        </div>
     </div>
+    <div class="menu-left" data-html2canvas-ignore>
+        <button id="release"><i class="fa-3x fa-regular fa-floppy-disk "></i> Release</button>
+        <button id="preview"><i class="fa-3x fa-regular fa-eye"></i> preview</button>
+        <button id="udo"><i class="fa-3x fa-solid fa-lock-open"></i> Undo</button>
+        <button id="update"><i class="fa-3x fa-regular fa-pen-to-square"></i> update</button>
     </div>
-    
-        <button id="release" style="position: fixed; top:20px; right:0; z-index:100" data-html2canvas-ignore>Release</button>
-        <button id="preview" style="position: fixed; top:20px; right:20; z-index:100" data-html2canvas-ignore>preview</button>
-        <button id="udo" style="position: fixed; top:45px; left:50; z-index:100" data-html2canvas-ignore>Undo</button>
+        
         
 
     
@@ -64,6 +67,7 @@
     @if(isset($id))
         <script>
             edit();
+            const _release = document.getElementById('release').disabled = true;
             function edit(){
                 $.ajax({
                     type: "GET",
@@ -72,6 +76,36 @@
                     dataType: "json",     
                     data:{id:{{$id}}},
                     success:function(data, textStatus,status){
+                        $('input[id="lab_order_number"]').each(function() {                        
+                            $(this).val(data.lab_order_number);
+                        });                
+                        $('input[id="hn"]').each(function() {                        
+                            $(this).val(data.hn);
+                        });
+                        $('[id="fname"]').each(function() {                        
+                            $(this).text(data.fname);
+                        });
+                        $('[id="lname"]').each(function() {                        
+                            $(this).text(data.lname);
+                        });
+                        $('[id="age"]').each(function() {                        
+                            $(this).text(data.age);
+                        });
+                        $('[id="gender"]').each(function() {                        
+                            $(this).text(data.gender);
+                        });
+                        $('[id="speci_collected_at"]').each(function() {                        
+                            $(this).text(Utils.DDMMYYYY(data.speci_collected_at.split(' ')[0]));
+                        });                        
+                        $('[id="physician"]').each(function() {                        
+                            $(this).text(data.doctor_name);
+                        });    
+                        $('[id="date_of_report"]').each(function() {   
+                            $(this).datepicker('setDate', Utils.DDMMYYYY(data.date_of_report.split(' ')[0])); 
+                        });    
+                        $('[id="speci_received_at"]').each(function() {                      
+                            $(this).datepicker('setDate', Utils.DDMMYYYY(data.speci_received_at.split(' ')[0]));
+                        });    
                         CKEDITOR.instances['phatology_diag_1'].setData(data.phatology_diag_1);
                         CKEDITOR.instances['phatology_diag_2'].setData(data.phatology_diag_2);
                         CKEDITOR.instances['phatology_diag_3'].setData(data.phatology_diag_3);
@@ -79,7 +113,10 @@
                         
                     },
                     error:function(data, textStatus,status){
-
+                        if (jqXHR.status != 200){
+                            console.log(jqXHR.responseJSON);
+                            Alert.error(err, jqXHR.responseJSON.message.errorInfo);
+                        }
                     }
                 });
             }
@@ -88,17 +125,48 @@
 
     <script>    
             const preview = document.getElementById('preview');
+            const release = document.getElementById('release');
+            const update = document.getElementById('update');
+            const udo = document.getElementById('udo');
+            // HTML
+            release.disabled = true;
+            update.disabled = true;
+            udo.disabled = true;
+            // CSS
+            release.style.cursor = 'not-allowed';
+            update.style.cursor = 'not-allowed';
+            udo.style.cursor = 'not-allowed';
+
             preview.addEventListener("click", function(){
+                if(typeof _release !== 'undefined'){
+                    release.style.cursor = 'not-allowed';
+                    release.disabled = false; 
+                    update.disabled = false;
+                }else{
+                    update.style.cursor = 'not-allowed';
+                    release.disabled = false; 
+                    update.disabled = true;
+                }               
+                
+                preview.disabled = true;   
+                udo.disabled = false;
+                udo.style.cursor = 'not-allowed';
                 CKE.Preview(); 
             });
-            const udo = document.getElementById('udo');
-            udo.addEventListener("click", function(){               
+            
+            udo.addEventListener("click", function(){   
+                release.disabled = true;
+                update.disabled = true;
+                preview.disabled = false;   
+                udo.disabled = true;   
+                udo.style.cursor = 'pointer';
                     CKE.Undo();
             });
 // JSON.stringify
         let canPass = false;
         let lab_order = [];
-        $(function(){  
+        $(function(){ 
+
             PageControl.FnCalPage(); //คำนวณ หน้า Page
             
             $("input[id=hn]").each(function(){ // กำหนดให้ element id="hn" ทุกตัวเป็น autocomplete โดยใช้ each function
@@ -148,7 +216,7 @@
                             $(this).text(ui.item.gender);
                         });
                         $('[id="speci_collected_at"]').each(function() {                        
-                            $(this).text(Utils.DDMMYYYY(ui.item.order_date));
+                            $(this).text(Utils.DDMMYYYY(ui.item.speci_collected_at));
                         });                        
                         $('[id="physician"]').each(function() {                        
                             $(this).text(ui.item.doctor_name);

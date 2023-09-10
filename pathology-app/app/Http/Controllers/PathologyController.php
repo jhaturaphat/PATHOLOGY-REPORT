@@ -16,7 +16,12 @@ class PathologyController extends Controller
 {
     //
     public function index(){       
-        $model = PathologyReports::orderBy('lab_order_number','DESC')->paginate(15);
+        $model = PathologyReports::select('id','lab_order_number','hn','fname','lname','age','gender','speci_collected_at',
+        'speci_received_at','date_of_report','physician','clinical_history','clinical_diagnosis',
+        'phatology_diag_1','phatology_diag_2','phatology_diag_3','phatology_diag_4',
+        'gross_examination','gross_examiner','gross_date','microscopic_description','pathologist',
+        'release','created_at','updated_at')->orderBy('id', 'DESC')->paginate(15);
+        // print_r($model);
         return view('pathology-a.index')->with('model',$model);
     }
     public function show(Request $request){
@@ -95,7 +100,7 @@ class PathologyController extends Controller
         
         // return Response()->json(['message'=>"TEST"]);
         
-        $model->id = uniqid(); //trim($item->id);
+        $model->id = "A".uniqid(); //trim($item->id);
         $model->lab_order_number = $item->lab_order_number;
         $model->hn = $item->hn;
         $model->fname = $item->fname;

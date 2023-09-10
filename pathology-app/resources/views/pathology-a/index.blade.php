@@ -16,10 +16,10 @@
             <th>Action</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody>        
         @foreach ($model as $item)
         <tr>
-            <td>{{$item->id}}</td>
+            <td>{{$item['id']}}</td>
             <td>{{$item->hn}}</td>
             <td>{{$item->fname}}</td>
             <td>{{$item->lname}}</td>

@@ -15,9 +15,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pathology_reports', function (Blueprint $table) {
-            $table->string('id')->primary()->comment('Surgical number หมายเลขการผ่าตัด เอามาจาก outlab');
-            $table->string('lab_order_number')->nullable()->comment('lab_order_number จาก Hosxp');
-            $table->string('hn')->nullable()->comment('HN');
+            $table->string('id',50)->primary()->comment('Surgical number หมายเลขการผ่าตัด เอามาจาก outlab');
+            $table->string('lab_order_number',50)->nullable()->comment('lab_order_number จาก Hosxp');
+            $table->string('hn',9)->nullable()->comment('HN');
             $table->string('fname')->nullable()->comment('ชื่อ');
             $table->string('lname')->nullable()->comment('นามสกุล');
             $table->string('age')->nullable()->comment('อายุ');

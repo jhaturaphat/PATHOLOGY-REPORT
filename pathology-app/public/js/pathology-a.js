@@ -4,6 +4,7 @@
 var pngObj = [];
 document.getElementById('release').onclick = async function(e){
     e.preventDefault();
+    CKE.Preview(); 
     var pngObj = [];    
     var phatology_diag_obj = [];
     var data_item = {};
