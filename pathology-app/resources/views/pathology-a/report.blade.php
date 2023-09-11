@@ -26,6 +26,7 @@
     @include('pathology-a.image4')
     @include('pathology-a.image5')
 
+    {{-- จัดการหน้า 1 2 3 4 5 --}}
         <div class="check-page" data-html2canvas-ignore>
             <label for="cpage1">
                 <input type="checkbox" name="cpage1" id="cpage1" onclick="CKE.Choose(this, 'image1')" checked>1            
@@ -44,11 +45,12 @@
             </label> 
         </div>
     </div>
+    {{-- ปุ่มบันทึก --}}
     <div class="menu-left" data-html2canvas-ignore>
-        <button id="release"><i class="fa-3x fa-regular fa-floppy-disk "></i> Release</button>
-        <button id="preview"><i class="fa-3x fa-regular fa-eye"></i> preview</button>
-        <button id="udo"><i class="fa-3x fa-solid fa-lock-open"></i> Undo</button>
-        <button id="update"><i class="fa-3x fa-regular fa-pen-to-square"></i> update</button>
+        <button id="release" class="disable" data-toggle="toggle" disabled><i class="fa-3x fa-regular fa-floppy-disk"></i> Release</button>
+        <button id="preview" data-toggle="toggle"><i class="fa-3x fa-regular fa-eye"></i> preview</button>
+        <button id="udo" class="disable" data-toggle="toggle" disabled><i class="fa-3x fa-solid fa-lock-open"></i> Undo</button>
+        <button id="update" class="disable" data-toggle="toggle" disabled><i class="fa-3x fa-regular fa-pen-to-square"></i> update</button>
     </div>
         
         
@@ -105,7 +107,23 @@
                         });    
                         $('[id="speci_received_at"]').each(function() {                      
                             $(this).datepicker('setDate', Utils.DDMMYYYY(data.speci_received_at.split(' ')[0]));
-                        });    
+                        }); 
+                        $('[id="clinical_history"]').each(function() {                      
+                            $(this).val("                                 "+data.clinical_history);
+                        }); 
+                        $('[id="clinical_diagnosis"]').each(function() {                      
+                            $(this).val("                                     "+data.clinical_diagnosis);
+                        }); 
+                        $('[id="pathologist"]').each(function() {                      
+                            $(this).val(data.pathologist);
+                        });
+                        $('[id="gross_examination"]').each(function() {                      
+                            $(this).val(data.gross_examination);
+                        });                        
+                        $('[id="gross_date"]').each(function() {                      
+                            $(this).datepicker('setDate', Utils.DDMMYYYY(data.gross_date.split(' ')[0]));
+                        });
+
                         CKEDITOR.instances['phatology_diag_1'].setData(data.phatology_diag_1);
                         CKEDITOR.instances['phatology_diag_2'].setData(data.phatology_diag_2);
                         CKEDITOR.instances['phatology_diag_3'].setData(data.phatology_diag_3);
@@ -127,40 +145,37 @@
             const preview = document.getElementById('preview');
             const release = document.getElementById('release');
             const update = document.getElementById('update');
-            const udo = document.getElementById('udo');
-            // HTML
-            release.disabled = true;
-            update.disabled = true;
-            udo.disabled = true;
-            // CSS
-            release.style.cursor = 'not-allowed';
-            update.style.cursor = 'not-allowed';
-            udo.style.cursor = 'not-allowed';
+            const udo = document.getElementById('udo');            
 
             preview.addEventListener("click", function(){
+                this.disabled = !this.disabled;
+                this.style.cursor = 'not-allowed';                
                 if(typeof _release !== 'undefined'){
                     release.style.cursor = 'not-allowed';
-                    release.disabled = false; 
+                    update.style.cursor = 'pointer';
+                    release.disabled = true; 
                     update.disabled = false;
                 }else{
-                    update.style.cursor = 'not-allowed';
+                    update.style.cursor = 'not-allowed';                    
                     release.disabled = false; 
                     update.disabled = true;
-                }               
-                
-                preview.disabled = true;   
-                udo.disabled = false;
-                udo.style.cursor = 'not-allowed';
+                }  
+                udo.disabled = false;                
+                udo.style.cursor = 'pointer';
                 CKE.Preview(); 
             });
             
-            udo.addEventListener("click", function(){   
+            udo.addEventListener("click", function(){  
+                this.disabled = !this.disabled;
+                this.style.cursor = 'not-allowed'; 
+
                 release.disabled = true;
                 update.disabled = true;
-                preview.disabled = false;   
-                udo.disabled = true;   
-                udo.style.cursor = 'pointer';
-                    CKE.Undo();
+                preview.disabled = false;  
+                release.style.cursor = 'not-allowed';
+                preview.style.cursor = 'pointer';
+                update.style.cursor = 'not-allowed'; 
+                CKE.Undo();
             });
 // JSON.stringify
         let canPass = false;

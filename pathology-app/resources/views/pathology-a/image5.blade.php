@@ -6,8 +6,8 @@
             <div style="text-align: left; margin:20px 0 0 0;"><b>GROSS EXAMINTION </b></div>
             <textarea id="gross_examination"></textarea>    
             <div class="gross_footer">
-                <label for="gross_examiner"><b>Gross examiner:</b></label>
-                <input type="text" id="gross_examiner">
+                <label for="gross_examination"><b>Gross examiner:</b></label>
+                <input type="text" id="gross_examination">
                 <label for=""><b>Date:</b></label>
                 <input type="text" id="gross_date" data-calendar='1'>
             </div>
