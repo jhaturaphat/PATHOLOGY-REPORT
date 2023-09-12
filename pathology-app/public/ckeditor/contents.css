@@ -13,10 +13,10 @@ body
     
 
 	/* Text color */
-	color: rgb(7, 174, 79);
+	color: rgb(73 227 157);
 
 	/* Remove the background color to make it transparent. */
-	background-color: #2b2c2b;
+	background-color: rgb(51, 53, 54);
 
 	margin: 5px;
 }

@@ -26,31 +26,32 @@
     @include('pathology-a.image4')
     @include('pathology-a.image5')
 
-    {{-- จัดการหน้า 1 2 3 4 5 --}}
-        <div class="check-page" data-html2canvas-ignore>
-            <label for="cpage1">
-                <input type="checkbox" name="cpage1" id="cpage1" onclick="CKE.Choose(this, 'image1')" checked>1            
-            </label>
-            <label for="cpage2">
-                <input type="checkbox" name="cpage2" id="cpage2" onclick="CKE.Choose(this, 'image2')" checked>2 
-            </label>
-            <label for="cpage3">
-                <input type="checkbox" name="cpage3" id="cpage3" onclick="CKE.Choose(this, 'image3')" checked>3 
-            </label>
-            <label for="cpage4">
-                <input type="checkbox" name="cpage4" id="cpage4" onclick="CKE.Choose(this, 'image4')" checked>4 
-            </label>
-            <label for="cpage5">
-                <input type="checkbox" name="cpage5" id="cpage5" onclick="CKE.Choose(this, 'image5')" checked>5 
-            </label> 
-        </div>
-    </div>
+   
     {{-- ปุ่มบันทึก --}}
     <div class="menu-left" data-html2canvas-ignore>
         <button id="release" class="disable" data-toggle="toggle" disabled><i class="fa-3x fa-regular fa-floppy-disk"></i> Release</button>
         <button id="preview" data-toggle="toggle"><i class="fa-3x fa-regular fa-eye"></i> preview</button>
         <button id="udo" class="disable" data-toggle="toggle" disabled><i class="fa-3x fa-solid fa-lock-open"></i> Undo</button>
         <button id="update" class="disable" data-toggle="toggle" disabled><i class="fa-3x fa-regular fa-pen-to-square"></i> update</button>
+        <br>
+         {{-- จัดการหน้า 1 2 3 4 5 --}}        
+        <label for="cpage1">
+            <input type="checkbox" name="cpage1" id="cpage1" onclick="CKE.Choose(this, 'image1')" checked>1            
+        </label>
+        <label for="cpage2">
+            <input type="checkbox" name="cpage2" id="cpage2" onclick="CKE.Choose(this, 'image2')" checked>2 
+        </label>
+        <label for="cpage3">
+            <input type="checkbox" name="cpage3" id="cpage3" onclick="CKE.Choose(this, 'image3')" checked>3 
+        </label>
+        <label for="cpage4">
+            <input type="checkbox" name="cpage4" id="cpage4" onclick="CKE.Choose(this, 'image4')" checked>4 
+        </label>
+        <label for="cpage5">
+            <input type="checkbox" name="cpage5" id="cpage5" onclick="CKE.Choose(this, 'image5')" checked>5 
+        </label> 
+        
+    </div>
     </div>
         
         

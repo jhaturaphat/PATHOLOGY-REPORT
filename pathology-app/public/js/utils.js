@@ -110,7 +110,7 @@ const CKE = {
     Preview:function(){
         // CKEDITOR.instances.phatology_diag.getData();
         CKE.Default();
-        const diag = document.querySelectorAll('[id^=phatology_diag]')
+        const diag = document.querySelectorAll('[id^=phatology_diag]');
         const tx  = document.querySelectorAll("[id^=tx_]");
         const rx_phatology_diag  = document.querySelectorAll("#rx_phatology_diag");        
         const rx_microscopic_description  = document.getElementById("rx_microscopic_description");
@@ -123,7 +123,10 @@ const CKE = {
             let data = ele.getElementsByTagName('textarea')[0];            
             rx_clinical[index].getElementsByTagName('span')[0].textContent = data.value;
         }); 
-        
+
+        // Image5
+        const tx_gross_examination = document.getElementById("tx_gross_examination").getElementsByTagName('textarea')[0].value;
+        document.getElementById("rx_gross_examination").textContent = tx_gross_examination;
         tx.forEach((ele)=>ele.style.display = 'none');
         diag.forEach((ele, index)=>{
             let content =  CKEDITOR.instances['phatology_diag'+'_'+(index + 1)].getData();            

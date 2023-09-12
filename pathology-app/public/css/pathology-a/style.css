@@ -63,7 +63,7 @@ input{
     -webkit-transition: 0.5s; transition: 0.5s;
 }
 
-textarea{
+/* textarea{
     font-size: 1.02rem;
     border: none;
     outline: none;
@@ -72,21 +72,15 @@ textarea{
     font-size: inherit;
     color: inherit;
     font-weight: inherit;   
-}
+} */
 
 /* Blank Page */
-.add_plus{
+/* .add_plus{
     display: none;
     position: absolute;
     bottom: -10px;
     right: -10px;
-}
-i[id^="eraser"] {
-    position: absolute;
-    top: -8px;
-    /* color: orangered; */    
-    right: -8px;
-}
+} */
 
 /* Footer */
 .rt-footer{

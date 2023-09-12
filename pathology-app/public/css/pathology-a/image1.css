@@ -5,47 +5,47 @@
     z-index: 5;
 }
 
-#image1 section{
+#image1 [id^='tx_clinical_']{
     position: relative;
 }
-#image1 section span{
+#image1 [id^='tx_clinical_'] span{
     position: absolute;
     top: 1px;
 }
-#image1 section textarea{
+#image1 textarea{
     /* font-family: 'Martian Mono', monospace; */
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
-    color: rgb(92, 91, 91);
+    color: rgb(73 227 157);
+    width:100%;    
+    border: none;   
+    resize: vertical;
+    background-color: rgb(51, 53, 54);
+}
+#image5 textarea{
+    /* font-family: 'Martian Mono', monospace; */
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    color: rgb(73 227 157);
+    width:100%;    
+    border: none;   
+    resize: vertical;
+    background-color: rgb(51, 53, 54);
 }
 
-#image1{
-    position: relative;
-}
 
-
-#image1 section b{
-    font-size: .9rem; color: rgb(92, 91, 91);
+#image1 [id^='tx_clinical_'] b{
+    font-size: .9rem; color: rgb(73 227 157);;
 }
-#image1 textarea{    
+#image1 [id^='tx_clinical_']{    
     width: 100%;
     resize: vertical;
     margin: 0 auto;
     outline: none;
     border: none;
-    /* border-bottom: 1px solid gainsboro; */
+    color:rgb(73 227 157);
     line-height: 130%;
 }
-
-#editor_dx textarea{
-    /* position: inherit; */
-    width:100%; 
-    /* height: 450px; */
-    border: none;
-    /* border: 1px dotted rgb(128,128,128); */
-    resize: vertical;
-}
-
 .ui-menu-item li div{
     padding: 0 !important;
 }
