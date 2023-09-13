@@ -28,7 +28,10 @@
 
    
     {{-- ปุ่มบันทึก --}}
-    <div class="menu-left" data-html2canvas-ignore>
+    <div class="menu-left" data-html2canvas-ignore> 
+        <form action="{{route('pathology-a.index')}}" method="GET">
+            <button id="home" type="submit"><i class="fa-3x fa-solid fa-house"></i> HOME</button>
+        </form>
         <button id="release" class="disable" data-toggle="toggle" disabled><i class="fa-3x fa-regular fa-floppy-disk"></i> Release</button>
         <button id="preview" data-toggle="toggle"><i class="fa-3x fa-regular fa-eye"></i> preview</button>
         <button id="udo" class="disable" data-toggle="toggle" disabled><i class="fa-3x fa-solid fa-lock-open"></i> Undo</button>
@@ -69,21 +72,28 @@
 
     @if(isset($id))
         <script>
-            edit();
-            const _release = document.getElementById('release').disabled = true;
-            function edit(){
+            let _release = null;
+            setTimeout(() => {                
+                _release = document.getElementById('release').disabled = true;            
+                edit();                
+            },500);
+
+        function edit(){
                 $.ajax({
                     type: "GET",
                     // contentType: "text/html; charset=UTF-8",
                     url:"{{route('show')}}",
                     dataType: "json",     
-                    data:{id:{{$id}}},
+                    data:{id:'{{$id}}'},
                     success:function(data, textStatus,status){
                         $('input[id="lab_order_number"]').each(function() {                        
-                            $(this).val(data.lab_order_number);
+                            $(this).val(data.lab_order_number).prop('disabled', true);
+                        }); 
+                        $('input[id="id"]').each(function() {                        
+                            $(this).val(data.id).prop('disabled', true);
                         });                
                         $('input[id="hn"]').each(function() {                        
-                            $(this).val(data.hn);
+                            $(this).val(data.hn).prop('disabled', true);
                         });
                         $('[id="fname"]').each(function() {                        
                             $(this).text(data.fname);
@@ -97,11 +107,11 @@
                         $('[id="gender"]').each(function() {                        
                             $(this).text(data.gender);
                         });
-                        $('[id="speci_collected_at"]').each(function() {                        
-                            $(this).text(Utils.DDMMYYYY(data.speci_collected_at.split(' ')[0]));
+                        $('[id="speci_collected_at"]').each(function(index, ele) {                                                   
+                            $(ele).text(Utils.DDMMYYYY(data.speci_collected_at.split(' ')[0]));
                         });                        
-                        $('[id="physician"]').each(function() {                        
-                            $(this).text(data.doctor_name);
+                        $('[id="physician"]').each(function(index, ele) {                        
+                            $(ele).text(data.physician);
                         });    
                         $('[id="date_of_report"]').each(function() {   
                             $(this).datepicker('setDate', Utils.DDMMYYYY(data.date_of_report.split(' ')[0])); 
@@ -124,17 +134,38 @@
                         $('[id="gross_date"]').each(function() {                      
                             $(this).datepicker('setDate', Utils.DDMMYYYY(data.gross_date.split(' ')[0]));
                         });
+                        console.log(data.phatology_diag_2);
+                        if(data.phatology_diag_1){
+                            CKEDITOR.instances['phatology_diag_1'].setData(data.phatology_diag_1);
+                        }
+                        if(data.phatology_diag_2){
+                            CKEDITOR.instances['phatology_diag_2'].setData(data.phatology_diag_2);
+                        }else{
+                            document.getElementById("cpage2").click();
+                        }
+                        if(data.phatology_diag_3){
+                            CKEDITOR.instances['phatology_diag_3'].setData(data.phatology_diag_3);
+                        }else{
+                            document.getElementById("cpage3").click();
+                        }
+                        if(data.phatology_diag_4){
+                            CKEDITOR.instances['phatology_diag_4'].setData(data.phatology_diag_4);
+                        }else{
+                            document.getElementById("cpage4").click();
+                        }
 
-                        CKEDITOR.instances['phatology_diag_1'].setData(data.phatology_diag_1);
-                        CKEDITOR.instances['phatology_diag_2'].setData(data.phatology_diag_2);
-                        CKEDITOR.instances['phatology_diag_3'].setData(data.phatology_diag_3);
-                        CKEDITOR.instances['phatology_diag_4'].setData(data.phatology_diag_4);
+                        CKEDITOR.instances['microscopic_description'].setData(data.microscopic_description);
                         
                     },
-                    error:function(data, textStatus,status){
-                        if (jqXHR.status != 200){
-                            console.log(jqXHR.responseJSON);
-                            Alert.error(err, jqXHR.responseJSON.message.errorInfo);
+                    error:function(data, textStatus, status){
+                        console.log(data.responseJSON.message.errorInfo);                        
+                        if (data.status === 500){                            
+                            Alert.error('Eror', data.responseJSON.message.errorInfo);
+                        }else if(data.status === 501){
+                            Alert.error('Eror', data.responseJSON.message.errorInfo);
+                            setTimeout(() => {
+                                window.location.replace("/pathology-a/index");
+                            }, 2000);
                         }
                     }
                 });
@@ -142,7 +173,7 @@
         </script>
     @endif
 
-    <script>    
+    <script> 
             const preview = document.getElementById('preview');
             const release = document.getElementById('release');
             const update = document.getElementById('update');
@@ -232,7 +263,7 @@
                             $(this).text(ui.item.gender);
                         });
                         $('[id="speci_collected_at"]').each(function() {                        
-                            $(this).text(Utils.DDMMYYYY(ui.item.speci_collected_at));
+                            $(this).text(Utils.DDMMYYYY(ui.item.order_date));
                         });                        
                         $('[id="physician"]').each(function() {                        
                             $(this).text(ui.item.doctor_name);

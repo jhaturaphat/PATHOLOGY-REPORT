@@ -11,15 +11,15 @@
                 <label for="gross_examination"><b>Gross examiner:</b></label>
                 <input type="text" id="gross_examination">
                 <label for=""><b>Date:</b></label>
-                <input type="text" id="gross_date" data-calendar='1'>
+                <input type="text" id="gross_date" data-calendar='1' autocomplete="off">
             </div>
         </div>
         <div id="microscropic">
             <div><b>MICROSCOPIC DESCRIPTION</b> </div>
-            <div id="tx_microscopic_description" data-html2canvas-ignore>
-                <textarea id="microscopic_description">XXXXXXXXXXXXXXXXXXXXXXmicroscopic_description</textarea> 
+            <div id="tx_microscopic_description" data-html2canvas-ignore >
+                <textarea id="microscopic_description"></textarea> 
             </div>
-            <div id="rx_microscopic_description"></div>
+            <div id="rx_microscopic_description" ></div>
         </div>
         <div class="image2-footer">
             @include('pathology-a.footer')

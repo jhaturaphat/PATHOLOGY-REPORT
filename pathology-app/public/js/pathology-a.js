@@ -4,9 +4,42 @@
 var pngObj = [];
 document.getElementById('release').onclick = async function(e){
     e.preventDefault();
+    save('POST');
+};
+
+// เมือลากเปลี่ยนขนาด textarea 
+// let resizeInt = null;
+// const diag = document.getElementById('diag');
+// var resizeEvent = function() {    
+//     console.log(diag.outerHeight);
+//     document.getElementById('text_dx').rows = '9';
+// };
+
+// diag.addEventListener("mousedown", function(e) {
+//     resizeInt = setInterval(resizeEvent, 1000/15);
+//     console.log(e);
+// });
+
+// $(window).on("mouseup", function(e) {
+//     if (resizeInt !== null) {
+//         clearInterval(resizeInt);
+//     }
+//     // resizeEvent();
+// });
+// เพิ่มหน้าสำหรับกรอกข้อมูล <i class="fa-solid fa-circle-xmark"></i>
+
+
+// CKEDITOR
+const diag = document.querySelectorAll('[id^=phatology_diag]');  //เลือก ทุก Element ที่ขึ้นต้นด้วย phatology_diag
+diag.forEach(function(ele, index){
+    CKE.Use(ele, 450);
+});
+
+CKE.Use("microscopic_description", 450);
+
+async function save(type = 'POST'){
     CKE.Preview(); 
-    var pngObj = [];    
-    var phatology_diag_obj = [];
+    var pngObj = [];        
     var data_item = {};
 
     // data items
@@ -77,10 +110,6 @@ document.getElementById('release').onclick = async function(e){
             screenshotTarget[i].style.boxShadow = '0 0 0.5cm rgba(0,0,0,0.5)';
         }      
     }
-    // console.log(JSON.stringify(pngObj));
-    // let newhtml = data_item.phatology_diag_1+data_item.phatology_diag_2+data_item.phatology_diag_3+data_item.phatology_diag_4;
-    // CKEDITOR.instances['phatology_diag_4'].setData(newhtml);
-    // console.log(data_item);
  
     setTimeout(() => {
         $.ajaxSetup({
@@ -89,7 +118,7 @@ document.getElementById('release').onclick = async function(e){
             }
          });
         $.ajax({
-            type: "POST",
+            type: type,
             dataType: 'json',   
             contentType: "application/json; charset=utf-8",         
             url: '/pathology-a',
@@ -105,38 +134,7 @@ document.getElementById('release').onclick = async function(e){
             }          
           });
     }, 100);
-   
-};
-
-// เมือลากเปลี่ยนขนาด textarea 
-// let resizeInt = null;
-// const diag = document.getElementById('diag');
-// var resizeEvent = function() {    
-//     console.log(diag.outerHeight);
-//     document.getElementById('text_dx').rows = '9';
-// };
-
-// diag.addEventListener("mousedown", function(e) {
-//     resizeInt = setInterval(resizeEvent, 1000/15);
-//     console.log(e);
-// });
-
-// $(window).on("mouseup", function(e) {
-//     if (resizeInt !== null) {
-//         clearInterval(resizeInt);
-//     }
-//     // resizeEvent();
-// });
-// เพิ่มหน้าสำหรับกรอกข้อมูล <i class="fa-solid fa-circle-xmark"></i>
-
-
-// CKEDITOR
-const diag = document.querySelectorAll('[id^=phatology_diag]');  //เลือก ทุก Element ที่ขึ้นต้นด้วย phatology_diag
-diag.forEach(function(ele, index){
-    CKE.Use(ele, 450);
-});
-
-CKE.Use("microscopic_description", 450);
+}
 
 
 

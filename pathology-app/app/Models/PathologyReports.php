@@ -12,9 +12,11 @@ class PathologyReports extends Model
 
     protected $connection =  'mysql';
     protected $table = 'pathology_reports';
+    // public $incrementing = false;  //ถ้าใช้ primary key เป็น String ให้เพิ่มบันทัดนี้ด้วย
 
     protected $fillable = [
         'id',
+        'outid',
         'lab_order_number',
         'hn',
         'fname',

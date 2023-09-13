@@ -4,7 +4,7 @@
         <div class="page-number">2/5</div>        
         @include('pathology-a.header')
         <div id="tx_phatology_diag" data-html2canvas-ignore>
-            <textarea id="phatology_diag_2" rows="38">TEST2</textarea>  
+            <textarea id="phatology_diag_2" rows="38"></textarea>  
         </div>
         <div id="rx_phatology_diag"></div>  
         <div class="image2-footer">

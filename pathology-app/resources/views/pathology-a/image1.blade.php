@@ -11,17 +11,16 @@
                 <textarea id="clinical_diagnosis" cols="30" rows="5"></textarea> 
             </div>
             <div id="rx_clinical_history" style="display: none">
-                <b>CLINICAL HISTORY:</b><span></span>
-            </div>
-            <br>
+                <b>CLINICAL HISTORY:</b>
+                <span></span>
+            </div>         
             <div id="rx_clinical_diagnosis" style="display: none">
-                <b>CLINICAL DIAGNOSIS:</b><span></span>
-            </div>
-            
-            <br>
-        <div style="text-align: center"><b>PATHOLOGICAL DIAGNOSIS</b></div>
+                <b>CLINICAL DIAGNOSIS:</b>
+                <span></span>
+            </div>            
+        <div style="text-align: center; margin-top: 10px;"><b>PATHOLOGICAL DIAGNOSIS</b></div>
         <div id="tx_phatology_diag" data-html2canvas-ignore>
-            <textarea id="phatology_diag_1" rows="20">TEST1</textarea>    
+            <textarea id="phatology_diag_1" rows="20"></textarea>    
         </div> 
         
         <div id="rx_phatology_diag"></div>  

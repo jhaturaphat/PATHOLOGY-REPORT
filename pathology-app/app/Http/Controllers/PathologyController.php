@@ -28,14 +28,14 @@ class PathologyController extends Controller
         
         try {           
             $model = PathologyReports::find($request->id, [
-                'id','lab_order_number','hn','fname','lname','age','gender','speci_collected_at',
+                'id','outid','lab_order_number','hn','fname','lname','age','gender','speci_collected_at',
                 'speci_received_at','date_of_report','physician','clinical_history','clinical_diagnosis',
                 'phatology_diag_1','phatology_diag_2','phatology_diag_3','phatology_diag_4',
                 'gross_examination','gross_examiner','gross_date','microscopic_description','pathologist',
                 'release','created_at','updated_at'
             ]);
-            return $model->toJson();
-            // retuen $model->toArray());
+            if($model) return $model->toJson();
+            return Response()->json(['message'=>['errorInfo'=>'ไม่พบข้อมูล ID ที่ส่งมา']], 501);
         } catch (QueryException $ex) {            
             return Response()->json(['message'=>$ex], 501);
         }

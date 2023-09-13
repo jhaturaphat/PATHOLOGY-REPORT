@@ -15,7 +15,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pathology_reports', function (Blueprint $table) {
-            $table->string('id',50)->primary()->comment('Surgical number หมายเลขการผ่าตัด เอามาจาก outlab');
+            $table->integer('id')->primary();
+            $table->string('outid',50)->comment('Surgical number หมายเลขการผ่าตัด เอามาจาก outlab');
             $table->string('lab_order_number',50)->nullable()->comment('lab_order_number จาก Hosxp');
             $table->string('hn',9)->nullable()->comment('HN');
             $table->string('fname')->nullable()->comment('ชื่อ');
@@ -48,7 +49,7 @@ return new class extends Migration
             $table->enum('release', ['Y', 'N','W'])->default("N")->comment("สถานะ Confirm แล้ว");
             $table->timestamps();
 
-            $table->unique(['lab_order_number']);
+            $table->unique(['lab_order_number','outid']);
             $table->index(['lab_order_number', 'hn']);
            
         });

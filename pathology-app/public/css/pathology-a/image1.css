@@ -12,6 +12,7 @@
     position: absolute;
     top: 1px;
 }
+
 #image1 textarea{
     /* font-family: 'Martian Mono', monospace; */
     font-family: 'Roboto', sans-serif;
@@ -35,7 +36,8 @@
 
 
 #image1 [id^='tx_clinical_'] b{
-    font-size: .9rem; color: rgb(73 227 157);;
+    font-size: .9rem; 
+    color: rgb(227 241 235);
 }
 #image1 [id^='tx_clinical_']{    
     width: 100%;

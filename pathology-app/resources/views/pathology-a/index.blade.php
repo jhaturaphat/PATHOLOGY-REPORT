@@ -8,7 +8,8 @@
 <table class="table table-primary table-hover">
     <thead>
         <tr>
-            <th>lab_order</th>
+            <th title="รหัส out lab">OUT ID</th>
+            <th title="รหัส lab_order_number">IN ID</th>
             <th>HN</th>
             <th>ชื่อ</th>
             <th>สกุล</th>
@@ -17,9 +18,10 @@
         </tr>
     </thead>
     <tbody>        
-        @foreach ($model as $item)
+        @foreach ($model as $item)        
         <tr>
-            <td>{{$item['id']}}</td>
+            <td>{{$item->id}}</td>
+            <td>{{$item->lab_order_number}}</td>
             <td>{{$item->hn}}</td>
             <td>{{$item->fname}}</td>
             <td>{{$item->lname}}</td>
