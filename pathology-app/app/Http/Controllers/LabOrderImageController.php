@@ -56,7 +56,7 @@ class LabOrderImageController extends Controller
             FROM operation_list
             WHERE hn = ? AND vn <> ''
         ) as opi ON lh.vn = opi.vnu
-        WHERE lh.hn = ? AND li.lab_items_group = 7 AND lh.confirm_report = 'N'
+        WHERE lh.hn = ? AND li.lab_items_group = 7 AND lh.confirm_report = 'N' AND lh.form_name IN('CYTOLOGY', 'Pathology')
         ORDER BY lh.order_date DESC
         LIMIT 100
         ____SQL;

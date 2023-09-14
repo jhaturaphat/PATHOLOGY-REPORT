@@ -16,7 +16,7 @@ class PathologyController extends Controller
 {
     //
     public function index(){       
-        $model = PathologyReports::select('id','lab_order_number','hn','fname','lname','age','gender','speci_collected_at',
+        $model = PathologyReports::select('id','outid','lab_order_number','hn','fname','lname','age','gender','speci_collected_at',
         'speci_received_at','date_of_report','physician','clinical_history','clinical_diagnosis',
         'phatology_diag_1','phatology_diag_2','phatology_diag_3','phatology_diag_4',
         'gross_examination','gross_examiner','gross_date','microscopic_description','pathologist',
