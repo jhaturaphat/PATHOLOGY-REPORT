@@ -56,10 +56,6 @@
         
     </div>
     </div>
-        
-        
-
-    
 
     <script src="{{asset('js/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('js/jquery/jquery-ui/jquery-ui.min.js')}}"></script>
@@ -131,6 +127,9 @@
                         $('[id="gross_examination"]').each(function() {                      
                             $(this).val(data.gross_examination);
                         });                        
+                        $('[id="gross_examiner"]').each(function() {                      
+                            $(this).val(data.gross_examiner);
+                        });
                         $('[id="gross_date"]').each(function() {                      
                             $(this).datepicker('setDate', Utils.DDMMYYYY(data.gross_date.split(' ')[0]));
                         });

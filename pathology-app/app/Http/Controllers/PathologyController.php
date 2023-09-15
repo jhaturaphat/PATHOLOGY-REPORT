@@ -34,7 +34,10 @@ class PathologyController extends Controller
                 'gross_examination','gross_examiner','gross_date','microscopic_description','pathologist',
                 'release','created_at','updated_at'
             ]);
-            if($model) return $model->toJson();
+            if($model){ 
+                $request->session()->put("id",$model->id); 
+                return $model->toJson();
+            }
             return Response()->json(['message'=>['errorInfo'=>'ไม่พบข้อมูล ID ที่ส่งมา']], 501);
         } catch (QueryException $ex) {            
             return Response()->json(['message'=>$ex], 501);
@@ -100,7 +103,7 @@ class PathologyController extends Controller
         
         // return Response()->json(['message'=>"TEST"]);
         
-        $model->id = "A".uniqid(); //trim($item->id);
+        $model->outid = $item->outid;
         $model->lab_order_number = $item->lab_order_number;
         $model->hn = $item->hn;
         $model->fname = $item->fname;
@@ -136,6 +139,26 @@ class PathologyController extends Controller
         
         
     }
+
+
+    public function Update(Request $request){
+
+        $jsonDataObject = $request->json()->all();        
+        $item = (object)$jsonDataObject['item'];
+        $images = $jsonDataObject['image'];
+        $id = $request->session()->get("id"); 
+        $model = PathologyReports::find($id,[
+            'id','outid','lab_order_number','hn','fname','lname','age','gender','speci_collected_at',
+            'speci_received_at','date_of_report','physician','clinical_history','clinical_diagnosis',
+            'phatology_diag_1','phatology_diag_2','phatology_diag_3','phatology_diag_4',
+            'gross_examination','gross_examiner','gross_date','microscopic_description','pathologist',
+            'release','created_at','updated_at'
+        ]);        
+        $request->session()->forget('id');
+        return Response()->json($model);
+
+    }
+
 
 
     protected function B64toImage($data = ""){             

@@ -7,6 +7,11 @@ document.getElementById('release').onclick = async function(e){
     save('POST');
 };
 
+document.getElementById('update').onclick = async function(e){
+    e.preventDefault();
+    save('PUT');
+};
+
 // เมือลากเปลี่ยนขนาด textarea 
 // let resizeInt = null;
 // const diag = document.getElementById('diag');
@@ -43,7 +48,7 @@ async function save(type = 'POST'){
     var data_item = {};
 
     // data items
-    data_item.id = $('#id').val();
+    data_item.outid = $('#out_id').val();
     data_item.lab_order_number = $('#lab_order_number').val();
     data_item.hn = $('#hn').val();
     data_item.fname = $('#fname').text();
@@ -121,7 +126,7 @@ async function save(type = 'POST'){
             type: type,
             dataType: 'json',   
             contentType: "application/json; charset=utf-8",         
-            url: '/pathology-a',
+            url: '/pathology-a/',
             data: JSON.stringify({item: data_item, image: pngObj}),
             success: function(data, textStatus,jqXHR){
                 Alert.success(data.message);

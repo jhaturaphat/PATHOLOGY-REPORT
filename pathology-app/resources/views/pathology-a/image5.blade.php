@@ -8,8 +8,8 @@
             <div id="tx_gross_examination">
                 <textarea id="gross_examination"></textarea>  </div>  
             <div class="gross_footer">
-                <label for="gross_examination"><b>Gross examiner:</b></label>
-                <input type="text" id="gross_examination">
+                <label for="gross_examiner"><b>Gross examiner:</b></label>
+                <input type="text" id="gross_examiner">
                 <label for=""><b>Date:</b></label>
                 <input type="text" id="gross_date" data-calendar='1' autocomplete="off">
             </div>
