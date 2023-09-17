@@ -116,6 +116,7 @@ async function save(type = 'POST'){
         }      
     }
  
+    let Statloading = null;
     setTimeout(() => {
         $.ajaxSetup({
             headers: {
@@ -127,14 +128,23 @@ async function save(type = 'POST'){
             dataType: 'json',   
             contentType: "application/json; charset=utf-8",         
             url: '/pathology-a/',
-            data: JSON.stringify({item: data_item, image: pngObj}),
-            success: function(data, textStatus,jqXHR){
-                Alert.success(data.message);
+            data: JSON.stringify({item: data_item, image: pngObj}),            
+            beforeSend: function(){
+                Statloading = Alert.loading(0);
+                console.log(Statloading);
+            },
+            complete: function(jqXHR, textStatus){                
+                Statloading.close();
+                if(jqXHR.status === 200) {
+                    Alert.success(jqXHR.responseJSON.message.errorInfo);                    
+                }else{
+                    Alert.error("Eror", jqXHR.responseJSON.message.errorInfo);
+                } 
             },
             error: function (jqXHR, textStatus, err){
                 if (jqXHR.status != 200){
                     console.log(jqXHR.responseJSON);
-                    Alert.error(err, jqXHR.responseJSON.message.errorInfo);
+                    Alert.error('Eror', jqXHR.responseJSON.message.errorInfo);
                 }
             }          
           });

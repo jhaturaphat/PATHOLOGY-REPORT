@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\models\LabOrderImage;
+use App\Models\PathologyReports;
 use App\models\User;
 
 class LabOrderImageController extends Controller
@@ -16,8 +17,11 @@ class LabOrderImageController extends Controller
         return view('his.laborderimage.index')->with('model', $model);
     }
 
-    public function template1(){
-        return view('his.laborderimage.template1');
+    public function syncToHosxp(){
+        $model = PathologyReports::where(['release'=>'N']);
+        foreach($model as $item){
+            
+        }
     }
 
     public function findLabOrder(Request $request){

@@ -18,7 +18,7 @@
                 <b>CLINICAL DIAGNOSIS:</b>
                 <span></span>
             </div>            
-        <div style="text-align: center; margin-top: 10px;"><b>PATHOLOGICAL DIAGNOSIS</b></div>
+        <div style="text-align: center; margin-top: 10px;letter-spacing: 2px;"><b>CRYTOLOGICAL DIAGNOSIS</b></div>
         <div id="tx_phatology_diag" data-html2canvas-ignore>
             <textarea id="phatology_diag_1" rows="20"></textarea>    
         </div> 

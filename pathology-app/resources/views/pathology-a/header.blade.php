@@ -7,8 +7,9 @@
         Fax:0-4536-2099</p>    
 </div> 
 <hr style="border: 1px solid gainsboro;">
-<div style="text-align: center; margin-top: -10px; letter-spacing: 4px;">
-    <h3>SURGICAL PHATOLOGY REPORT</h3>
+<div style="text-align: center; margin-top: -10px; letter-spacing: 2px;">
+    {{-- <h3>SURGICAL PHATOLOGY REPORT</h3> --}}
+    <h3>CYTOLOGICAL  PATHOLOGY REPORT</h3>
 </div>
 <div class="pt-detail">
 
@@ -35,5 +36,7 @@
         <div><label>Requesting Physician:</label> <b id="physician">Dr. Kendrick Mcelravy</b></div>
     </div>       
 </div>
-
-<hr style="border: 1px solid gainsboro;">
+<div style="text-align: center; border-bottom: 2px solid gainsboro; margin-bottom: 5px;">
+    <label style="font-size: 10px; letter-spacing: 1px;">(Use for this protocal for publication of legal pupose without permission of the Department of Pathology of is not authorized)</label>
+    
+</div>

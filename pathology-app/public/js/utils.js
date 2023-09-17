@@ -53,6 +53,26 @@ const Alert = {
             showConfirmButton: false,
             timer: 2000
         });
+    },
+    loading: function(timer = 1000){
+        let timerInterval
+        return Swal.fire({
+            title: 'กำลังประมวลผม',
+            html: 'ฉันจะปิดภายใน <b></b> วินาที่.',
+            timer: 155000,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading()
+                const b = Swal.getHtmlContainer().querySelector('b')
+                timerInterval = setInterval(() => {
+                b.textContent = Swal.getTimerLeft()
+                }, 100)
+            },
+            willClose: () => {
+                clearInterval(timerInterval);
+                return true;
+            }
+            });
     }
 };
 

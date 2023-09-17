@@ -14,6 +14,7 @@
             <th>ชื่อ</th>
             <th>สกุล</th>
             <th witdh="280px">วันที่สั่ง</th>
+            <th>สถานะ</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -26,6 +27,7 @@
             <td>{{$item->fname}}</td>
             <td>{{$item->lname}}</td>
             <td>{{$item->created_at}}</td>
+            <td>{{$item->release}}</td>
             <td>
                 {{-- <form action="pathology-a.edit/{{$item->id}}"></form> --}}
                 <a href="{{route('pathology-a.edit',$item->id)}}">แก้ไข</a>
