@@ -4,11 +4,11 @@
         @include('pathology-a.header')   
             <div id="tx_clinical_history">
                 <span id="clinical"><b>CLINICAL HISTORY:</b></span> 
-                    <textarea id="clinical_history" cols="30" rows="5" ></textarea>
+                    <textarea id="clinical_history" cols="30" rows="1" ></textarea>
             </div>
             <div id="tx_clinical_diagnosis">
                 <span id="clinical"><b>CLINICAL DIAGNOSIS:</b></span> 
-                <textarea id="clinical_diagnosis" cols="30" rows="5"></textarea> 
+                <textarea id="clinical_diagnosis" cols="30" rows="1"></textarea> 
             </div>
             <div id="rx_clinical_history" style="display: none">
                 <b>CLINICAL HISTORY:</b>

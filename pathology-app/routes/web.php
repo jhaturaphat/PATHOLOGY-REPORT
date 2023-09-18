@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LabOrderImageController;
 use App\Http\Controllers\pathologyController;
-use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,14 +20,15 @@ Route::get('/', function () {
 });
 
 Route::get('/laborderimage/index', [LabOrderImageController::class, 'index']);
+Route::get('/laborderimage/synctoimage', [LabOrderImageController::class, 'syncToImageHis'])->name('synctoimage');
 Route::get('/laborderimage/findlaborder', [LabOrderImageController::class, 'findLabOrder'])->name('findlaborder');
 
 Route::get('/pathology-a/index', [pathologyController::class, 'index'])->name('pathology-a.index');
 Route::get('/pathology-a/report', [pathologyController::class, 'report']);
-Route::get('/pathology-a/show', [pathologyController::class, 'show'])->name('show');
+Route::get('/pathology-a/find-id', [pathologyController::class, 'findId'])->name('find-id');
 Route::get('/pathology-a/edit/{id}', [pathologyController::class, 'edit'])->name('pathology-a.edit');
 Route::post('/pathology-a', [pathologyController::class, 'store']);
 Route::put('/pathology-a', [pathologyController::class, 'update']);
 
 
-Route::post('/upload-image', [ImageController::class, 'uploadImage'])->name('upload-image');
+

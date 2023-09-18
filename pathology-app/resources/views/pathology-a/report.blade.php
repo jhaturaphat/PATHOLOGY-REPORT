@@ -68,6 +68,7 @@
 
     @if(isset($id))
         <script>
+            
             let _release = null;
             setTimeout(() => {                
                 _release = document.getElementById('release').disabled = true;            
@@ -78,14 +79,14 @@
                 $.ajax({
                     type: "GET",
                     // contentType: "text/html; charset=UTF-8",
-                    url:"{{route('show')}}",
+                    url:"{{route('find-id')}}",
                     dataType: "json",     
                     data:{id:'{{$id}}'},
                     success:function(data, textStatus,status){
                         $('input[id="lab_order_number"]').each(function() {                        
                             $(this).val(data.lab_order_number).prop('disabled', true);
                         }); 
-                        $('input[id="id"]').each(function() {                        
+                        $('input[id="outid"]').each(function() {                        
                             $(this).val(data.id).prop('disabled', true);
                         });                
                         $('input[id="hn"]').each(function() {                        
@@ -152,7 +153,7 @@
                         }else{
                             document.getElementById("cpage4").click();
                         }
-
+                        CKEDITOR.instances['gross_examination'].setData(data.gross_examination);
                         CKEDITOR.instances['microscopic_description'].setData(data.microscopic_description);
                         
                     },
@@ -217,6 +218,7 @@
             PageControl.FnCalPage(); //คำนวณ หน้า Page
             
             $("input[id=hn]").each(function(){ // กำหนดให้ element id="hn" ทุกตัวเป็น autocomplete โดยใช้ each function
+            
                     $(this).autocomplete({
                     source: function(request, response){
                         $.ajax({
@@ -240,9 +242,7 @@
                         });
                     },
                     minLength: 1,
-                    select: function( event, ui ) {
-                        ui.item.lis_id = $('#id').val();
-                        lab_order = ui.item; 
+                    select: function( event, ui ) {                       
                         
                         $('input[id="lab_order_number"]').each(function() {                        
                             $(this).val(ui.item.lab_order_number);
@@ -288,24 +288,7 @@
                 };
             });
 
-            $( "input[data-calendar='1']" ).each(function(){
-                $(this).datepicker({
-                    timepicker:false,
-                    lang:'th',
-                    yearOffset:543,
-                    dateFormat:'dd-mm-yy',
-                    showAnim: 'clip',
-                    // changeMonth: true,
-                    // changeYear: true,
-                    minDate: '-120',
-                    maxDate: "+0D",   
-                    onSelect: function(date, datepicker){
-                        $("input[id="+this.id+"]").each(function(){
-                            $(this).val(date);
-                        });
-                    }
-                });               
-            });                      
+                                  
         });
 
     </script>

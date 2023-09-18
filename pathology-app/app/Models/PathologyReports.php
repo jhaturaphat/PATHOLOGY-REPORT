@@ -46,6 +46,13 @@ class PathologyReports extends Model
         'release'      
     ];
 
+    protected $hidden = [
+        'image1',
+        'image2',
+        'image3',
+        'image4',
+        'image5',
+    ];
 
     // protected function phatology_diag(): Attribute{
     //     return Attribute::make(

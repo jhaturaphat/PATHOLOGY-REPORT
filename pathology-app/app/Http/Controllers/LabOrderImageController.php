@@ -17,18 +17,20 @@ class LabOrderImageController extends Controller
         return view('his.laborderimage.index')->with('model', $model);
     }
 
-    public function syncToHosxp(){
-        $model = PathologyReports::where(['release'=>'N']);
+    public function syncToImageHis(){
+        $model = PathologyReports::where('release', 'W')->get();       
+        $model = $model->makeVisible(['image1','image2','image3','image4','image5']);
+        return print_r($model->toArray());
         foreach($model as $item){
             
         }
     }
 
     public function findLabOrder(Request $request){
-        $term = $request->term;
+        $hn = $request->term;
 
-        if(strlen($request->term) < 9){
-            $term = str_pad($request->term,9,"0",STR_PAD_LEFT);  //ใส่่ 000000000 หน้า HN ให้ครบ 9 หลัก
+        if(strlen($hn) < 9){
+            $hn = str_pad($request->term,9,"0",STR_PAD_LEFT);  //ใส่่ 000000000 หน้า HN ให้ครบ 9 หลัก
         }
 
         
@@ -66,7 +68,7 @@ class LabOrderImageController extends Controller
         ____SQL;
         
         DB::connection('mysql_his')->select("SET NAMES utf8");
-        $results = DB::connection('mysql_his')->select($sql,[$term, $term, $term]);
+        $results = DB::connection('mysql_his')->select($sql,[$hn, $hn, $hn]);
         return response()->json($results);
     }
 }

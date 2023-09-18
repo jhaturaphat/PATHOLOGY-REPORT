@@ -17,8 +17,8 @@
      
     <div class="pt-left" style="width: 50%">
         <div><label>Surgical number:</label>
-            <span id="out_id" class="rx"></span>
-            <input class="hn-input tx" type="text" id="out_id" value="LAB-123456" style="width: 180px;" autocomplete="off">            
+            <span id="" class="rx"></span>
+            <input class="hn-input tx" type="text" id="outid" value="LAB-123456" style="width: 180px;" autocomplete="off">            
         </div>
         <div><label>Name:</label><b id="fname">Ms.TAYUWEEN</b></div>
         <div><label>Age:</label><b id="age">30</b></div>

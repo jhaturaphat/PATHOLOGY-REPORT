@@ -18,24 +18,14 @@ class PathologyController extends Controller
 {
     //
     public function index(){             
-        $model = PathologyReports::select('id','outid','lab_order_number','hn','fname','lname','age','gender','speci_collected_at',
-        'speci_received_at','date_of_report','physician','clinical_history','clinical_diagnosis',
-        'phatology_diag_1','phatology_diag_2','phatology_diag_3','phatology_diag_4',
-        'gross_examination','gross_examiner','gross_date','microscopic_description','pathologist',
-        'release','created_at','updated_at')->orderBy('id', 'DESC')->paginate(15);
+        $model = PathologyReports::orderBy('id', 'DESC')->paginate(15);
         // print_r($model);
         return view('pathology-a.index')->with('model',$model);
     }
-    public function show(Request $request){
+    public function findId(Request $request){
         
         try {           
-            $model = PathologyReports::find($request->id, [
-                'id','outid','lab_order_number','hn','fname','lname','age','gender','speci_collected_at',
-                'speci_received_at','date_of_report','physician','clinical_history','clinical_diagnosis',
-                'phatology_diag_1','phatology_diag_2','phatology_diag_3','phatology_diag_4',
-                'gross_examination','gross_examiner','gross_date','microscopic_description','pathologist',
-                'release','created_at','updated_at'
-            ]);
+            $model = PathologyReports::find($request->id);
             if($model){ 
                 PathologyReports::where('id', $request->id)->update(['release' => 'W']);
                 $request->session()->put("id",$model->id); 

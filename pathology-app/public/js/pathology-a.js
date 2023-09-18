@@ -39,16 +39,16 @@ const diag = document.querySelectorAll('[id^=phatology_diag]');  //เลือ�
 diag.forEach(function(ele, index){
     CKE.Use(ele, 450);
 });
-
+CKE.Use("gross_examination", 100);
 CKE.Use("microscopic_description", 450);
 
-async function save(type = 'POST'){
+async function save(type = 'GET'){    
     CKE.Preview(); 
     var pngObj = [];        
     var data_item = {};
 
     // data items
-    data_item.outid = $('#out_id').val();
+    data_item.outid = $('input[id="outid"]').val();
     data_item.lab_order_number = $('#lab_order_number').val();
     data_item.hn = $('#hn').val();
     data_item.fname = $('#fname').text();
@@ -61,7 +61,7 @@ async function save(type = 'POST'){
     data_item.physician = $('#physician').text();
     data_item.clinical_history = $('#clinical_history').val();
     data_item.clinical_diagnosis = $('#clinical_diagnosis').val();
-    data_item.gross_examination = $('#gross_examination').val();
+    data_item.gross_examination = CKEDITOR.instances['gross_examination'].getData();
     data_item.gross_examiner = $('#gross_examiner').val();
     data_item.gross_date = Utils.YYYYMMDD($('#gross_date').val());
     data_item.microscopic_description = CKEDITOR.instances['microscopic_description'].getData();
@@ -127,7 +127,7 @@ async function save(type = 'POST'){
             type: type,
             dataType: 'json',   
             contentType: "application/json; charset=utf-8",         
-            url: '/pathology-a/',
+            url: '/pathology-a',
             data: JSON.stringify({item: data_item, image: pngObj}),            
             beforeSend: function(){
                 Statloading = Alert.loading(0);

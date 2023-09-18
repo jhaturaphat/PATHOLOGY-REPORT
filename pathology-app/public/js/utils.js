@@ -6,6 +6,27 @@ const Utils = {
     YYYYMMDD: function(val =''){
         const items = val.split("-");
         return items[2]+"-"+items[1]+"-"+items[0];
+    },
+    Calendar: function(element) {
+        // $( "input[data-calendar='1']" ).each(function(){
+        $( "input[data-calendar='1']" ).each(function(){
+            $(this).datepicker({
+                timepicker:false,
+                lang:'th',
+                yearOffset:543,
+                dateFormat:'dd-mm-yy',
+                showAnim: 'clip',
+                // changeMonth: true,
+                // changeYear: true,
+                minDate: '-120',
+                maxDate: "+0D",   
+                onSelect: function(date, datepicker){
+                    $("input[id="+this.id+"]").each(function(){
+                        $(this).val(date);
+                    });
+                }
+            });               
+        });
     }
 };
 
@@ -144,9 +165,8 @@ const CKE = {
             rx_clinical[index].getElementsByTagName('span')[0].textContent = data.value;
         }); 
 
-        // Image5
-        const tx_gross_examination = document.getElementById("tx_gross_examination").getElementsByTagName('textarea')[0].value;
-        document.getElementById("rx_gross_examination").textContent = tx_gross_examination;
+        // Image5        
+        document.getElementById("rx_gross_examination").innerHTML = CKEDITOR.instances['gross_examination'].getData();
         tx.forEach((ele)=>ele.style.display = 'none');
         diag.forEach((ele, index)=>{
             let content =  CKEDITOR.instances['phatology_diag'+'_'+(index + 1)].getData();            
