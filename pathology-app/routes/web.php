@@ -28,7 +28,9 @@ Route::get('/pathology-a/report', [pathologyController::class, 'report']);
 Route::get('/pathology-a/find-id', [pathologyController::class, 'findId'])->name('find-id');
 Route::get('/pathology-a/edit/{id}', [pathologyController::class, 'edit'])->name('pathology-a.edit');
 Route::post('/pathology-a', [pathologyController::class, 'store']);
-Route::put('/pathology-a', [pathologyController::class, 'update']);
+// Route::put('/pathology-a', [pathologyController::class, 'update']);
+Route::PATCH('/pathology-a/{id}', [pathologyController::class, 'release'])->name('release');
+Route::delete('/pathology-a/{id}', [pathologyController::class, 'destroy'])->name('delete');
 
 
 

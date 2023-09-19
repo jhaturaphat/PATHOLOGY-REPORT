@@ -46,7 +46,7 @@ return new class extends Migration
             $table->binary('image3')->nullable()->comment('รูปที่ 3');
             $table->binary('image4')->nullable()->comment('รูปที่ 4');
             $table->binary('image5')->nullable()->comment('รูปที่ 5');
-            $table->enum('release', ['P','N','W'])->default("N")->comment("สถานะ Confirm แล้ว");
+            $table->enum('release', ['P','N','W'])->default("W")->comment("P=publicแล้ว, N=ว่าง กดpublicเอง, W=รอปล่อยอัตโนมัติ");
             $table->integer('user_id')->nullable()->comment('ผู้บันทึก');
             $table->timestamps();
 

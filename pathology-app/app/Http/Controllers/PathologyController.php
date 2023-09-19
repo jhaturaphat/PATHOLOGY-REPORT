@@ -25,9 +25,9 @@ class PathologyController extends Controller
     public function findId(Request $request){
         
         try {           
-            $model = PathologyReports::find($request->id);
+            $model = PathologyReports::where("id", "=", $request->id)->where('release','!=' , "P")->first();
             if($model){ 
-                PathologyReports::where('id', $request->id)->update(['release' => 'W']);
+                PathologyReports::where('id', $request->id)->update(['release' => 'N']);
                 $request->session()->put("id",$model->id); 
                 return $model->toJson();
             }
@@ -47,6 +47,13 @@ class PathologyController extends Controller
         return view('pathology-a.report');
     }
 
+    public function destroy(string $id){
+        return $this->index();
+    }
+
+    public function release(string $id){
+        
+    }
 
     public function store(Request $request){
         try {           

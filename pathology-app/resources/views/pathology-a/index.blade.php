@@ -13,7 +13,7 @@
             <th>HN</th>
             <th>ชื่อ</th>
             <th>สกุล</th>
-            <th witdh="280px">วันที่สั่ง</th>
+            <th witdh="">วันที่สั่ง</th>
             <th>สถานะ</th>
             <th>Action</th>
         </tr>
@@ -28,10 +28,14 @@
             <td>{{$item->lname}}</td>
             <td>{{$item->created_at}}</td>
             <td>{{$item->release}}</td>
-            <td>
+            <td style="display: flex">
                 {{-- <form action="pathology-a.edit/{{$item->id}}"></form> --}}
-                <a href="{{route('pathology-a.edit',$item->id)}}">แก้ไข</a>
-                <a href="/pathology-a/delete">ลบ</a>
+                <a href="{{route('pathology-a.edit',[$item->id])}}">แก้ไข</a>                
+                <form action="{{route('delete',$item->id)}}" method="POST">
+                    @method('delete')
+                    @csrf
+                    <input type="submit" value="ลบ">
+                </form>
             </td>
         </tr>
         @endforeach

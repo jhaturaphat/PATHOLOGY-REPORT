@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\models\LabOrderImage;
@@ -18,13 +19,28 @@ class LabOrderImageController extends Controller
     }
 
     public function syncToImageHis(){
-        $model = PathologyReports::where('release', 'W')->get();       
-        $model = $model->makeVisible(['image1','image2','image3','image4','image5']);
-        return print_r($model->toArray());
-        foreach($model as $item){
-            
-        }
+        $model = PathologyReports::where('release', 'N')->limit(100)->get();       
+        $model = $model->makeVisible(['image1','image2','image3','image4','image5']);        
+        try {  
+            foreach($model as $item){  
+                LabOrderImage::create([
+                    'lab_order_number' => $item->lab_order_number,
+                    'image1' => $item->image1,
+                    'image2' => $item->image2,
+                    'image3' => $item->image3,
+                    'image4' => $item->image4,
+                    'image5' => $item->image5,
+                ]);
+                PathologyReports::find($item->id)->update(["release" => "P"]);
+            }
+        } catch (QueryException $ex) { //Throwable   //QueryException                
+            return Response()->json(['message'=>$ex], 501);
+        } 
+           
+        
     }
+
+    
 
     public function findLabOrder(Request $request){
         $hn = $request->term;
