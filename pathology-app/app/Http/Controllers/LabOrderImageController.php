@@ -36,8 +36,6 @@ class LabOrderImageController extends Controller
         } catch (QueryException $ex) { //Throwable   //QueryException                
             return Response()->json(['message'=>$ex], 501);
         } 
-           
-        
     }
 
     

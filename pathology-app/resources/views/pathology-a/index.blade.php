@@ -5,6 +5,22 @@
 
 @section('content')
 <br>
+<div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 3000)">
+@if (session()->has('success'))
+    <div class="alert alert-success" >
+        {{ session('success') }}
+    </div>
+@endif
+</div>
+<div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 3000)">
+@if (session()->has('danger'))
+    <div class="alert alert-danger">
+        {{ session('danger') }}
+    </div>
+@endif
+</div>
+
+
 <table class="table table-primary table-hover">
     <thead>
         <tr>
@@ -28,19 +44,34 @@
             <td>{{$item->lname}}</td>
             <td>{{$item->created_at}}</td>
             <td>{{$item->release}}</td>
-            <td style="display: flex">
-                {{-- <form action="pathology-a.edit/{{$item->id}}"></form> --}}
-                <a href="{{route('pathology-a.edit',[$item->id])}}">แก้ไข</a>                
-                <form action="{{route('delete',$item->id)}}" method="POST">
+            <td>
+                @if ($item->release !== "P")
+                    <a href="{{route('pathology-a.edit',[$item->id])}}">แก้ไข</a>   
+                    @else
+                    <a href="javascript:void(0)" style="cursor: not-allowed; color:rgb(161, 164, 164)">แก้ไข</a>   
+                    @endif
+                {{-- <form action="{{route('delete',$item->id)}}" method="POST">
                     @method('delete')
                     @csrf
+                    @if ($item->release !== "P")
                     <input type="submit" value="ลบ">
+                    @else
+                    <input type="submit" value="ลบ" disabled>
+                    @endif
+                </form> --}}
+                <form action="{{route('release',$item->id)}}" method="POST">
+                    @method('PATCH')
+                    @csrf
+                    @if ($item->release !== "P")
+                    <input type="submit" value="ยืนยัน" >
+                    @else
+                    <input type="button" value="ยืนยัน" disabled>
+                    @endif
                 </form>
             </td>
         </tr>
         @endforeach
     </tbody>
-
 </table>
 
 @endsection

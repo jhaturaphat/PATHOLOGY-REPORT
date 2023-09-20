@@ -9,7 +9,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\QueryException;
-use \App\Models\PathologyReports;
+use App\Models\PathologyReports;
+use App\models\LabOrderImage;
 use Illuminate\Support\Facades\DB;
 use App\Models\Image;
 use PhpParser\Node\Stmt\TryCatch;
@@ -17,9 +18,8 @@ use PhpParser\Node\Stmt\TryCatch;
 class PathologyController extends Controller
 {
     //
-    public function index(){             
-        $model = PathologyReports::orderBy('id', 'DESC')->paginate(15);
-        // print_r($model);
+    public function index(){          
+        $model = PathologyReports::orderBy('id', 'DESC')->paginate(15);        
         return view('pathology-a.index')->with('model',$model);
     }
     public function findId(Request $request){
@@ -48,11 +48,39 @@ class PathologyController extends Controller
     }
 
     public function destroy(string $id){
-        return $this->index();
+        try {
+            $model = PathologyReports::where("id", "=", $id)->where('release','!=' , "P")->delete();
+            if($model){
+                session()->flash('success', 'ลบข้อมูลสำเร็จ');
+                return $this->index();
+            }else{
+                session()->flash('danger', 'ไม่พบข้อมูลที่ต้องการลบ');
+                return $this->index();
+            }
+        } catch (\Throwable $th) {
+            return Response()->json(['message'=>$ex], 501);
+        }
     }
 
     public function release(string $id){
-        
+        try {
+            $model = PathologyReports::where("id", "=", $id)->where('release','!=' , "P")->first();
+            if($model){
+                LabOrderImage::create([
+                    'lab_order_number' => $model->lab_order_number,
+                    'image1' => $model->image1,
+                    'image2' => $model->image2,
+                    'image3' => $model->image3,
+                    'image4' => $model->image4,
+                    'image5' => $model->image5,
+                ]);
+                $model->update(["release" => "P"]);
+                session()->flash('success', 'บันทึกสำเร็จ');
+            }
+            return $this->index();
+        } catch (QueryException $ex) {
+            return Response()->json(['message'=>$ex], 501);
+        }
     }
 
     public function store(Request $request){
