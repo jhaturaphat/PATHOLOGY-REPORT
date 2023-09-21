@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LabOrderImageController;
 use App\Http\Controllers\pathologyController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +20,14 @@ use App\Http\Controllers\pathologyController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/login', [UserController::class,'loginForm'])->name('login');
+Route::post('/login', [UserController::class,'login']);
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/');
+})->name('logout');
 
 Route::get('/laborderimage/index', [LabOrderImageController::class, 'index']);
 Route::get('/laborderimage/synctoimage', [LabOrderImageController::class, 'syncToImageHis'])->name('synctoimage');

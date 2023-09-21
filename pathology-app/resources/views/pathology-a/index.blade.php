@@ -63,9 +63,9 @@
                     @method('PATCH')
                     @csrf
                     @if ($item->release !== "P")
-                    <input type="submit" value="ยืนยัน" >
+                    <input type="submit" value="ยืนยันผล" >
                     @else
-                    <input type="button" value="ยืนยัน" disabled>
+                    <input type="button" value="ยืนยันผล" disabled >
                     @endif
                 </form>
             </td>

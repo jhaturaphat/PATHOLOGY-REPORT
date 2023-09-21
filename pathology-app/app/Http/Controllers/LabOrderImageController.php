@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\models\LabOrderImage;
 use App\Models\PathologyReports;
-use App\models\User;
+
 
 class LabOrderImageController extends Controller
 {
