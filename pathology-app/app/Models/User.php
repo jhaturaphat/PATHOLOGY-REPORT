@@ -12,16 +12,21 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+
+    protected $connection = 'mysql_his';  // 'mysql_his' ตั้งค่าใน config/databases.php  สำหรับฐานข้อมูลโรงบาล
+    protected $table = 'opduser'; // ชื่อ table ที่อยู่บนฐานข้อมูลที่เราเชื่อมต่อ พิมพ์ใส่ให้ตรงกัน
+    public $timestamps = false;  
+    public $incrementing = false;
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [
+
+     protected $visible = [
+        'loginname',
         'name',
-        'email',
-        'is_admin', 
-        'password',
+        'passweb'
     ];
 
     /**
@@ -29,9 +34,8 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
+    protected $hidden = [        
+        'passweb',
     ];
 
     /**
@@ -39,8 +43,7 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+    protected $casts = [        
+        'passweb' => 'hashed',
     ];
 }

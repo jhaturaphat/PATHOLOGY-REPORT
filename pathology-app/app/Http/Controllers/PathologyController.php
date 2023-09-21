@@ -57,7 +57,7 @@ class PathologyController extends Controller
                 session()->flash('danger', 'ไม่พบข้อมูลที่ต้องการลบ');
                 return $this->index();
             }
-        } catch (\Throwable $th) {
+        } catch (QueryException $ex) {
             return Response()->json(['message'=>$ex], 501);
         }
     }
