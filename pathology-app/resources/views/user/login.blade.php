@@ -8,7 +8,7 @@
 
     <div>
         <label for="passweb">รหัสผ่าน:</label>
-        <input type="password" name="passweb" id="passweb" required>
+        <input type="text" name="passweb" id="passweb" required>
     </div>
 
     <div>

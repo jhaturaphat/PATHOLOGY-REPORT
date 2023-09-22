@@ -2,29 +2,26 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+// use Illuminate\Contracts\Auth\Authenticatable;
 
-class User extends Authenticatable
+class Opduser extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
-
+    use HasFactory;
     protected $connection = 'mysql_his';  // 'mysql_his' ตั้งค่าใน config/databases.php  สำหรับฐานข้อมูลโรงบาล
     protected $table = 'opduser'; // ชื่อ table ที่อยู่บนฐานข้อมูลที่เราเชื่อมต่อ พิมพ์ใส่ให้ตรงกัน
     public $timestamps = false;  
     public $incrementing = false;
+    protected $primaryKey = 'loginname';
+    // public $username = 'loginname';
+    public $password = 'passweb';
 
-    protected $email = 'loginname';
-    protected $password = 'passweb';
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    
+
+    // protected $email = 'loginname';
+    // protected $password = 'passweb';
 
     protected $fillable = [
         'loginname',
@@ -38,27 +35,17 @@ class User extends Authenticatable
         'passweb'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [        
-        'passweb',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [        
         'password' => 'hashed',
         // 'passweb' => 'string',
     ];
 
-    public function getAuthPassword()
-        {
-            return $this->passweb;
-        }
+    public function getAuthIdentifierName(){
+        return $this->loginname;
+    }
+
+    public function getAuthPassword() { 
+        dd($this->passweb);
+        return $this->passweb; 
+    } 
 }

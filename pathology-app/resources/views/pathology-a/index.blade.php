@@ -20,6 +20,15 @@
 @endif
 </div>
 
+<div>
+    
+    @auth
+        ยินดีต้อนรับ,
+    @else
+        ยังไม่ได้เข้าสู่ระบบ
+    @endauth
+    
+</div>
 
 <table class="table table-primary table-hover">
     <thead>

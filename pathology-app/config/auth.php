@@ -13,9 +13,14 @@ return [
     |
     */
 
+    // 'defaults' => [
+    //     'guard' => 'web',
+    //     'passwords' => 'users',
+    // ],
+
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'hosxp_opduser',
+        'passwords' => 'opduser',
     ],
 
     /*
@@ -40,6 +45,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'hosxp_opduser' => [
+            'driver' => 'session',
+            'provider' => 'opduser', // ให้แก้ตาม Provider ที่คุณใช้
+        ],
     ],
 
     /*
@@ -60,15 +69,24 @@ return [
     */
 
     'providers' => [
-        // 'users' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\User::class,
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+        'opduser' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Opduser::class, // ให้แก้ตาม Model ที่คุณใช้
+        ]
+
+        // 'opduser' => [
+        //     'driver' => 'database',
+        //     'table' => 'opduser',
         // ],
 
-        'users' => [
-            'driver' => 'database',
-            'table' => 'opduser',
-        ],
+        // 'users' => [
+        //     'driver' => 'database',
+        //     'table' => 'opduser',
+        // ],
     ],
 
     /*
@@ -97,6 +115,12 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        'opduser' => [
+            'provider' => 'opduser',
+            'table' => 'opduser',
+            'expire' => 60,
+            'throttle' => 60,
+        ]
     ],
 
     /*

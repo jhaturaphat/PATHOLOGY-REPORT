@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LabOrderImageController;
 use App\Http\Controllers\pathologyController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\OpduserController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -21,26 +21,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', [UserController::class,'loginForm'])->name('login');
-Route::post('/login', [UserController::class,'login']);
+Route::group(['middleware' => 'CheckSession'], function () {
+    Route::get('/laborderimage/index', [LabOrderImageController::class, 'index']);
+    Route::get('/laborderimage/synctoimage', [LabOrderImageController::class, 'syncToImageHis'])->name('synctoimage');
+    Route::get('/laborderimage/findlaborder', [LabOrderImageController::class, 'findLabOrder'])->name('findlaborder');
+
+    Route::get('/pathology-a/index', [pathologyController::class, 'index'])->name('pathology-a.index');
+    Route::get('/pathology-a/report', [pathologyController::class, 'report']);
+    Route::get('/pathology-a/find-id', [pathologyController::class, 'findId'])->name('find-id');
+    Route::get('/pathology-a/edit/{id}', [pathologyController::class, 'edit'])->name('pathology-a.edit');
+    Route::post('/pathology-a', [pathologyController::class, 'store']);
+    // Route::put('/pathology-a', [pathologyController::class, 'update']);
+    Route::PATCH('/pathology-a/{id}', [pathologyController::class, 'release'])->name('release');
+    Route::delete('/pathology-a/{id}', [pathologyController::class, 'destroy'])->name('delete');
+});
+
+Route::get('/login', [OpduserController::class,'loginForm'])->name('login');
+Route::post('/login', [OpduserController::class,'login']);
 
 Route::post('/logout', function () {
     Auth::logout();
     return redirect('/');
 })->name('logout');
 
-Route::get('/laborderimage/index', [LabOrderImageController::class, 'index']);
-Route::get('/laborderimage/synctoimage', [LabOrderImageController::class, 'syncToImageHis'])->name('synctoimage');
-Route::get('/laborderimage/findlaborder', [LabOrderImageController::class, 'findLabOrder'])->name('findlaborder');
 
-Route::get('/pathology-a/index', [pathologyController::class, 'index'])->name('pathology-a.index');
-Route::get('/pathology-a/report', [pathologyController::class, 'report']);
-Route::get('/pathology-a/find-id', [pathologyController::class, 'findId'])->name('find-id');
-Route::get('/pathology-a/edit/{id}', [pathologyController::class, 'edit'])->name('pathology-a.edit');
-Route::post('/pathology-a', [pathologyController::class, 'store']);
-// Route::put('/pathology-a', [pathologyController::class, 'update']);
-Route::PATCH('/pathology-a/{id}', [pathologyController::class, 'release'])->name('release');
-Route::delete('/pathology-a/{id}', [pathologyController::class, 'destroy'])->name('delete');
 
 
 
