@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title> @yield('title')</title>
-    <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">    
+    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
 </head>
 <body>
     
@@ -31,15 +30,39 @@
                     </ul>
                   </li>
                 </ul>
+                  @auth
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{Auth::user()->name}}
+                      </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li>
+                        <form class="d-flex" action="{{route('logout')}}" method="POST">
+                        @csrf
+                        <button class="btn btn-link" type="submit">LOGOUT</button>
+                      </form>
+                    </li>                                           
+                    </ul> 
+                  </li>
+                  </ul>
+                  @else
+                  <form class="d-flex" action="{{route('login')}}" method="GET">                    
+                    <button class="btn btn-link" type="submit">LOGIN</button>
+                  </form>
+                  @endauth
+                
               </div>
             </div>
           </nav>
+          
    
     <div class="container">
         @yield('content')
     </div>
+    
     <script src="{{asset('js/plugins/alpine.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>    
     <script>
        
     </script>

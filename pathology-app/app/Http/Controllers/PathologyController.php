@@ -3,31 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Session;
-use Illuminate\Http\Response;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\QueryException;
 use App\Models\PathologyReports;
 use App\models\LabOrderImage;
-use Illuminate\Support\Facades\DB;
-use App\Models\Image;
-use PhpParser\Node\Stmt\TryCatch;
+
 
 class PathologyController extends Controller
 {
     //
     public function index(){          
-        $model = PathologyReports::orderBy('id', 'DESC')->paginate(15);        
+        $model = PathologyReports::where("user_id","=",Auth::user()->id)->orderBy('id', 'DESC')->paginate(15);        
         return view('pathology-a.index')->with('model',$model);
     }
     public function findId(Request $request){
-        
+        //P=ยืนยันผลแล้ว, A=ยืนยันผลอัตโนมัติ, W=ยืนยันผลเอง
         try {           
             $model = PathologyReports::where("id", "=", $request->id)->where('release','!=' , "P")->first();
             if($model){ 
-                PathologyReports::where('id', $request->id)->update(['release' => 'N']);
+                PathologyReports::where('id', $request->id)->update(['release' => 'A']);
                 $request->session()->put("id",$model->id); 
                 return $model->toJson();
             }
@@ -48,8 +44,9 @@ class PathologyController extends Controller
     }
 
     public function destroy(string $id){
+        //P=ยืนยันผลแล้ว, A=ยืนยันผลอัตโนมัติ, W=ยืนยันผลเอง
         try {
-            $model = PathologyReports::where("id", "=", $id)->where('release','!=' , "P")->delete();
+            $model = PathologyReports::where("id", "=", $id)->where('release','!=' , "P")->where("user_id" ,"=", Auth::user()->id)->delete();
             if($model){
                 session()->flash('success', 'ลบข้อมูลสำเร็จ');
                 return $this->index();
@@ -63,6 +60,7 @@ class PathologyController extends Controller
     }
 
     public function release(string $id){
+        //P=ยืนยันผลแล้ว, A=ยืนยันผลอัตโนมัติ, W=ยืนยันผลเอง
         try {
             $model = PathologyReports::where("id", "=", $id)->where('release','!=' , "P")->first();
             if($model){
@@ -158,6 +156,7 @@ class PathologyController extends Controller
         $model->image3 = $image3;
         $model->image4 = $image4;
         $model->image5 = $image5;
+        $model->user_id = Auth::user()->id;
          if($model->save()){
             return Response()->json(['message'=>'success'], 200);
          }

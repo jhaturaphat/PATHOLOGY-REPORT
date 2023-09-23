@@ -39,7 +39,7 @@ const diag = document.querySelectorAll('[id^=phatology_diag]');  //เลือ�
 diag.forEach(function(ele, index){
     CKE.Use(ele, 450);
 });
-CKE.Use("gross_examination", 100);
+CKE.Use("gross_examination", 50);
 CKE.Use("microscopic_description", 450);
 
 async function save(type = 'GET'){    

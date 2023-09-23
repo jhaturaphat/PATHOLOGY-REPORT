@@ -216,7 +216,7 @@
         $(function(){ 
 
             PageControl.FnCalPage(); //คำนวณ หน้า Page
-            
+            Utils.Calendar();
             $("input[id=hn]").each(function(){ // กำหนดให้ element id="hn" ทุกตัวเป็น autocomplete โดยใช้ each function
             
                     $(this).autocomplete({

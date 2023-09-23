@@ -17,10 +17,10 @@ class OpduserController extends Controller
     }
     
     public function login(Request $request){        
-        $credentials = $request->only('loginname', 'passweb');
-        $credentials['passweb'] = md5($credentials['passweb']); // เข้ารหัสรหัสผ่านด้วย MD5
-        
-        if (Auth::guard('hosxp_opduser')->attempt($credentials)) {            
+        $credentials = $request->only('email', 'passweb');
+        $credentials['password'] = md5($credentials['password']); // เข้ารหัสรหัสผ่านด้วย MD5
+        dd(Auth::guard('hosxp_opduser')->attempt($credentials));
+        if (Auth::guard('hosxp_opduser')->attempt(['loginname' => $request->loginname, 'passweb' => md5($request->passweb)])) {            
             return redirect()->intended('/pathology-a/index');
         }        
         return back()->withErrors(['email' => 'ข้อมูลเข้าสู่ระบบไม่ถูกต้อง'])->withInput();
@@ -31,8 +31,8 @@ class OpduserController extends Controller
         $passweb = $request->input('passweb');    
         // ดึงข้อมูลผู้ใช้จากฐานข้อมูลของคุณ โดยใช้ชื่อผู้ใช้หรืออื่น ๆ
         $user = Opduser::where('loginname', $loginname)->first();    
-        if ($user && md5($passweb) === $user->passweb) {
-            if(Auth::login($user,true))
+        if ($user && md5($passweb) === $user->passweb) {            
+            Auth::guard('hosxp_opduser')->login($user);
             return redirect()->intended('/pathology-a/index');
         }    
         // ไม่สำเร็จ: รีเดิมไปยังหน้าเข้าสู่ระบบพร้อมกับข้อความแจ้งเตือน

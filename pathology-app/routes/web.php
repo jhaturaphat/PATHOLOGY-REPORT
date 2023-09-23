@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LabOrderImageController;
 use App\Http\Controllers\pathologyController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\OpduserController;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,10 +19,13 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if (Auth::check()){
+        return redirect('/pathology-a/index');
+    }
+    return redirect('/login');
 });
 
-Route::group(['middleware' => 'CheckSession'], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/laborderimage/index', [LabOrderImageController::class, 'index']);
     Route::get('/laborderimage/synctoimage', [LabOrderImageController::class, 'syncToImageHis'])->name('synctoimage');
     Route::get('/laborderimage/findlaborder', [LabOrderImageController::class, 'findLabOrder'])->name('findlaborder');
@@ -34,15 +38,16 @@ Route::group(['middleware' => 'CheckSession'], function () {
     // Route::put('/pathology-a', [pathologyController::class, 'update']);
     Route::PATCH('/pathology-a/{id}', [pathologyController::class, 'release'])->name('release');
     Route::delete('/pathology-a/{id}', [pathologyController::class, 'destroy'])->name('delete');
+    Route::post('/logout', [UserController::class,'logout'])->name('logout');
+    Route::get('/register',[UserController::class,'registerForm'])->name('register');
+    Route::post('/register',[UserController::class,'register']);
 });
 
-Route::get('/login', [OpduserController::class,'loginForm'])->name('login');
-Route::post('/login', [OpduserController::class,'login']);
+Route::get('/login', [UserController::class,'loginForm'])->name('login');
+Route::post('/login', [UserController::class,'login']);
 
-Route::post('/logout', function () {
-    Auth::logout();
-    return redirect('/');
-})->name('logout');
+
+
 
 
 

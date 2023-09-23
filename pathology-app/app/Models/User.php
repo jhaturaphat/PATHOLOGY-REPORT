@@ -4,61 +4,41 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
-
-    protected $connection = 'mysql_his';  // 'mysql_his' ตั้งค่าใน config/databases.php  สำหรับฐานข้อมูลโรงบาล
-    protected $table = 'opduser'; // ชื่อ table ที่อยู่บนฐานข้อมูลที่เราเชื่อมต่อ พิมพ์ใส่ให้ตรงกัน
-    public $timestamps = false;  
-    public $incrementing = false;
-
-    protected $email = 'loginname';
-    protected $password = 'passweb';
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
 
     protected $fillable = [
-        'loginname',
-        'passweb'
-        // รายการฟิลด์อื่น ๆ ที่คุณใช้
+        'name', 'email', 'password'
+    ];
+    protected $hidden = [
+        'password', 'remember_token',
     ];
 
-     protected $visible = [
-        'loginname',
-        'name',
-        'passweb'
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [        
-        'passweb',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [        
+    protected $casts = [
+        'email_verified_at' => 'datetime',
         'password' => 'hashed',
-        // 'passweb' => 'string',
     ];
+    
+    /**
+     * Add a mutator to ensure hashed passwords
+     */
+    // public function setPasswordAttribute($password)
+    // {
+    //     $this->attributes['password'] = bcrypt($password);        
+    //     // $this->attributes['password'] = Hash::make($password);        
+    // }
 
-    public function getAuthPassword()
-        {
-            return $this->passweb;
-        }
+    // public function getAuthPassword() { 
+    //     // dd($this->passweb);
+    //     return $this->passweb; 
+    // } 
 }

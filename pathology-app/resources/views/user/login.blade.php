@@ -2,13 +2,13 @@
     @csrf
 
     <div>
-        <label for="loginname">อีเมล:</label>
-        <input type="text" name="loginname" id="loginname" value="{{ old('loginname') }}" required autofocus>
+        <label for="email">อีเมล:</label>
+        <input type="text" name="email" id="email" value="{{ old('email') }}" required autofocus>
     </div>
 
     <div>
-        <label for="passweb">รหัสผ่าน:</label>
-        <input type="text" name="passweb" id="passweb" required>
+        <label for="password">รหัสผ่าน:</label>
+        <input type="password" name="password" id="password" value="123456" required>
     </div>
 
     <div>

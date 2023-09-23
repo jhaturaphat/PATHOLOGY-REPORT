@@ -7,32 +7,31 @@ const Utils = {
         const items = val.split("-");
         return items[2]+"-"+items[1]+"-"+items[0];
     },
-    Calendar: function(element) {
-        // $( "input[data-calendar='1']" ).each(function(){
-        $( "input[data-calendar='1']" ).each(function(){
-            $(this).datepicker({
-                timepicker:false,
-                lang:'th',
-                yearOffset:543,
-                dateFormat:'dd-mm-yy',
-                showAnim: 'clip',
-                // changeMonth: true,
-                // changeYear: true,
-                minDate: '-120',
-                maxDate: "+0D",   
-                onSelect: function(date, datepicker){
-                    $("input[id="+this.id+"]").each(function(){
-                        $(this).val(date);
-                    });
-                }
-            });               
-        });
+    Calendar: function(element) {        
+            return $( "input[data-calendar='1']" ).each(function(){
+                $(this).datepicker({
+                    timepicker:false,
+                    lang:'th',
+                    yearOffset:543,
+                    dateFormat:'dd-mm-yy',
+                    showAnim: 'clip',
+                    // changeMonth: true,
+                    // changeYear: true,
+                    minDate: '-120',
+                    maxDate: "+0D",   
+                    onSelect: function(date, datepicker){
+                        $("input[id="+this.id+"]").each(function(){
+                            $(this).val(date);
+                        });
+                    }
+                });               
+            });
     }
 };
 
 const Alert = {
     success: function(msg = "สำเร็จ"){
-        Swal.fire({
+        return Swal.fire({
             position: 'center',
             icon: 'success',
             title: msg,
@@ -41,7 +40,7 @@ const Alert = {
         });
     },
     error: function(msg = 'Eror', txt = 'เกิดข้อผิดพลาด'){
-        Swal.fire({
+        return Swal.fire({
             position: 'center',
             icon: 'error',
             title: msg,
@@ -50,7 +49,7 @@ const Alert = {
         });
     },
     warning: function(msg = 'warning'){
-        Swal.fire({
+        return Swal.fire({
             position: 'center',
             icon: 'warning',
             title: msg,
@@ -58,7 +57,7 @@ const Alert = {
         });
     },
     info: function(msg = 'info'){
-        Swal.fire({
+        return Swal.fire({
             position: 'center',
             icon: 'info',
             title: msg,
@@ -67,7 +66,7 @@ const Alert = {
         });
     },
     question: function(msg = 'question'){
-        Swal.fire({
+        return Swal.fire({
             position: 'center',
             icon: 'question',
             title: msg,
@@ -146,7 +145,7 @@ const CKE = {
     Use :function(id, h = 400){
         CKEDITOR.replace(id,{                      
             height: h  
-        })
+        });
     },
     Preview:function(){
         // CKEDITOR.instances.phatology_diag.getData();

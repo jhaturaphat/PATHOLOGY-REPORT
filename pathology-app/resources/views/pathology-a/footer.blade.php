@@ -1,6 +1,6 @@
 
     <div class="rt-footer">
-        <input id="pathologist" type="text" >
+        <input id="pathologist" type="text" value="{{Auth::user()->name}}">
         <label for="pathologist">PATHOLOGIST</label>
     </div>
     <div class="line-footer">

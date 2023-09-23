@@ -19,7 +19,7 @@ class LabOrderImageController extends Controller
     }
 
     public function syncToImageHis(){
-        $model = PathologyReports::where('release', 'N')->limit(100)->get();       
+        $model = PathologyReports::where('release', 'A')->limit(100)->get();       
         $model = $model->makeVisible(['image1','image2','image3','image4','image5']);        
         try {  
             foreach($model as $item){  

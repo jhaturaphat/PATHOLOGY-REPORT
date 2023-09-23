@@ -31,9 +31,9 @@ return [
     |
     */
 
-    'lifetime' => env('SESSION_LIFETIME', 3600),
+    'lifetime' => env('SESSION_LIFETIME', 120),
 
-    'expire_on_close' => true, // Session หมดอายุเมื่อปิดเบราว์เซอร์
+    'expire_on_close' => false,
 
     /*
     |--------------------------------------------------------------------------

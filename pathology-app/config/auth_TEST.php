@@ -18,11 +18,6 @@ return [
         'passwords' => 'users',
     ],
 
-    // 'defaults' => [
-    //     'guard' => 'hosxp_opduser',
-    //     'passwords' => 'opduser',
-    // ],
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -44,10 +39,6 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
-        ],
-        'hosxp_opduser' => [
-            'driver' => 'session',
-            'provider' => 'opduser', // ให้แก้ตาม Provider ที่คุณใช้
         ],
     ],
 
@@ -73,18 +64,6 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'opduser' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Opduser::class, // ให้แก้ตาม Model ที่คุณใช้
-            // 'table' => 'opduser',
-            'username' => 'loginname', // add this line
-            'password' => 'passweb'
-        ],
-
-        // 'opduser' => [
-        //     'driver' => 'database',
-        //     'table' => 'opduser',
-        // ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -118,12 +97,6 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        'opduser' => [
-            'provider' => 'opduser',
-            'table' => 'opduser',
-            'expire' => 60,
-            'throttle' => 60,
-        ]
     ],
 
     /*

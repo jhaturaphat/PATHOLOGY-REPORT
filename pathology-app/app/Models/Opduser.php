@@ -14,9 +14,10 @@ class Opduser extends Authenticatable
     protected $table = 'opduser'; // ชื่อ table ที่อยู่บนฐานข้อมูลที่เราเชื่อมต่อ พิมพ์ใส่ให้ตรงกัน
     public $timestamps = false;  
     public $incrementing = false;
+    protected $guard = 'hosxp_opduser';
     protected $primaryKey = 'loginname';
     // public $username = 'loginname';
-    public $password = 'passweb';
+    // public $password = 'passweb';
 
     
 
@@ -36,16 +37,15 @@ class Opduser extends Authenticatable
     ];
 
     protected $casts = [        
-        'password' => 'hashed',
+        'passweb' => 'hashed',
         // 'passweb' => 'string',
     ];
 
-    public function getAuthIdentifierName(){
-        return $this->loginname;
-    }
+    // public function getAuthIdentifierName(){
+    //     return $this->loginname;
+    // }
 
-    public function getAuthPassword() { 
-        dd($this->passweb);
-        return $this->passweb; 
-    } 
+    public function getAuthPassword() {
+        return $this->passweb;
+    }
 }

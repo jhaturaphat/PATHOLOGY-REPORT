@@ -18,22 +18,22 @@
     <div class="pt-left" style="width: 50%">
         <div><label>Surgical number:</label>
             <span id="" class="rx"></span>
-            <input class="hn-input tx" type="text" id="outid" value="LAB-123456" style="width: 180px;" autocomplete="off">            
+            <input class="hn-input tx" type="text" id="outid" value="" style="width: 180px;" autocomplete="off">            
         </div>
-        <div><label>Name:</label><b id="fname">Ms.TAYUWEEN</b></div>
-        <div><label>Age:</label><b id="age">30</b></div>
-        <div><label>Date of specimen collected:</label> <b id="speci_collected_at">07-08-2023</b></div>
+        <div><label>Name:</label><b id="fname"></b></div>
+        <div><label>Age:</label><b id="age"></b></div>
+        <div><label>Date of specimen collected:</label> <b id="speci_collected_at"></b></div>
         <div><label>Date of reported:</label> <input type="text" id="date_of_report" data-calendar='1' style="width: 120px;" autocomplete="off"></div>
     </div>       
     <div class="pt-right" style="width: 50%">
         <div><label>HN:</label>
             <span id="out_hn" class="rx"></span>
-            <input class="hn-input tx" id="hn" type="text" pattern="[0-9]{9}" value="000136217">
+            <input class="hn-input tx" id="hn" type="text" pattern="[0-9]{9}" value="">
         </div>
-        <div><label>Last name:</label><b id="lname">GOLASTSAIHJUOII</b></div>
-        <div><label>Gender:</label><b id="gender">FEMALE</b></div>
+        <div><label>Last name:</label><b id="lname"></b></div>
+        <div><label>Gender:</label><b id="gender"></b></div>
         <div><label>Date of specimen received:</label> <input type="text" id="speci_received_at" data-calendar='1' style="width: 100px;" autocomplete="off"></div>
-        <div><label>Requesting Physician:</label> <b id="physician">Dr. Kendrick Mcelravy</b></div>
+        <div><label>Requesting Physician:</label> <b id="physician"></b></div>
     </div>       
 </div>
 <div style="text-align: center; border-bottom: 2px solid gainsboro; margin-bottom: 5px;">
