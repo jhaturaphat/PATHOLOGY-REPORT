@@ -23,7 +23,7 @@ Route::get('/', function () {
         return redirect('/pathology-a/index');
     }
     return redirect('/login');
-});
+})->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/laborderimage/index', [LabOrderImageController::class, 'index']);

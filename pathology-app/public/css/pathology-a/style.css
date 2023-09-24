@@ -90,6 +90,7 @@ input{
     align-items: flex-end; 
     margin-top: 10px;  
     width: 100%;
+    margin-right: 10px;
 }
 
 .rt-footer input{
@@ -104,14 +105,19 @@ input{
 .rt-footer label{
     width: 220px;
     text-align: center;
-    font-size: 13px;
+    font-size: 10px;
+    letter-spacing: 1px;
 }
 
 .line-footer{
-    margin-top: 12px;
+    margin-top: 10px;
     border-top: 1px solid rgb(128,128,128);
     z-index: 0;
     text-align: center;
+}
+.line-footer label{
+    font-size: 10px;
+    letter-spacing: 1px;
 }
 .check-page{
     display: flex;

@@ -19,6 +19,9 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  @if (Auth::user()->is_admin)
+                   <li class="nav-item"><a class="nav-link active" href="{{route('register')}}">เพิ่มผู้ใช้</a></li>
+                  @endif            
                   <li class="nav-item"><a class="nav-link active" href="/pathology-a/index">ผลรายงาน</a></li>            
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

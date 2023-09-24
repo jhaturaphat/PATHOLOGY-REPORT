@@ -67,11 +67,10 @@
 }
 
 .image1-footer{
-    /* background-color: aliceblue; */
     position: absolute;
-    bottom: 10px !important;
-    left: 0px !important;
-    width: 100%;
+    bottom: 10px;
+    left: 40px;
+    width: 90%;
 }
 
 #add-page{
