@@ -20,11 +20,17 @@ services:
     restart: always
   
   app:
-    build: ./docker-php
+    # build: ./docker-php
+    build:
+      args:
+        user: teddi
+        uid: 1000
+      context: ./docker-php
+      dockerfile: Dockerfile
     container_name: pathology_app    
-    working_dir: /var/www/laravel
+    # working_dir: /var/www/laravel
     volumes:
-      - ./pathology-app:/var/www/laravel     
+      - ./pathology-app:/var/www     
     ports:
       - 9000:9000 
     depends_on: 
