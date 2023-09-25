@@ -9,10 +9,12 @@ use App\models\User;
 
 class UserController extends Controller
 {
+    // ฟังก์ชันเรียกหน้า ฟอร์ม LOGIN
     public function loginForm(){
         if(!Auth::check()) return view('user.login');
         return back();
     }
+    // ฟังก์ชัน LOGIN
     public function login(Request $request){      
         if(Auth::check()) return back(); 
         $credentials = $request->only('email', 'password');         
@@ -22,6 +24,7 @@ class UserController extends Controller
         return back()->withErrors(['email' => 'ข้อมูลเข้าสู่ระบบไม่ถูกต้อง'])->withInput();
     }
 
+    // ฟังก์ชัน ออกจากระบบ
     public function logout(Request $request){
         Auth::logout();
         $request->session()->invalidate();
@@ -29,22 +32,23 @@ class UserController extends Controller
         return redirect('/');
     }
 
+    // ฟังก์ชันเรียกนห้า ฟอร์มลงทะเบียน
     public function registerForm(){        
-        if (Auth::check() && Auth::user()->is_admin){
+        //if (Auth::check() && Auth::user()->is_admin){
             return view('user.register');            
-        }
+        //}
         return redirect('/');
         
     }
 
-    public function register(Request $request){
-        
+    // ฟังก์ชันสำหรับการลงทะเบียน
+    public function register(Request $request){        
         try {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-        ]); 
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|min:6',
+            ]); 
             Auth::login($this->create($request->all()));
             return redirect('/pathology-a/index');
         } catch (\Throwable $th) {
