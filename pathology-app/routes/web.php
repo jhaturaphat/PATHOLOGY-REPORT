@@ -25,7 +25,7 @@ Route::get('/', function () {
     return redirect('/login');
 })->name('home');
 
-Route::group(['middleware' => 'auth'], function () {
+// Route::group(['middleware' => 'auth'], function () {
     Route::get('/laborderimage/index', [LabOrderImageController::class, 'index']);
     Route::get('/laborderimage/synctoimage', [LabOrderImageController::class, 'syncToImageHis'])->name('synctoimage');
     Route::get('/laborderimage/findlaborder', [LabOrderImageController::class, 'findLabOrder'])->name('findlaborder');
@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/logout', [UserController::class,'logout'])->name('logout');
     // Route::get('/register',[UserController::class,'registerForm'])->name('register');
     //Route::post('/register',[UserController::class,'register']);
-});
+// });
 
 Route::get('/register',[UserController::class,'registerForm'])->name('register');
 Route::post('/register',[UserController::class,'register']);

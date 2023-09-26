@@ -39,17 +39,14 @@ services:
       - laravel 
     restart: always
 
-  proxy:
+  nginx:
     image: nginx:latest
     container_name: nginx_server    
     ports:
-      - "8080:80"
+      - "88:80"
     volumes:
       - ./docker-nginx:/etc/nginx/conf.d # แนบไฟล์คอนฟิกของ Nginx ของคุณ
-      - ./pathology-app:/var/www/html
-    depends_on:
-      - app    
-      # - db
+      - ./pathology-app/public:/var/www/public    
     networks:
       - laravel
     restart: always

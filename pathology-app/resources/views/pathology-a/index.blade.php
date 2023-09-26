@@ -20,8 +20,7 @@
 @endif
 </div>
 
-<div>
-      
+<div>      
 </div>
 
 <table class="table table-primary table-hover">
