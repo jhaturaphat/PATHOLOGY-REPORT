@@ -25,7 +25,7 @@ Route::get('/', function () {
     return redirect('/login');
 })->name('home');
 
-// Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/laborderimage/index', [LabOrderImageController::class, 'index']);
     Route::get('/laborderimage/synctoimage', [LabOrderImageController::class, 'syncToImageHis'])->name('synctoimage');
     Route::get('/laborderimage/findlaborder', [LabOrderImageController::class, 'findLabOrder'])->name('findlaborder');
@@ -39,12 +39,12 @@ Route::get('/', function () {
     Route::PATCH('/pathology-a/{id}', [pathologyController::class, 'release'])->name('release');
     Route::delete('/pathology-a/{id}', [pathologyController::class, 'destroy'])->name('delete');
     Route::post('/logout', [UserController::class,'logout'])->name('logout');
-    // Route::get('/register',[UserController::class,'registerForm'])->name('register');
-    //Route::post('/register',[UserController::class,'register']);
-// });
+    Route::get('/register',[UserController::class,'registerForm'])->name('register');
+    Route::post('/register',[UserController::class,'register']);
+});
 
-Route::get('/register',[UserController::class,'registerForm'])->name('register');
-Route::post('/register',[UserController::class,'register']);
+// Route::get('/register',[UserController::class,'registerForm'])->name('register');
+// Route::post('/register',[UserController::class,'register']);
 
 Route::get('/login', [UserController::class,'loginForm'])->name('login');
 Route::post('/login', [UserController::class,'login']);

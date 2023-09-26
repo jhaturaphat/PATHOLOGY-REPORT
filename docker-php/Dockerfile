@@ -1,5 +1,5 @@
 # !php ใช้ version 8.2 สามารถเปลี่ยนได้ตามที่เราต้องการแต่ต้องเป็นตัว fpm นะครับ เพื่อที่จะให้กับ nginx
-FROM php:8.2-fpm
+FROM php:8.2-fpm-buster
 
 # !อาร์กิวเมนต์ที่กำหนดไว้ใน docker-compose.yml
 ARG user

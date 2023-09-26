@@ -3,7 +3,7 @@ services:
 
   db:
     image: mysql:8.0-debian
-    container_name: mysql8_db    
+    container_name: pathology_db    
     volumes:
       - ./mysql/data:/var/lib/mysql
       - ./mysql/config/:/etc/mysql/conf.d/
@@ -14,7 +14,7 @@ services:
       MYSQL_ROOT_PASSWORD: ZtFiLN9   
       # MYSQL_ALLOW_EMPTY_PASSWORD: yes    
     ports:
-      - 3333:3306
+      - 3307:3306
     networks:
       - laravel
     restart: always
@@ -41,12 +41,12 @@ services:
 
   nginx:
     image: nginx:latest
-    container_name: nginx_server    
+    container_name: pathology_nginx   
     ports:
-      - "88:80"
+      - "8080:80"
     volumes:
       - ./docker-nginx:/etc/nginx/conf.d # แนบไฟล์คอนฟิกของ Nginx ของคุณ
-      - ./pathology-app/public:/var/www/public    
+      - ./pathology-app:/var/www     
     networks:
       - laravel
     restart: always
