@@ -29,9 +29,8 @@ services:
     container_name: pathology_app    
     # working_dir: /var/www/laravel
     volumes:
-      - ./pathology-app:/var/www     
-    ports:
-      - 9000:9000 
+      - ./pathology-app:/var/www   
+      - ./docker-php/config/:/usr/local/etc/php/conf.d/    
     depends_on: 
       - db   
     networks:

@@ -8,6 +8,7 @@ ARG uid
 # !Install คำสั่งสำหรับการลง package ที่ laravel required ไว้นะครับ
 RUN apt-get update \
   && apt-get install -y \
+    nano \
     cron \
     libfreetype6-dev \
     libicu-dev \
@@ -17,10 +18,12 @@ RUN apt-get update \
     libxslt1-dev \
     openssh-server \
     openssh-client \
-    rsync \
-    && rm -r /var/lib/apt/lists/* \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-	  && docker-php-ext-install -j$(nproc) gd
+    zlib1g-dev \
+    libzip-dev \
+    zip \    
+    unzip \
+    rsync
+    
 # !อันนี้ล้างแคช
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -28,9 +31,12 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # !อันนี้คือ ติดตั้งส่วนขยาย PHP ที่จำเป็นสำหรับ Laravel 
-RUN docker-php-ext-install pdo_mysql && docker-php-ext-enable pdo_mysql \
-    && docker-php-ext-install gd && docker-php-ext-enable gd \
-    && docker-php-ext-install opcache && docker-php-ext-enable opcache
+RUN docker-php-ext-install pdo_mysql \ 
+    && docker-php-ext-install gd \
+    && docker-php-ext-install opcache \
+    && docker-php-ext-install zip \
+    && docker-php-ext-install unzip \
+    && docker-php-ext-install php-zip
 
 # !สร้างผู้ใช้ระบบเพื่อรันคำสั่ง Composer และ Artisan
 RUN useradd -G www-data,root -u $uid -d /home/$user $user
@@ -43,3 +49,6 @@ RUN a2enmod rewrite \
   php -- --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /var/www
+
+
+#&& docker-php-ext-enable pdo_mysql \

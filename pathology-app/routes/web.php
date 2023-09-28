@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LabOrderImageController;
-use App\Http\Controllers\pathologyController;
+use App\Http\Controllers\PathologyController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OpduserController;
 use Illuminate\Support\Facades\Auth;
@@ -41,6 +41,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/logout', [UserController::class,'logout'])->name('logout');
     Route::get('/register',[UserController::class,'registerForm'])->name('register');
     Route::post('/register',[UserController::class,'register']);
+
+    Route::post('/profile', [UserController::class, 'chPassword'])->name('profile.password');
 });
 
 // Route::get('/register',[UserController::class,'registerForm'])->name('register');

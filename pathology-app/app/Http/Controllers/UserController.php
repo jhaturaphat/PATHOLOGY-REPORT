@@ -72,6 +72,19 @@ class UserController extends Controller
         
     }
 
+    public function chPassword(Request $request){
+        try {
+            $request->validate([
+                'password' => $data['password'],
+                'new_password' => $data['new_password'],
+                'contirm_passowrd' => $data['contirm_passowrd'],  
+            ]);
+            
+        } catch (QueryException $ex) {            
+            return Response()->json(['message'=>$ex], 501);
+        }   
+    }
+
     protected function findEmail(string $email){
         return User::where("email",$email)->get();
     }
