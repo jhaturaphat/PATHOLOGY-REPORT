@@ -21,13 +21,9 @@ services:
   
   app:    
     build:
-      args:
-        user: kid
-        uid: 1000
       context: ./docker-php
       dockerfile: Dockerfile
-    container_name: pathology_app    
-    # working_dir: /var/www/laravel
+    container_name: pathology_app  
     volumes:
       - ./pathology-app:/var/www   
       - ./docker-php/config/:/usr/local/etc/php/conf.d/    
@@ -44,7 +40,7 @@ services:
       - "8080:80"
     volumes:
       - ./docker-nginx:/etc/nginx/conf.d # แนบไฟล์คอนฟิกของ Nginx ของคุณ
-      - ./pathology-app:/var/www     
+      - ./pathology-app:/var/www   
     networks:
       - laravel
     restart: always

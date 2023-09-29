@@ -4,7 +4,7 @@
         @include('pathology-a.header')   
             <div id="tx_clinical_history">
                 <span id="clinical"><b>CLINICAL HISTORY:</b></span> 
-                    <textarea id="clinical_history" cols="30" rows="1" ></textarea>
+                <textarea id="clinical_history" cols="30" rows="1" ></textarea>
             </div>
             <div id="tx_clinical_diagnosis">
                 <span id="clinical"><b>CLINICAL DIAGNOSIS:</b></span> 
@@ -13,12 +13,13 @@
             <div id="rx_clinical_history" style="display: none">
                 <b>CLINICAL HISTORY:</b>
                 <span></span>
-            </div>         
+            </div>    
+            
             <div id="rx_clinical_diagnosis" style="display: none">
                 <b>CLINICAL DIAGNOSIS:</b>
                 <span></span>
             </div>            
-        <div style="text-align: center; margin-top: 10px;letter-spacing: 2px;"><b>CRYTOLOGICAL DIAGNOSIS</b></div>
+        <div style="text-align: center; margin-top: 10px;letter-spacing: 2px;"><b>CYTOLOGICAL DIAGNOSIS</b></div>
         <div id="tx_phatology_diag" data-html2canvas-ignore>
             <textarea id="phatology_diag_1" rows="20"></textarea>    
         </div> 
@@ -28,5 +29,7 @@
             @include('pathology-a.footer')
         </div>
     </div>     
-
+    
 </page>
+
+

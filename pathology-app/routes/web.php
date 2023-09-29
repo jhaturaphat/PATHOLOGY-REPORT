@@ -30,14 +30,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/laborderimage/synctoimage', [LabOrderImageController::class, 'syncToImageHis'])->name('synctoimage');
     Route::get('/laborderimage/findlaborder', [LabOrderImageController::class, 'findLabOrder'])->name('findlaborder');
 
-    Route::get('/pathology-a/index', [pathologyController::class, 'index'])->name('pathology-a.index');
-    Route::get('/pathology-a/report', [pathologyController::class, 'report']);
-    Route::get('/pathology-a/find-id', [pathologyController::class, 'findId'])->name('find-id');
-    Route::get('/pathology-a/edit/{id}', [pathologyController::class, 'edit'])->name('pathology-a.edit');
-    Route::post('/pathology-a', [pathologyController::class, 'store']);
+    Route::get('/pathology-a/index', [PathologyController::class, 'index'])->name('pathology-a.index');
+    Route::get('/pathology-a/report', [PathologyController::class, 'report']);
+    Route::get('/pathology-a/find-id', [PathologyController::class, 'findId'])->name('find-id');
+    Route::get('/pathology-a/edit/{id}', [PathologyController::class, 'edit'])->name('pathology-a.edit');
+    Route::post('/pathology-a', [PathologyController::class, 'store']);
     // Route::put('/pathology-a', [pathologyController::class, 'update']);
-    Route::PATCH('/pathology-a/{id}', [pathologyController::class, 'release'])->name('release');
-    Route::delete('/pathology-a/{id}', [pathologyController::class, 'destroy'])->name('delete');
+    Route::PATCH('/pathology-a/{id}', [PathologyController::class, 'release'])->name('release');
+    Route::delete('/pathology-a/{id}', [PathologyController::class, 'destroy'])->name('delete');
     Route::post('/logout', [UserController::class,'logout'])->name('logout');
     Route::get('/register',[UserController::class,'registerForm'])->name('register');
     Route::post('/register',[UserController::class,'register']);
