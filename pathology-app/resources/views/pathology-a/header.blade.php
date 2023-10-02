@@ -18,7 +18,7 @@
     <div class="pt-left" style="width: 50%">
         <div><label>Surgical number:</label>
             <span id="" class="rx"></span>
-            <input class="hn-input tx" type="text" id="outid" value="" style="width: 180px;" autocomplete="off">            
+            <input class="hn-input tx" type="text" id="outid" value="" style="width: 180px;"  autocomplete="off">            
         </div>
         <div><label>Name:</label><b id="fname"></b></div>
         <div><label>Age:</label><b id="age"></b></div>
@@ -28,7 +28,7 @@
     <div class="pt-right" style="width: 50%">
         <div><label>HN:</label>
             <span id="out_hn" class="rx"></span>
-            <input class="hn-input tx" id="hn" type="text" pattern="[0-9]{9}" value="">
+            <input class="hn-input tx" id="hn" type="text" pattern="[0-9]{9}" placeholder="ค้นหา HN">
         </div>
         <div><label>Last name:</label><b id="lname"></b></div>
         <div><label>Gender:</label><b id="gender"></b></div>

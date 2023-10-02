@@ -5,9 +5,9 @@
     z-index: 5;
 }
 
-
+/* 
 #image1 textarea{
-    /* font-family: 'Martian Mono', monospace; */
+    
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     color: rgb(73 227 157);
@@ -17,7 +17,7 @@
     background-color: rgb(51, 53, 54);
 }
 #image5 textarea{
-    /* font-family: 'Martian Mono', monospace; */
+   
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     color: rgb(73 227 157);
@@ -25,7 +25,7 @@
     border: none;   
     resize: vertical;
     background-color: rgb(51, 53, 54);
-}
+} */
 
 /* 
 #image1 [id^='tx_clinical_']{
@@ -36,18 +36,29 @@
     top: 1px;
 } */
 
-#image1 [id^='tx_clinical_'] b{
-    font-size: .9rem; 
-    color: rgb(227 241 235);
-}
+
 #image1 [id^='tx_clinical_']{    
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
     width: 100%;
-    resize: vertical;
-    margin: 0 auto;
-    outline: none;
-    border: none;
-    color:rgb(73 227 157);
-    line-height: 130%;
+    /* resize: vertical; */
+    /* margin: 0 auto; */
+    /* outline: none; */
+    /* border: none; */
+    color:rgb(74, 78, 76);
+    /* line-height: 130%; */
+}
+#image1 [id^='tx_clinical_'] span{
+    font-size: .9rem; 
+    width: 100%;
+}
+#image1 [id^='tx_clinical_'] b{
+    font-size: .9rem;    
+}
+#image1 [id^='tx_clinical_'] textarea {
+    width: 100%;
 }
 .ui-menu-item li div{
     padding: 0 !important;
