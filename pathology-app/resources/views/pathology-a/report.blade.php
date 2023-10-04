@@ -19,12 +19,12 @@
     <link rel="stylesheet" href="/css/pathology-a/image2.css">
 </head>
 <body>
-    <div class="layout">
-        @include('pathology-a.image1')  
+    <div id="" class="layout">
+        @include('pathology-a.image1')          
+        @include('pathology-a.image5')
         @include('pathology-a.image2')
         @include('pathology-a.image3')
         @include('pathology-a.image4')
-        @include('pathology-a.image5')
 
    
         {{-- ปุ่มบันทึก --}}
@@ -53,6 +53,7 @@
             <label for="cpage5">
                 <input type="checkbox" name="cpage5" id="cpage5" onclick="CKE.Choose(this, 'image5')" checked>5 
             </label> 
+            &n
             
         </div>
     </div>
@@ -174,6 +175,10 @@
     @endif
 
     <script> 
+
+        CKEDITOR.instances['gross_examination'].setData("<strong>GROSS EXAMINTION</strong>");
+
+
             const preview = document.getElementById('preview');
             const release = document.getElementById('release');
             const update = document.getElementById('update');

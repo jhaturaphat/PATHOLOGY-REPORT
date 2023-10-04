@@ -5,6 +5,7 @@ use App\Http\Controllers\LabOrderImageController;
 use App\Http\Controllers\PathologyController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OpduserController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -51,7 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/login', [UserController::class,'loginForm'])->name('login');
 Route::post('/login', [UserController::class,'login']);
 
-
+Route::get('/test/drag', [TestController::class, 'drag']);
 
 
 

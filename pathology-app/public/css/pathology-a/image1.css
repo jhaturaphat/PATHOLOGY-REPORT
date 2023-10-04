@@ -42,23 +42,20 @@
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    width: 100%;
-    /* resize: vertical; */
-    /* margin: 0 auto; */
-    /* outline: none; */
-    /* border: none; */
+    width: 100%;   
     color:rgb(74, 78, 76);
-    /* line-height: 130%; */
 }
 #image1 [id^='tx_clinical_'] span{
     font-size: .9rem; 
-    width: 100%;
+    width: 150px;
+    overflow: hidden;
 }
 #image1 [id^='tx_clinical_'] b{
     font-size: .9rem;    
+    word-wrap: none;
 }
 #image1 [id^='tx_clinical_'] textarea {
-    width: 100%;
+    width: 79%;
 }
 .ui-menu-item li div{
     padding: 0 !important;
