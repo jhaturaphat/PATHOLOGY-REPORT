@@ -1,4 +1,4 @@
-<page size="A4" id="image3" class="ui-state-default">
+<page size="A4" id="image3" class="">
     <div class="page-number">3/5</div>
     <div class="page-container">
         @include('pathology-a.header')

@@ -1,8 +1,8 @@
-<page size="A4" id="image5" class="ui-state-default">
+<page size="A4" id="image5" class="">
     <div class="page-number">5/5</div>
     <div class="page-container">
-        @include('pathology-a.header')
-        <div id="drag_editor_gross">
+        @include('pathology-a.header')        
+        <div id="drag_editor_gross">            
             <div id="editor_gross" style="border-bottom: 1px solid rgb(205, 201, 201); padding-bottom:15px">
                 <div style="text-align: left; margin:20px 0 0 0;"><b>GROSS EXAMINTION </b></div>
                 <div id="rx_gross_examination"></div>

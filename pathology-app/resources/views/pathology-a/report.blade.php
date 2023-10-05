@@ -190,7 +190,7 @@
             cursor: "move"
         });
        $drop_editor_gross.droppable({
-            accept: "*",
+            accept: "#drag_editor_gross",
             classes: {
                 "ui-droppable-active": "ui-state-highlight"
             },

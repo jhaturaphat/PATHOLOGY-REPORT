@@ -53,6 +53,7 @@ Route::get('/login', [UserController::class,'loginForm'])->name('login');
 Route::post('/login', [UserController::class,'login']);
 
 Route::get('/test/drag', [TestController::class, 'drag']);
+Route::get('/test/accept', [TestController::class, 'accept']);
 
 
 

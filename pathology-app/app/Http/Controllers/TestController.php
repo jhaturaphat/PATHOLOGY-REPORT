@@ -9,4 +9,8 @@ class TestController extends Controller
     function drag(){
         return view('test.drag');
     }
+
+    function accept(){
+        return view("test.accept");
+    }
 }

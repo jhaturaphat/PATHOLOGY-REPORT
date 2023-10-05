@@ -1,4 +1,4 @@
-<page size="A4" id="image2" class="ui-state-default">
+<page size="A4" id="image2" class="">
     <div class="page-container">
         
         <div class="page-number">2/5</div>        

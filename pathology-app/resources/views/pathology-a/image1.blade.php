@@ -1,4 +1,4 @@
-<page size="A4" id="image1" class="ui-state-default">
+<page size="A4" id="image1" class="">
     <div class="page-container">        
         <div class="page-number">1/5</div>
         @include('pathology-a.header')   
@@ -34,7 +34,7 @@
         </div> 
         
         <div id="rx_phatology_diag"></div>  
-        <div id="drop_editor_gross" class="" style="width: 180px; width: 100%"></div>
+        <div id="drop_editor_gross" style="width: 100px; width: 100%"></div>        
         <div class="image1-footer">
             @include('pathology-a.footer')
         </div>
