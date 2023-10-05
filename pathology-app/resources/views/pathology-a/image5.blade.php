@@ -1,17 +1,19 @@
-<page size="A4" id="image5">
+<page size="A4" id="image5" class="ui-state-default">
     <div class="page-number">5/5</div>
     <div class="page-container">
         @include('pathology-a.header')
-        <div id="editor_gross" style="border-bottom: 1px solid rgb(205, 201, 201); padding-bottom:15px">
-            <div style="text-align: left; margin:20px 0 0 0;"><b>GROSS EXAMINTION </b></div>
-            <div id="rx_gross_examination"></div>
-            <div id="tx_gross_examination">
-                <textarea id="gross_examination"></textarea>  </div>  
-            <div class="gross_footer">
-                <label for="gross_examiner"><b>Gross examiner:</b></label>
-                <input type="text" id="gross_examiner">
-                <label for=""><b>Date:</b></label>
-                <input type="text" id="gross_date" data-calendar='1' autocomplete="off">
+        <div id="drag_editor_gross">
+            <div id="editor_gross" style="border-bottom: 1px solid rgb(205, 201, 201); padding-bottom:15px">
+                <div style="text-align: left; margin:20px 0 0 0;"><b>GROSS EXAMINTION </b></div>
+                <div id="rx_gross_examination"></div>
+                <div id="tx_gross_examination">
+                    <textarea id="gross_examination"></textarea>  </div>  
+                <div class="gross_footer">
+                    <label for="gross_examiner"><b>Gross examiner:</b></label>
+                    <input type="text" id="gross_examiner">
+                    <label for=""><b>Date:</b></label>
+                    <input type="text" id="gross_date" data-calendar='1' autocomplete="off">
+                </div>
             </div>
         </div>
         <div id="microscropic">

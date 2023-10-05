@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/js/jquery/jquery-ui/jquery-ui.min.css">
     <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.26/dist/sweetalert2.min.css" integrity="sha256-VJuwjrIWHWsPSEvQV4DiPfnZi7axOaiWwKfXaJnR5tA=" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" /> --}}
     <link rel="stylesheet" href="/js/plugins/sweetalert2/sweetalert2.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/ckeditor.css">    
@@ -17,15 +17,21 @@
     <link rel="stylesheet" href="/css/pathology-a/header.css">
     <link rel="stylesheet" href="/css/pathology-a/image1.css">
     <link rel="stylesheet" href="/css/pathology-a/image2.css">
+    <style>
+        .ui-state-highlight{
+            height: 200px;
+        }
+    </style>
 </head>
 <body>
-    <div id="" class="layout">
-        @include('pathology-a.image1')          
-        @include('pathology-a.image5')
-        @include('pathology-a.image2')
-        @include('pathology-a.image3')
-        @include('pathology-a.image4')
-
+    <div class="layout">
+        <div id="">
+            @include('pathology-a.image1')          
+            @include('pathology-a.image5')
+            @include('pathology-a.image2')
+            @include('pathology-a.image3')
+            @include('pathology-a.image4')
+        </div>
    
         {{-- ปุ่มบันทึก --}}
         <div class="menu-left" data-html2canvas-ignore> 
@@ -53,7 +59,6 @@
             <label for="cpage5">
                 <input type="checkbox" name="cpage5" id="cpage5" onclick="CKE.Choose(this, 'image5')" checked>5 
             </label> 
-            &n
             
         </div>
     </div>
@@ -175,6 +180,26 @@
     @endif
 
     <script> 
+    let $drag_editor_gross = $( "#drag_editor_gross" ), $drop_editor_gross = $( "#drop_editor_gross" );
+
+        $drag_editor_gross.draggable({
+            cancel: "#tx_gross_examination", //การคลิกไอคอนจะไม่เป็นการเริ่มต้นการลาก
+            revert: "invalid", //เมื่อไม่ดรอป ไอเทมจะกลับสู่ตำแหน่งเริ่มต้น
+            containment: "document",
+            helper: "clone",
+            cursor: "move"
+        });
+       $drop_editor_gross.droppable({
+            accept: "*",
+            classes: {
+                "ui-droppable-active": "ui-state-highlight"
+            },
+            drop: function( event, ui ) {
+                console.log(event);
+                console.log(ui);
+            }
+        });
+        
 
         CKEDITOR.instances['gross_examination'].setData("<strong>GROSS EXAMINTION</strong>");
 

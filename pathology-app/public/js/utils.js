@@ -102,12 +102,12 @@ const PageControl = {
         const parent = current.closest('page');
         // parent.style.display = 'none';
         
-        parent.classList.remove('animate__fadeInLeft');
-        parent.classList.add('animate__backOutDown');
+        // parent.classList.remove('animate__fadeInLeft');
+        // parent.classList.add('animate__backOutDown');
         
         setTimeout(() => {        
-            parent.classList.remove('animate__backOutUp');
-            parent.classList.add('animate__fadeInLeft');
+            // parent.classList.remove('animate__backOutUp');
+            // parent.classList.add('animate__fadeInLeft');
             parent.style.display = 'none'; 
             PageControl.FnCalPage();
         }, 500);

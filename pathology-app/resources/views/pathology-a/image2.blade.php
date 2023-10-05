@@ -1,4 +1,4 @@
-<page size="A4" id="image2" class="animate__animated animate__fadeInLeft">
+<page size="A4" id="image2" class="ui-state-default">
     <div class="page-container">
         
         <div class="page-number">2/5</div>        
@@ -7,9 +7,7 @@
             <textarea id="phatology_diag_2" rows="38"></textarea>  
         </div>
         <div id="rx_phatology_diag"></div>  
-        <div class="image2-footer">
-            @include('pathology-a.footer')
-        </div>
+
         <div class="image2-footer">
             @include('pathology-a.footer')
         </div>
