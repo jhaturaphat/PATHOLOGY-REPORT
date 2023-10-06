@@ -7,8 +7,9 @@ const Utils = {
         const items = val.split("-");
         return items[2]+"-"+items[1]+"-"+items[0];
     },
-    Calendar: function(element) {        
-            return $( "input[data-calendar='1']" ).each(function(){
+    Calendar: function(element) { 
+            // return $( "input[data-calendar='1']" ).each(function(){
+                return element.each(function(){
                 $(this).datepicker({
                     timepicker:false,
                     lang:'th',

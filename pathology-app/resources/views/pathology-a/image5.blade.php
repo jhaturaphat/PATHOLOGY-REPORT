@@ -1,30 +1,17 @@
 <page size="A4" id="image5" class="">
-    <div class="page-number">5/5</div>
     <div class="page-container">
-        @include('pathology-a.header')        
-        <div id="drag_editor_gross">            
-            <div id="editor_gross" style="border-bottom: 1px solid rgb(205, 201, 201); padding-bottom:15px">
-                <div style="text-align: left; margin:20px 0 0 0;"><b>GROSS EXAMINTION </b></div>
-                <div id="rx_gross_examination"></div>
-                <div id="tx_gross_examination">
-                    <textarea id="gross_examination"></textarea>  </div>  
-                <div class="gross_footer">
-                    <label for="gross_examiner"><b>Gross examiner:</b></label>
-                    <input type="text" id="gross_examiner">
-                    <label for=""><b>Date:</b></label>
-                    <input type="text" id="gross_date" data-calendar='1' autocomplete="off">
-                </div>
-            </div>
+        
+        <div class="page-number">2/5</div>        
+        @include('pathology-a.header')
+        <div id="tx_phatology_diag" data-html2canvas-ignore>
+            <textarea id="phatology_diag_2" rows="38"></textarea>  
         </div>
-        <div id="microscropic">
-            <div><b>MICROSCOPIC DESCRIPTION</b> </div>
-            <div id="tx_microscopic_description" data-html2canvas-ignore >
-                <textarea id="microscopic_description"></textarea> 
-            </div>
-            <div id="rx_microscopic_description" ></div>
-        </div>
+        <div id="rx_phatology_diag"></div>  
+
         <div class="image2-footer">
             @include('pathology-a.footer')
         </div>
+        
     </div>
+    
 </page>

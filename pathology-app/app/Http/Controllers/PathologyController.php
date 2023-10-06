@@ -147,8 +147,8 @@ class PathologyController extends Controller
         $model->phatology_diag_3 = $item->phatology_diag_3; 
         $model->phatology_diag_4 = $item->phatology_diag_4; 
         $model->gross_examination = $item->gross_examination;
-        $model->gross_examiner = $item->gross_examiner;
-        $model->gross_date = $item->gross_date;
+        // $model->gross_examiner = $item->gross_examiner;
+        // $model->gross_date = $item->gross_date;
         $model->microscopic_description = $item->microscopic_description;
         $model->pathologist = $item->pathologist;
         $model->image1 = $image1;
@@ -238,8 +238,8 @@ class PathologyController extends Controller
             $model->phatology_diag_3 = $item->phatology_diag_3; 
             $model->phatology_diag_4 = $item->phatology_diag_4; 
             $model->gross_examination = $item->gross_examination;
-            $model->gross_examiner = $item->gross_examiner;
-            $model->gross_date = $item->gross_date;
+            // $model->gross_examiner = $item->gross_examiner;
+            // $model->gross_date = $item->gross_date;
             $model->microscopic_description = $item->microscopic_description;
             $model->pathologist = $item->pathologist;
             $model->image1 = $image1;

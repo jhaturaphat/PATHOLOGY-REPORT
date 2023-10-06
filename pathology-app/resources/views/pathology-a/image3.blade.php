@@ -2,6 +2,7 @@
     <div class="page-number">3/5</div>
     <div class="page-container">
         @include('pathology-a.header')
+        <div id="drop_image3"></div>
         <div id="tx_phatology_diag" data-html2canvas-ignore>
             <textarea id="phatology_diag_3" rows="38"></textarea>  
         </div>

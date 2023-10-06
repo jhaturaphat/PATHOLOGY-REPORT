@@ -18,19 +18,19 @@
     <link rel="stylesheet" href="/css/pathology-a/image1.css">
     <link rel="stylesheet" href="/css/pathology-a/image2.css">
     <style>
-        .ui-state-highlight{
-            height: 200px;
+        .active_drop{
+            height: 15% !important;            
         }
     </style>
 </head>
 <body>
     <div class="layout">
         <div id="">
-            @include('pathology-a.image1')          
-            @include('pathology-a.image5')
+            @include('pathology-a.image1')  
             @include('pathology-a.image2')
             @include('pathology-a.image3')
             @include('pathology-a.image4')
+            @include('pathology-a.image5')
         </div>
    
         {{-- ปุ่มบันทึก --}}
@@ -180,23 +180,42 @@
     @endif
 
     <script> 
-    let $drag_editor_gross = $( "#drag_editor_gross" ), $drop_editor_gross = $( "#drop_editor_gross" );
+    // let $drag_editor_gross = $( "#editor_gross" ), $drop_editor_gross = $( "#drop_image1" );
 
-        $drag_editor_gross.draggable({
-            cancel: "#tx_gross_examination", //การคลิกไอคอนจะไม่เป็นการเริ่มต้นการลาก
+        $('#editor_gross').draggable({
+            cancel: "#tx_gross_examination, .gross_footer", //การคลิกไอคอนจะไม่เป็นการเริ่มต้นการลาก
             revert: "invalid", //เมื่อไม่ดรอป ไอเทมจะกลับสู่ตำแหน่งเริ่มต้น
             containment: "document",
             helper: "clone",
-            cursor: "move"
+            cursor: "move",
+            zIndex: 10,
+            drag: function( event, ui ) {
+                $("#drop_image1, #drop_image5").toggleClass('active_drop');
+            }
         });
-       $drop_editor_gross.droppable({
-            accept: "#drag_editor_gross",
+       $('#drop_image1').droppable({
+            accept: "#editor_gross",
             classes: {
                 "ui-droppable-active": "ui-state-highlight"
             },
             drop: function( event, ui ) {
-                console.log(event);
-                console.log(ui);
+                ui.draggable.appendTo("#drop_image1"); 
+            },
+            deactivate: function( event, ui ) {
+                $(this).toggleClass('active_drop');
+            }
+        });
+
+        $('#drop_image5').droppable({
+            accept: "#editor_gross",
+            classes: {
+                "ui-droppable-active": "ui-state-highlight"
+            },
+            drop: function( event, ui ) {
+                ui.draggable.appendTo("#drop_image5"); 
+            },
+            deactivate: function( event, ui ) {
+                $(this).toggleClass('active_drop');
             }
         });
         
@@ -245,8 +264,9 @@
         let lab_order = [];
         $(function(){ 
 
-            PageControl.FnCalPage(); //คำนวณ หน้า Page
-            Utils.Calendar();
+            PageControl.FnCalPage(); //คำนวณ หน้า Page  "input[data-calendar='1']"
+            const eleCalendar = $( "input[data-calendar='1']" );
+            Utils.Calendar(eleCalendar);  //ใส่ปฏิทินให้ Input
             $("input[id=hn]").each(function(){ // กำหนดให้ element id="hn" ทุกตัวเป็น autocomplete โดยใช้ each function
             
                     $(this).autocomplete({

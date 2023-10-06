@@ -37,10 +37,10 @@ document.getElementById('update').onclick = async function(e){
 // CKEDITOR
 const diag = document.querySelectorAll('[id^=phatology_diag]');  //เลือก ทุก Element ที่ขึ้นต้นด้วย phatology_diag
 diag.forEach(function(ele, index){
-    CKE.Use(ele, 450);
+    CKE.Use(ele, 0);
 });
-CKE.Use("gross_examination", 50);
-CKE.Use("microscopic_description", 450);
+CKE.Use("gross_examination", 0);
+CKE.Use("microscopic_description", 0);
 
 async function save(type = 'GET'){    
     CKE.Preview(); 
@@ -62,8 +62,8 @@ async function save(type = 'GET'){
     data_item.clinical_history = $('#clinical_history').val();
     data_item.clinical_diagnosis = $('#clinical_diagnosis').val();
     data_item.gross_examination = CKEDITOR.instances['gross_examination'].getData();
-    data_item.gross_examiner = $('#gross_examiner').val();
-    data_item.gross_date = Utils.YYYYMMDD($('#gross_date').val());
+    // data_item.gross_examiner = $('#gross_examiner').val();
+    // data_item.gross_date = Utils.YYYYMMDD($('#gross_date').val());
     data_item.microscopic_description = CKEDITOR.instances['microscopic_description'].getData();
     data_item.pathologist = $('#pathologist').val();
     data_item.phatology_diag_1 = "";

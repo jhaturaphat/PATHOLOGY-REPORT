@@ -36,8 +36,8 @@ return new class extends Migration
             $table->longText('phatology_diag_4')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_4');
             
             $table->longText('gross_examination')->nullable()->comment('ผลการตรวจสอบขั้นต้น');
-            $table->string('gross_examiner')->nullable()->comment('ผู้ตรวจสอบขั้นต้น');
-            $table->string('gross_date')->nullable()->comment('ลงวันที่ตรวจสอบขั้นต้น');
+            // $table->string('gross_examiner')->nullable()->comment('ผู้ตรวจสอบขั้นต้น');
+            // $table->string('gross_date')->nullable()->comment('ลงวันที่ตรวจสอบขั้นต้น');
             $table->longText('microscopic_description')->nullable()->comment('คำอธิบายด้วยกล้องจุลทรรศน์');
             $table->string('pathologist')->nullable()->comment('ผู้ตรวจสอบ');
             
