@@ -2,7 +2,7 @@
     <div class="page-number">5/5</div>
     <div class="page-container">
         @include('pathology-a.header')        
-        <div id="drop_image5"> </div>
+        <div id="drop_image2"> </div>
         <div id="microscropic">
             <div><b>MICROSCOPIC DESCRIPTION</b> </div>
             <div id="tx_microscopic_description" data-html2canvas-ignore >

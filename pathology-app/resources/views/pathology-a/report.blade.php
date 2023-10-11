@@ -186,7 +186,9 @@
             cursor: "move",
             zIndex: 10,
             drag: function( event, ui ) {
-                $("#drop_image1, #drop_image5").toggleClass('active_drop');
+                // console.log(event);
+                console.log(ui);
+                // $("#drop_image1, #drop_image2").toggleClass('active_drop');
             }
         });
        $('#drop_image1').droppable({
@@ -195,23 +197,26 @@
                 "ui-droppable-active": "ui-state-highlight"
             },
             drop: function( event, ui ) {
-                ui.draggable.appendTo("#drop_image1"); 
+                ui.draggable.appendTo("#"+event.target.id); 
             },
             deactivate: function( event, ui ) {
                 $(this).toggleClass('active_drop');
             }
         });
 
-        $('#drop_image5').droppable({
+        $('#drop_image2, #drop_image3').droppable({
             accept: "#editor_gross",
             classes: {
                 "ui-droppable-active": "ui-state-highlight"
             },
-            drop: function( event, ui ) {
-                ui.draggable.appendTo("#drop_image5"); 
+            drop: function( event, ui ) {                
+                ui.draggable.appendTo("#"+event.target.id); 
             },
-            deactivate: function( event, ui ) {
-                $(this).toggleClass('active_drop');
+            deactivate: function( event, ui ) {              
+                $.each($('[id^=drop_image'), function(index, ele){                    
+                    $(ele).removeClass('active_drop');
+                });
+               
             }
         });
         
