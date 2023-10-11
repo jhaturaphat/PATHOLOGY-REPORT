@@ -18,9 +18,9 @@ RUN apt-get update \
     libzip-dev \    
     unzip \
     rsync \
-    nodejs \
-    apt-get clean && rm -rf /var/lib/apt/lists/* \
-    a2enmod rewrite     
+    nodejs 
+    
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* 
 
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 # Get latest Composer
