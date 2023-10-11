@@ -18,17 +18,11 @@ RUN apt-get update \
     libzip-dev \    
     unzip \
     rsync \
-    nodejs
-    
+    nodejs \
+    apt-get clean && rm -rf /var/lib/apt/lists/* \
+    a2enmod rewrite     
 
-RUN docker-php-ext-install gd \
-&& docker-php-ext-install pdo_mysql \
-&& docker-php-ext-configure zip \
-&& docker-php-ext-install zip \
-# !อันนี้ล้างแคช
-&& apt-get clean && rm -rf /var/lib/apt/lists/* \
-# !อันนี้ลงเพิ่มเติมคือ composer นั้นเอง เป็นตัว package manager สำหรับการจัดการพวก dependency ของภาษา php ครับ
-&& a2enmod rewrite 
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
