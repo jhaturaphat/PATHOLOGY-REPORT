@@ -28,9 +28,14 @@ RUN docker-php-ext-install gd \
 # !อันนี้ล้างแคช
 && apt-get clean && rm -rf /var/lib/apt/lists/* \
 # !อันนี้ลงเพิ่มเติมคือ composer นั้นเอง เป็นตัว package manager สำหรับการจัดการพวก dependency ของภาษา php ครับ
-&& a2enmod rewrite \
-curl -sS https://getcomposer.org/installer | \
-php -- --install-dir=/usr/local/bin --filename=composer
+&& a2enmod rewrite 
+# Get latest Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Create system user to run Composer and Artisan Commands
+RUN useradd -G www-data,root -u $uid -d /home/$user $user
+RUN mkdir -p /home/$user/.composer && \
+    chown -R $user:$user /home/$user
 
 WORKDIR /var/www
 

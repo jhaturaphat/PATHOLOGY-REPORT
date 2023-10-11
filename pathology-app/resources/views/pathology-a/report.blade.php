@@ -123,10 +123,10 @@
                             $(this).datepicker('setDate', Utils.DDMMYYYY(data.speci_received_at.split(' ')[0]));
                         }); 
                         $('[id="clinical_history"]').each(function() {                      
-                            $(this).val("                                 "+data.clinical_history);
+                            $(this).val(data.clinical_history);
                         }); 
                         $('[id="clinical_diagnosis"]').each(function() {                      
-                            $(this).val("                                     "+data.clinical_diagnosis);
+                            $(this).val(data.clinical_diagnosis);
                         }); 
                         $('[id="pathologist"]').each(function() {                      
                             $(this).val(data.pathologist);
@@ -140,24 +140,20 @@
                         $('[id="gross_date"]').each(function() {                      
                             $(this).datepicker('setDate', Utils.DDMMYYYY(data.gross_date.split(' ')[0]));
                         });
-                        console.log(data.phatology_diag_2);
+                        // console.log(data.phatology_diag_2);
+                        // ตรวจสอบการแสดงหน้า Page 1,2,3,4,5
+                        
                         if(data.phatology_diag_1){
                             CKEDITOR.instances['phatology_diag_1'].setData(data.phatology_diag_1);
                         }
                         if(data.phatology_diag_2){
                             CKEDITOR.instances['phatology_diag_2'].setData(data.phatology_diag_2);
-                        }else{
-                            document.getElementById("cpage2").click();
                         }
                         if(data.phatology_diag_3){
                             CKEDITOR.instances['phatology_diag_3'].setData(data.phatology_diag_3);
-                        }else{
-                            document.getElementById("cpage3").click();
                         }
                         if(data.phatology_diag_4){
                             CKEDITOR.instances['phatology_diag_4'].setData(data.phatology_diag_4);
-                        }else{
-                            document.getElementById("cpage4").click();
                         }
                         CKEDITOR.instances['gross_examination'].setData(data.gross_examination);
                         CKEDITOR.instances['microscopic_description'].setData(data.microscopic_description);

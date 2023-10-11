@@ -21,6 +21,9 @@ services:
   
   app:    
     build:
+      args:
+        user: web
+        uid: 1000
       context: ./docker-php
       dockerfile: Dockerfile
     container_name: pathology_app  
