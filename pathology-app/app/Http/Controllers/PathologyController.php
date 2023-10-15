@@ -15,8 +15,12 @@ class PathologyController extends Controller
 {
     //
     public function index(){          
-        $model = PathologyReports::where("user_id","=",Auth::user()->id)->orderBy('id', 'DESC')->paginate(15);        
-        return view('pathology-a.index')->with('model',$model);
+        try {
+            $model = PathologyReports::where("user_id","=", Auth::user()->id)->orderBy('id', 'DESC')->paginate(15);        
+            return view('pathology-a.index')->with('model',$model);
+        } catch (QueryException $ex) {
+            return Response()->json(['message'=>$ex], 501);
+        }
     }
     public function findId(Request $request){
         //P=ยืนยันผลแล้ว, A=ยืนยันผลอัตโนมัติ, W=ยืนยันผลเอง

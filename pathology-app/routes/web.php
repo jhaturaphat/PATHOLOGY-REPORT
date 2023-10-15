@@ -40,14 +40,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::PATCH('/pathology-a/{id}', [PathologyController::class, 'release'])->name('release');
     Route::delete('/pathology-a/{id}', [PathologyController::class, 'destroy'])->name('delete');
     Route::post('/logout', [UserController::class,'logout'])->name('logout');
-    Route::get('/register',[UserController::class,'registerForm'])->name('register');
-    Route::post('/register',[UserController::class,'register']);
+    // Route::get('/register',[UserController::class,'registerForm'])->name('register');
+    // Route::post('/register',[UserController::class,'register']);
 
     Route::post('/profile', [UserController::class, 'chPassword'])->name('profile.password');
 });
 
-// Route::get('/register',[UserController::class,'registerForm'])->name('register');
-// Route::post('/register',[UserController::class,'register']);
+Route::get('/register',[UserController::class,'registerForm'])->name('register');
+Route::post('/register',[UserController::class,'register']);
 
 Route::get('/login', [UserController::class,'loginForm'])->name('login');
 Route::post('/login', [UserController::class,'login']);

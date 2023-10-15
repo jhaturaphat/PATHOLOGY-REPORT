@@ -36,11 +36,11 @@
         <div id="rx_phatology_diag"></div>  
         <div id="drop_image1" >
             <div id="editor_gross" style="border-bottom: 1px solid rgb(205, 201, 201); padding-bottom:15px">
-                <div style="text-align: left; margin:20px 0 0 0;"><b>GROSS EXAMINTION </b></div>
-                <div id="rx_gross_examination"></div>
+                <div style="text-align: left; margin:20px 0 0 0;"><b>GROSS EXAMINTION </b></div>                
                 <div id="tx_gross_examination">
                     <textarea id="gross_examination"></textarea>  
                 </div>  
+                <div id="rx_gross_examination"></div>
                 {{-- <div class="gross_footer">
                     <label for="gross_examiner"><b>Gross examiner:</b></label>
                     <input type="text" id="gross_examiner">

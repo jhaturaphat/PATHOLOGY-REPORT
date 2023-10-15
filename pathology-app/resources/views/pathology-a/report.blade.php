@@ -178,21 +178,24 @@
     <script> 
     // let $drag_editor_gross = $( "#editor_gross" ), $drop_editor_gross = $( "#drop_image1" );
 
-        $('#editor_gross').draggable({
+        $('#editor_gross,#microscropic').draggable({
             cancel: "#tx_gross_examination, .gross_footer", //การคลิกไอคอนจะไม่เป็นการเริ่มต้นการลาก
             revert: "invalid", //เมื่อไม่ดรอป ไอเทมจะกลับสู่ตำแหน่งเริ่มต้น
             containment: "document",
             helper: "clone",
             cursor: "move",
             zIndex: 10,
-            drag: function( event, ui ) {
-                // console.log(event);
-                console.log(ui);
-                // $("#drop_image1, #drop_image2").toggleClass('active_drop');
+            grid:[20,20],
+            snap: ["#drop_image1","#drop_image2","#drop_image3","#drop_image4","#drop_image5"],
+            // snapMode: "multiple", // ตั้งค่า snapMode เป็น "multiple" เพื่อให้วัตถุ "snap" ไปยังหลายเป้าหมาย
+            drag: function( event, ui ) {    
+                $.each($('[id^=drop_image'), function(index, ele){              
+                    $(ele).addClass('active_drop');
+                });
             }
         });
-       $('#drop_image1').droppable({
-            accept: "#editor_gross",
+       $('#drop_image1,#drop_image2,#drop_image3,#drop_image4,#drop_image5').droppable({
+            // accept: "#editor_gross",
             classes: {
                 "ui-droppable-active": "ui-state-highlight"
             },
@@ -200,25 +203,12 @@
                 ui.draggable.appendTo("#"+event.target.id); 
             },
             deactivate: function( event, ui ) {
-                $(this).toggleClass('active_drop');
-            }
-        });
-
-        $('#drop_image2, #drop_image3').droppable({
-            accept: "#editor_gross",
-            classes: {
-                "ui-droppable-active": "ui-state-highlight"
-            },
-            drop: function( event, ui ) {                
-                ui.draggable.appendTo("#"+event.target.id); 
-            },
-            deactivate: function( event, ui ) {              
                 $.each($('[id^=drop_image'), function(index, ele){                    
                     $(ele).removeClass('active_drop');
                 });
-               
             }
         });
+
         
 
         CKEDITOR.instances['gross_examination'].setData("<strong>GROSS EXAMINTION</strong>");
