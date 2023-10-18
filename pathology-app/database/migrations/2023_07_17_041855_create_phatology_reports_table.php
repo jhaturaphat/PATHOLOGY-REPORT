@@ -27,18 +27,21 @@ return new class extends Migration
             $table->dateTime('speci_received_at')->nullable(false)->comment('วันที่ได้รับสิ่งส่งตรวจ เอามาจาก outlab');
             $table->dateTime('date_of_report')->nullable(false)->comment('วันที่ออกรายงาน');
             $table->string('physician')->nullable()->comment('แพทย์ผู้สั่งตรวจ doctor_code');
-            $table->text('clinical_history')->nullable()->comment('ประวัติทางคลินิก');
-            $table->text('clinical_diagnosis')->nullable()->comment('การวินิจฉัยทางคลินิก');
+
+
+            // $table->text('clinical_history')->nullable()->comment('ประวัติทางคลินิก');
+            // $table->text('clinical_diagnosis')->nullable()->comment('การวินิจฉัยทางคลินิก');
             
-            $table->longText('phatology_diag_1')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_1');
-            $table->longText('phatology_diag_2')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_2');
-            $table->longText('phatology_diag_3')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_3');
-            $table->longText('phatology_diag_4')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_4');
+            $table->longText('txt_image_1')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_1');
+            $table->longText('txt_image_2')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_2');
+            $table->longText('txt_image_3')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_3');
+            $table->longText('txt_image_4')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_4');
+            $table->longText('txt_image_5')->nullable()->comment('การวินิจฉัยทางพยาธิวิทยา_5');
             
-            $table->longText('gross_examination')->nullable()->comment('ผลการตรวจสอบขั้นต้น');
+            // $table->longText('gross_examination')->nullable()->comment('ผลการตรวจสอบขั้นต้น');
             // $table->string('gross_examiner')->nullable()->comment('ผู้ตรวจสอบขั้นต้น');
             // $table->string('gross_date')->nullable()->comment('ลงวันที่ตรวจสอบขั้นต้น');
-            $table->longText('microscopic_description')->nullable()->comment('คำอธิบายด้วยกล้องจุลทรรศน์');
+            // $table->longText('microscopic_description')->nullable()->comment('คำอธิบายด้วยกล้องจุลทรรศน์');
             $table->string('pathologist')->nullable()->comment('ผู้ตรวจสอบ');
             
             $table->binary('image1')->nullable(false)->comment('รูปที่ 1');
@@ -46,11 +49,12 @@ return new class extends Migration
             $table->binary('image3')->nullable()->comment('รูปที่ 3');
             $table->binary('image4')->nullable()->comment('รูปที่ 4');
             $table->binary('image5')->nullable()->comment('รูปที่ 5');
+            $table->dateTime('set_release_date')->comment('กำหนดช่วงเวลาปล่อย');
             $table->enum('release', ['P','A','W'])->default("A")->comment("P=ยืนยันผลแล้ว, A=ยืนยันผลอัตโนมัติ, W=ยืนยันผลเอง");
             $table->integer('user_id')->nullable(false)->comment('ผู้บันทึก');
             $table->timestamps();
 
-            $table->unique(['lab_order_number','outid']);
+            $table->unique(['outid']);
             $table->index(['lab_order_number', 'hn']);
            
         });

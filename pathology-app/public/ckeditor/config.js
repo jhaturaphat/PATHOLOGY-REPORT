@@ -19,23 +19,27 @@ CKEDITOR.editorConfig = function( config ) {
 		// { name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
 		// { name: 'others' },
 		'/', 
-		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ,'paragraph', 'justify','liststyle'] },
+		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup'] },
+		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ,'paragraph','liststyle'] },
 		{ name: 'tools' },
-		// { name: 'styles' },
+		{ name: 'styles'},
 		// { name: 'colors' },
 		// { name: 'about' }
 	];
-
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
 	config.removeButtons = 'Underline,Subscript,Superscript';
 
 	// Set the most common block elements.
-	config.format_tags = 'p;h1;h2;h3;pre';
+	// config.format_tags = 'p;h3;pre';
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
-	config.extraPlugins = 'liststyle, justify';
+	config.extraPlugins = 'liststyle,justify';
 	config.autoGrow_onStartup = true;
+	config.stylesSet = [
+        { name: 'small', element: 'span', attributes: { 'style': 'font-size: small;' } },
+        { name: '12px', element: 'span', attributes: { 'style': 'font-size: 12px;' } }
+        // เพิ่มรูปแบบอื่น ๆ ตามที่คุณต้องการ
+    ];
 };

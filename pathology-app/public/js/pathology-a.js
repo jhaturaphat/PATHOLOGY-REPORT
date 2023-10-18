@@ -34,13 +34,19 @@ document.getElementById('update').onclick = async function(e){
 // เพิ่มหน้าสำหรับกรอกข้อมูล <i class="fa-solid fa-circle-xmark"></i>
 
 
-// CKEDITOR
+// *CKEDITOR
 const diag = document.querySelectorAll('[id^=phatology_diag]');  //เลือก ทุก Element ที่ขึ้นต้นด้วย phatology_diag
 diag.forEach(function(ele, index){
     CKE.Use(ele, 0);
 });
-CKE.Use("gross_examination", 0);
-CKE.Use("microscopic_description", 0);
+
+const txt_image1 = `<p><strong>CLINICAL HISTORY: </strong></p>
+        <p><strong>CLINICAL DIAGNOSIS:</strong><br></p> 
+        <p style="text-align: center;"><strong>​​​​​​​PATHOLOGICAL DIAGNOSIS</strong><br></p>`;
+CKE.Use('txt_image1', 730, txt_image1);
+
+// CKE.Use("gross_examination", 0,"");
+// CKE.Use("microscopic_description", 0,"");
 
 async function save(type = 'GET'){    
     CKE.Preview(); 

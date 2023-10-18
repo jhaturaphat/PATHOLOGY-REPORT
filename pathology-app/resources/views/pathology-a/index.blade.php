@@ -26,8 +26,8 @@
 <table class="table table-primary table-hover">
     <thead>
         <tr>
-            <th title="รหัส out lab">OUT ID</th>
-            <th title="รหัส lab_order_number">IN ID</th>
+            <th title="รหัส Surgical number">Surgical number</th>
+            <th title="รหัส lab_order_number">lab order number</th>
             <th>HN</th>
             <th>ชื่อ</th>
             <th>สกุล</th>

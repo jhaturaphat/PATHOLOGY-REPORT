@@ -209,9 +209,11 @@
             }
         });
 
+        // const txt_image1 = `<p><strong>CLINICAL HISTORY: </strong></p>
+        // <p><strong>CLINICAL DIAGNOSIS:</strong><br></p> 
+        // <p style="text-align: center;"><strong>​​​​​​​PATHOLOGICAL DIAGNOSIS</strong><br></p>`;
+        // CKEDITOR.instances['txt_image1'].setData(txt_image1);
         
-
-        CKEDITOR.instances['gross_examination'].setData("<strong>GROSS EXAMINTION</strong>");
 
 
             const preview = document.getElementById('preview');
