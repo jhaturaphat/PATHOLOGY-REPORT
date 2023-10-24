@@ -94,6 +94,15 @@ class PathologyController extends Controller
         $images = $jsonDataObject['image'];
         $model = new PathologyReports();
 
+        // รับวันที่และเวลาปัจจุบัน
+        $currentDateTime = new DateTime();
+        // สร้าง DateInterval ที่มีการบวกเพิ่ม 2 วัน
+        $interval = new DateInterval('P2D');
+        // บวกเพิ่มวันที่และเวลา
+        $currentDateTime->add($interval);
+        // แสดงผลลัพธ์
+        $set_release_date = $currentDateTime->format('Y-m-d H:i:s');
+
         // return Response()->json(['message'=>count($images)]);
         $image1 = null;
         $image2 = null;
@@ -144,26 +153,24 @@ class PathologyController extends Controller
         $model->speci_received_at = $item->speci_received_at;
         $model->date_of_report = $item->date_of_report;
         $model->physician = $item->physician;
-        $model->clinical_history = $item->clinical_history;
-        $model->clinical_diagnosis = $item->clinical_diagnosis;
-        $model->phatology_diag_1 = $item->phatology_diag_1; 
-        $model->phatology_diag_2 = $item->phatology_diag_2; 
-        $model->phatology_diag_3 = $item->phatology_diag_3; 
-        $model->phatology_diag_4 = $item->phatology_diag_4; 
-        $model->gross_examination = $item->gross_examination;
-        // $model->gross_examiner = $item->gross_examiner;
-        // $model->gross_date = $item->gross_date;
-        $model->microscopic_description = $item->microscopic_description;
+        
+        $model->txt_image_1 = $item->txt_iamge1;
+        $model->txt_image_2 = $item->txt_iamge2;
+        $model->txt_image_3 = $item->txt_iamge3;
+        $model->txt_image_4 = $item->txt_iamge4;
+        $model->txt_image_5 = $item->txt_iamge5;
+        
         $model->pathologist = $item->pathologist;
         $model->image1 = $image1;
         $model->image2 = $image2;
         $model->image3 = $image3;
         $model->image4 = $image4;
         $model->image5 = $image5;
+        $model->set_release_date = $set_release_date;
         $model->user_id = Auth::user()->id;
-         if($model->save()){
-            return Response()->json(['message'=>'success'], 200);
-         }
+            if($model->save()){
+                return Response()->json(['message'=>'success'], 200);
+            }
         } catch (QueryException $ex) {            
             return Response()->json(['message'=>$ex], 501);
         }
