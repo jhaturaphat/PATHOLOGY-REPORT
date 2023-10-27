@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/pathology-a/find-id', [PathologyController::class, 'findId'])->name('find-id');
     Route::get('/pathology-a/edit/{id}', [PathologyController::class, 'edit'])->name('pathology-a.edit');
     Route::post('/pathology-a', [PathologyController::class, 'store']);
-    // Route::put('/pathology-a', [pathologyController::class, 'update']);
+    Route::put('/pathology-a', [pathologyController::class, 'update']);
     Route::PATCH('/pathology-a/{id}', [PathologyController::class, 'release'])->name('release');
     Route::delete('/pathology-a/{id}', [PathologyController::class, 'destroy'])->name('delete');
     Route::post('/logout', [UserController::class,'logout'])->name('logout');

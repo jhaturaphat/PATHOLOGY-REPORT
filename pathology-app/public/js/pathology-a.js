@@ -12,27 +12,6 @@ document.getElementById('update').onclick = async function(e){
     save('PUT');
 };
 
-// เมือลากเปลี่ยนขนาด textarea 
-// let resizeInt = null;
-// const diag = document.getElementById('diag');
-// var resizeEvent = function() {    
-//     console.log(diag.outerHeight);
-//     document.getElementById('text_dx').rows = '9';
-// };
-
-// diag.addEventListener("mousedown", function(e) {
-//     resizeInt = setInterval(resizeEvent, 1000/15);
-//     console.log(e);
-// });
-
-// $(window).on("mouseup", function(e) {
-//     if (resizeInt !== null) {
-//         clearInterval(resizeInt);
-//     }
-//     // resizeEvent();
-// });
-// เพิ่มหน้าสำหรับกรอกข้อมูล <i class="fa-solid fa-circle-xmark"></i>
-
 
 // *CKEDITOR
 const diag = document.querySelectorAll('[id^=phatology_diag]');  //เลือก ทุก Element ที่ขึ้นต้นด้วย phatology_diag
@@ -42,15 +21,14 @@ diag.forEach(function(ele, index){
 
 const txt_image1 = `<p><strong>CLINICAL HISTORY: </strong></p>
         <p><strong>CLINICAL DIAGNOSIS:</strong><br></p> 
-        <p style="text-align: center;"><strong>​​​​​​​PATHOLOGICAL DIAGNOSIS</strong><br></p>`;
+        <p style="text-align: center;"><strong>​​​​​​​PATHOLOGICAL DIAGNOSIS</strong><br></p>
+        <p><strong></strong></p>`;
 CKE.Use('txt_image1', 730, txt_image1);
 CKE.Use('txt_image2', 730, "");
 CKE.Use('txt_image3', 730, "");
 CKE.Use('txt_image4', 730, "");
 CKE.Use('txt_image5', 730, "");
 
-// CKE.Use("gross_examination", 0,"");
-// CKE.Use("microscopic_description", 0,"");
 
 async function save(type = 'GET'){    
     CKE.Preview(); 
@@ -68,22 +46,14 @@ async function save(type = 'GET'){
     data_item.speci_collected_at = Utils.YYYYMMDD($('#speci_collected_at').text());
     data_item.speci_received_at = Utils.YYYYMMDD($('#speci_received_at').val());
     data_item.date_of_report = Utils.YYYYMMDD($('#date_of_report').val());
-    data_item.physician = $('#physician').text();  //แพทย์ผู้สั่ง
-    // data_item.clinical_history = $('#clinical_history').val();
-    // data_item.clinical_diagnosis = $('#clinical_diagnosis').val();
+    data_item.physician = $('#physician').text();  //แพทย์ผู้สั่ง    
     data_item.txt_image1 = CKEDITOR.instances['txt_image1'].getData();
     data_item.txt_image2 = CKEDITOR.instances['txt_image2'].getData();
     data_item.txt_image3 = CKEDITOR.instances['txt_image3'].getData();
     data_item.txt_image4 = CKEDITOR.instances['txt_image4'].getData();
-    data_item.txt_image5 = CKEDITOR.instances['txt_image5'].getData();
-    // data_item.gross_examiner = $('#gross_examiner').val();
-    // data_item.gross_date = Utils.YYYYMMDD($('#gross_date').val());
-    // data_item.microscopic_description = CKEDITOR.instances['microscopic_description'].getData();
+    data_item.txt_image5 = CKEDITOR.instances['txt_image5'].getData();  
     data_item.pathologist = $('#pathologist').val();
-    // data_item.phatology_diag_1 = "";
-    // data_item.phatology_diag_2 = "";
-    // data_item.phatology_diag_3 = "";
-    // data_item.phatology_diag_4 = "";
+   
 
     const screenshotTarget = document.getElementsByTagName('page');
     const inputele = document.getElementsByTagName('input');
@@ -92,32 +62,6 @@ async function save(type = 'GET'){
         inputele[i].style.border = 'none';
     }
 
-    /*
-    const images = document.querySelectorAll('[id^=phatology_diag]');
-    
-    images.forEach(function(ele, index){       
-        const parent = ele.closest('page'); //ย้อนกลับขึ้นไปที่ element แม่
-        let cssObj = window.getComputedStyle(parent);
-        if(cssObj.getPropertyValue('display') !== 'none'){  //ดูก่อนว่าได้กำหนดค่าให้แสดงไหม  
-            switch(ele.id){
-                case 'phatology_diag_1':
-                    data_item.phatology_diag_1 = CKEDITOR.instances['phatology_diag_1'].getData();
-                break;
-                case 'phatology_diag_2':
-                    data_item.phatology_diag_2 = CKEDITOR.instances['phatology_diag_2'].getData();
-                break;
-                case 'phatology_diag_3':
-                    data_item.phatology_diag_3 = CKEDITOR.instances['phatology_diag_3'].getData();
-                break;
-                case 'phatology_diag_4':
-                    data_item.phatology_diag_4 = CKEDITOR.instances['phatology_diag_4'].getData();
-                break;
-                default:
-                    break;
-            }            
-        }
-    });
-    */
     
     //จัดการ style สำหรับส่งออกเป็นรูปภาพ
     for(var i=0; i<screenshotTarget.length; i++){ 

@@ -136,27 +136,15 @@
                         });                        
                         $('[id="gross_examiner"]').each(function() {                      
                             $(this).val(data.gross_examiner);
-                        });
-                        $('[id="gross_date"]').each(function() {                      
-                            $(this).datepicker('setDate', Utils.DDMMYYYY(data.gross_date.split(' ')[0]));
-                        });
+                        });                        
                         // console.log(data.phatology_diag_2);
                         // ตรวจสอบการแสดงหน้า Page 1,2,3,4,5
+                        CKEDITOR.instances['txt_image1'].setData(data.txt_image_1);
+                        CKEDITOR.instances['txt_image2'].setData(data.txt_image_2);
+                        CKEDITOR.instances['txt_image3'].setData(data.txt_image_3);
+                        CKEDITOR.instances['txt_image4'].setData(data.txt_image_4);
+                        CKEDITOR.instances['txt_image5'].setData(data.txt_image_5);
                         
-                        if(data.phatology_diag_1){
-                            CKEDITOR.instances['phatology_diag_1'].setData(data.phatology_diag_1);
-                        }
-                        if(data.phatology_diag_2){
-                            CKEDITOR.instances['phatology_diag_2'].setData(data.phatology_diag_2);
-                        }
-                        if(data.phatology_diag_3){
-                            CKEDITOR.instances['phatology_diag_3'].setData(data.phatology_diag_3);
-                        }
-                        if(data.phatology_diag_4){
-                            CKEDITOR.instances['phatology_diag_4'].setData(data.phatology_diag_4);
-                        }
-                        CKEDITOR.instances['gross_examination'].setData(data.gross_examination);
-                        CKEDITOR.instances['microscopic_description'].setData(data.microscopic_description);
                         
                     },
                     error:function(data, textStatus, status){

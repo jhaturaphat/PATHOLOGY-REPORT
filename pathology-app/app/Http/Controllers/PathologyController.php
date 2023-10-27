@@ -85,6 +85,7 @@ class PathologyController extends Controller
         }
     }
 
+    // บันทึกรายงาน
     public function store(Request $request){        
         try {           
         
@@ -95,15 +96,16 @@ class PathologyController extends Controller
         $model = new PathologyReports();
 
         // รับวันที่และเวลาปัจจุบัน
-        $currentDateTime = new DateTime();
+        $currentDateTime = new \DateTime();
         // สร้าง DateInterval ที่มีการบวกเพิ่ม 2 วัน
-        $interval = new DateInterval('P2D');
+        $interval = new \DateInterval('P2D');
         // บวกเพิ่มวันที่และเวลา
         $currentDateTime->add($interval);
         // แสดงผลลัพธ์
         $set_release_date = $currentDateTime->format('Y-m-d H:i:s');
 
-        // return Response()->json(['message'=>count($images)]);
+        // return Response()->json(['message'=>(!empty($item->txt_image1)) ? $item->txt_image1 : ""]);
+
         $image1 = null;
         $image2 = null;
         $image3 = null;
@@ -154,11 +156,11 @@ class PathologyController extends Controller
         $model->date_of_report = $item->date_of_report;
         $model->physician = $item->physician;
         
-        $model->txt_image_1 = $item->txt_iamge1;
-        $model->txt_image_2 = $item->txt_iamge2;
-        $model->txt_image_3 = $item->txt_iamge3;
-        $model->txt_image_4 = $item->txt_iamge4;
-        $model->txt_image_5 = $item->txt_iamge5;
+        $model->txt_image_1 = (!empty($item->txt_image1)) ? $item->txt_image1 : "" ;
+        $model->txt_image_2 = (!empty($item->txt_image2)) ? $item->txt_image2 : "" ;
+        $model->txt_image_3 = (!empty($item->txt_image3)) ? $item->txt_image3 : "" ;
+        $model->txt_image_4 = (!empty($item->txt_image4)) ? $item->txt_image4 : "" ;
+        $model->txt_image_5 = (!empty($item->txt_image5)) ? $item->txt_image5 : "" ;
         
         $model->pathologist = $item->pathologist;
         $model->image1 = $image1;
@@ -194,6 +196,15 @@ class PathologyController extends Controller
             }else{
                 return Response()->json(['message'=>['errorInfo'=>'ไม่พบข้อมูล Session $id กลับไปหน้าเริ่มต้น']], 501);
             }
+
+            // รับวันที่และเวลาปัจจุบัน
+        $currentDateTime = new \DateTime();
+        // สร้าง DateInterval ที่มีการบวกเพิ่ม 2 วัน
+        $interval = new \DateInterval('P1D');
+        // บวกเพิ่มวันที่และเวลา
+        $currentDateTime->add($interval);
+        // แสดงผลลัพธ์
+        $set_release_date = $currentDateTime->format('Y-m-d H:i:s');
     
             $image1 = null;
             $image2 = null;
@@ -242,23 +253,21 @@ class PathologyController extends Controller
             $model->speci_received_at = $item->speci_received_at;
             $model->date_of_report = $item->date_of_report;
             $model->physician = $item->physician;
-            $model->clinical_history = $item->clinical_history;
-            $model->clinical_diagnosis = $item->clinical_diagnosis;
-            $model->phatology_diag_1 = $item->phatology_diag_1; 
-            $model->phatology_diag_2 = $item->phatology_diag_2; 
-            $model->phatology_diag_3 = $item->phatology_diag_3; 
-            $model->phatology_diag_4 = $item->phatology_diag_4; 
-            $model->gross_examination = $item->gross_examination;
-            // $model->gross_examiner = $item->gross_examiner;
-            // $model->gross_date = $item->gross_date;
-            $model->microscopic_description = $item->microscopic_description;
+            
+            $model->txt_image_1 = (!empty($item->txt_image1)) ? $item->txt_image1 : "" ;
+            $model->txt_image_2 = (!empty($item->txt_image2)) ? $item->txt_image2 : "" ;
+            $model->txt_image_3 = (!empty($item->txt_image3)) ? $item->txt_image3 : "" ;
+            $model->txt_image_4 = (!empty($item->txt_image4)) ? $item->txt_image4 : "" ;
+            $model->txt_image_5 = (!empty($item->txt_image5)) ? $item->txt_image5 : "" ;
+        
             $model->pathologist = $item->pathologist;
             $model->image1 = $image1;
             $model->image2 = $image2;
             $model->image3 = $image3;
             $model->image4 = $image4;
             $model->image5 = $image5;
-            $model->release = 'N';
+            $model->set_release_date = $set_release_date;
+            // $model->release = 'N';
              if($model->save()){
                 return Response()->json(['message'=>'success'], 200);
              }

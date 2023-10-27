@@ -100,15 +100,8 @@ const Alert = {
 const PageControl = {
     FnEraser: function(id = ''){
         const current = document.querySelector('#'+id); //ต่อ String กับ id เข้าด้วยกัน
-        const parent = current.closest('page');
-        // parent.style.display = 'none';
-        
-        // parent.classList.remove('animate__fadeInLeft');
-        // parent.classList.add('animate__backOutDown');
-        
-        setTimeout(() => {        
-            // parent.classList.remove('animate__backOutUp');
-            // parent.classList.add('animate__fadeInLeft');
+        const parent = current.closest('page');                
+        setTimeout(() => {                    
             parent.style.display = 'none'; 
             PageControl.FnCalPage();
         }, 500);
@@ -158,27 +151,15 @@ const CKE = {
         // CKEDITOR.instances.phatology_diag.getData();
         CKE.Default();
         const txt_image = document.querySelectorAll('[id^=txt_image]');
-        // const tx  = document.querySelectorAll("[id^=tx_]");
-        const rx_phatology_diag  = document.querySelectorAll("#rx_txt_image");        
-        // const rx_microscopic_description  = document.getElementById("rx_microscopic_description");
-
-        // Image1        
-        // const tx_clinical = document.querySelectorAll("[id^=tx_clinical_]");        
-        // const rx_clinical = document.querySelectorAll("[id^=rx_clinical_]");
-        // tx_clinical.forEach((ele, index)=>{
-        //     ele.style.display = 'none';
-        //     let data = ele.getElementsByTagName('textarea')[0];            
-        //     rx_clinical[index].getElementsByTagName('span')[0].textContent = data.value;
-        // }); 
-
-        // Image5        
-        // document.getElementById("rx_gross_examination").innerHTML = CKEDITOR.instances['gross_examination'].getData();
-        txt_image.forEach((ele)=>ele.style.display = 'none');
-        diag.forEach((ele, index)=>{
-            let content =  CKEDITOR.instances['txt_image'+'_'+(index + 1)].getData();            
-            rx_phatology_diag[index].innerHTML = content;
+        const tx  = document.querySelectorAll("[id^=tx_]");
+        const rx_txt_image  = document.querySelectorAll("[id^=rx_txt_image]");        
+        
+        tx.forEach((ele)=>ele.style.display = 'none');
+        txt_image.forEach((ele, index)=>{            
+            let content =  CKEDITOR.instances['txt_image'+(index + 1)].getData();            
+            rx_txt_image[index].innerHTML = content;
         });        
-        // rx_microscopic_description.innerHTML = CKEDITOR.instances['microscopic_description'].getData();
+        
     },
     Undo:function(){
         const rx  = document.querySelectorAll("[id^=rx_]");
