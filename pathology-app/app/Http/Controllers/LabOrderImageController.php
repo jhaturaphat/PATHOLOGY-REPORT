@@ -6,7 +6,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\models\LabOrderImage;
-use App\Models\PathologyReports;
+use App\Models\SurgicalReports;
 
 
 class LabOrderImageController extends Controller
@@ -19,25 +19,74 @@ class LabOrderImageController extends Controller
     }
 
     public function syncToImageHis(){
-        $model = PathologyReports::where('release', 'A')->limit(100)->get();       
+        $model = SurgicalReports::where('release', 'A')->limit(1000)->get();      
+        // dd($model); 
         $model = $model->makeVisible(['image1','image2','image3','image4','image5']);        
         try {  
             foreach($model as $item){  
-                LabOrderImage::create([
-                    'lab_order_number' => $item->lab_order_number,
-                    'image1' => $item->image1,
-                    'image2' => $item->image2,
-                    'image3' => $item->image3,
-                    'image4' => $item->image4,
-                    'image5' => $item->image5,
-                ]);
-                PathologyReports::find($item->id)->update(["release" => "P"]);
+                $data = LabOrderImage::where('lab_order_number', $item->lab_order_number)->first();
+                $iq = 0;
+                if($data){
+                    if ($data->image1) {
+                        $iq++;                        
+                    }
+                    if ($data->image2) {
+                        $iq++; 
+                    }
+                    if ($data->image3) {
+                        $iq++; 
+                    }
+                    if ($data->image4) {
+                        $iq++; 
+                    }
+                    if ($data->image5) {
+                        $iq++; 
+                    }
+
+                    switch($iq){
+                        case 1:
+                            $data->image2 = $item->image1;
+                            $data->image3 = $item->image2;
+                            $data->image4 = $item->image3;
+                            $data->image5 = $item->image4;
+                        break;
+                        case 2:
+                            $data->image3 = $item->image1;
+                            $data->image4 = $item->image2;
+                            $data->image5 = $item->image3;
+                        break;
+                        case 3:
+                            $data->image4 = $item->image1;
+                            $data->image5 = $item->image2;
+                        break;
+                        case 4:
+                            $data->image5 = $item->image1;
+                        break;
+                    }
+
+                    // บันทึกการเปลี่ยนแปลง
+                    $data->save();
+                }else{
+                    LabOrderImage::create([
+                        'lab_order_number' => $item->lab_order_number,
+                        'image1' => $item->image1,
+                        'image2' => $item->image2,
+                        'image3' => $item->image3,
+                        'image4' => $item->image4,
+                        'image5' => $item->image5,
+                    ]);
+                }
+                SurgicalReports::find($item->id)->update(["release" => "P"]);
             }
         } catch (QueryException $ex) { //Throwable   //QueryException                
             return Response()->json(['message'=>$ex], 501);
         } 
     }
 
+    protected function labOrderImageCheck($lab_order_number){
+
+    }
+ 
     
 
     public function findLabOrder(Request $request){
@@ -76,13 +125,38 @@ class LabOrderImageController extends Controller
             FROM operation_list
             WHERE hn = ? AND vn <> ''
         ) as opi ON lh.vn = opi.vnu
-        WHERE lh.hn = ? AND li.lab_items_group = 7 AND lh.confirm_report = 'N' AND lh.form_name IN('CYTOLOGY', 'Pathology')
+        WHERE lh.hn = ? AND li.lab_items_group = 7 /*AND lh.confirm_report = 'N'*/ AND lh.form_name IN('CYTOLOGY', 'Pathology')
         ORDER BY lh.order_date DESC
         LIMIT 100
         ____SQL;
         
         DB::connection('mysql_his')->select("SET NAMES utf8");
-        $results = DB::connection('mysql_his')->select($sql,[$hn, $hn, $hn]);
+        $results = DB::connection('mysql_his')->select($sql,[$hn, $hn, $hn]);        
+        
         return response()->json($results);
+    }
+
+    function countImage(Request $request){
+        $data = LabOrderImage::where('lab_order_number', $request->lab_order_number)->first();
+        // dd($data);
+        $count = 0;
+        if($data){
+            if ($data->image1) {
+                $count++;                        
+            }
+            if ($data->image2) {
+                $count++; 
+            }
+            if ($data->image3) {
+                $count++; 
+            }
+            if ($data->image4) {
+                $count++; 
+            }
+            if ($data->image5) {
+                $count++; 
+            }
+        }
+        return response()->json(['count'=>$count]);
     }
 }

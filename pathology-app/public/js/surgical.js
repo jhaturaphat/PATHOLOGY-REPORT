@@ -21,7 +21,8 @@ diag.forEach(function(ele, index){
 
 const txt_image1 = `<p><strong>CLINICAL HISTORY: </strong></p>
         <p><strong>CLINICAL DIAGNOSIS:</strong><br></p> 
-        <p style="text-align: center;"><strong>​​​​​​​PATHOLOGICAL DIAGNOSIS</strong><br></p>
+        <p style="text-align: center;">
+        <strong>​​​​​​​PATHOLOGICAL DIAGNOSIS</strong><br></p>
         <p><strong></strong></p>`;
 CKE.Use('txt_image1', 730, txt_image1);
 CKE.Use('txt_image2', 730, "");

@@ -1,5 +1,5 @@
 
-@extends('pathology-a.layout')
+@extends('surgical.layout')
 
 @section('title', 'หน้าแรกสุด')
 

@@ -4,20 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\QueryException;
-use App\Models\PathologyReports;
+use App\Models\SurgicalReports;
 use App\models\LabOrderImage;
 
 
-class PathologyController extends Controller
+class SurgicalController extends Controller
 {
     //
     public function index(){          
         try {
-            $model = PathologyReports::where("user_id","=", Auth::user()->id)->orderBy('id', 'DESC')->paginate(15);        
-            return view('pathology-a.index')->with('model',$model);
+            $model = SurgicalReports::where("user_id","=", Auth::user()->id)->orderBy('id', 'DESC')->paginate(15);  
+            Session::regenerate();
+                
+            return view('surgical.index')->with('model',$model);
         } catch (QueryException $ex) {
             return Response()->json(['message'=>$ex], 501);
         }
@@ -25,9 +28,9 @@ class PathologyController extends Controller
     public function findId(Request $request){
         //P=ยืนยันผลแล้ว, A=ยืนยันผลอัตโนมัติ, W=ยืนยันผลเอง
         try {           
-            $model = PathologyReports::where("id", "=", $request->id)->where('release','!=' , "P")->first();
+            $model = SurgicalReports::where("id", "=", $request->id)->where('release','!=' , "P")->first();
             if($model){ 
-                PathologyReports::where('id', $request->id)->update(['release' => 'A']);
+                SurgicalReports::where('id', $request->id)->update(['release' => 'A']);
                 $request->session()->put("id",$model->id); 
                 return $model->toJson();
             }
@@ -39,18 +42,18 @@ class PathologyController extends Controller
     }
 
     public function edit(string $id){
-
-        return view('pathology-a.report')->with('id',$id);
+        
+        return view('surgical.report')->with('id',$id);
     }
 
     public function report(){
-        return view('pathology-a.report');
+        return view('surgical.report');
     }
 
     public function destroy(string $id){
         //P=ยืนยันผลแล้ว, A=ยืนยันผลอัตโนมัติ, W=ยืนยันผลเอง
         try {
-            $model = PathologyReports::where("id", "=", $id)->where('release','!=' , "P")->where("user_id" ,"=", Auth::user()->id)->delete();
+            $model = SurgicalReports::where("id", "=", $id)->where('release','!=' , "P")->where("user_id" ,"=", Auth::user()->id)->delete();
             if($model){
                 session()->flash('success', 'ลบข้อมูลสำเร็จ');
                 return $this->index();
@@ -66,7 +69,7 @@ class PathologyController extends Controller
     public function release(string $id){
         //P=ยืนยันผลแล้ว, A=ยืนยันผลอัตโนมัติ, W=ยืนยันผลเอง
         try {
-            $model = PathologyReports::where("id", "=", $id)->where('release','!=' , "P")->first();
+            $model = SurgicalReports::where("id", "=", $id)->where('release','!=' , "P")->first();
             if($model){
                 LabOrderImage::create([
                     'lab_order_number' => $model->lab_order_number,
@@ -88,12 +91,12 @@ class PathologyController extends Controller
     // บันทึกรายงาน
     public function store(Request $request){        
         try {           
-        
+        $request->session()->regenerate();
         $jsonDataObject = $request->json()->all();
         
         $item = (object)$jsonDataObject['item'];
         $images = $jsonDataObject['image'];
-        $model = new PathologyReports();
+        $model = new SurgicalReports();
 
         // รับวันที่และเวลาปัจจุบัน
         $currentDateTime = new \DateTime();
@@ -183,7 +186,7 @@ class PathologyController extends Controller
 
     public function Update(Request $request){
         try {           
-        
+            $request->session()->regenerate();
             $jsonDataObject = $request->json()->all();
             
             $item = (object)$jsonDataObject['item'];
@@ -192,7 +195,7 @@ class PathologyController extends Controller
             if($request->session()->has("id")){
                 $id = $request->session()->get("id"); 
                 $request->session()->forget('id');
-                $model = PathologyReports::find($id);  
+                $model = SurgicalReports::find($id);  
             }else{
                 return Response()->json(['message'=>['errorInfo'=>'ไม่พบข้อมูล Session $id กลับไปหน้าเริ่มต้น']], 501);
             }

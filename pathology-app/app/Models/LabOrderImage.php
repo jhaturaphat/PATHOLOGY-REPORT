@@ -12,6 +12,7 @@ class LabOrderImage extends Model
     protected $table = 'lab_order_image'; // ชื่อ table ที่อยู่บนฐานข้อมูลที่เราเชื่อมต่อ พิมพ์ใส่ให้ตรงกัน
     public $timestamps = false;  
     public $incrementing = false;
+    protected $primaryKey = 'lab_order_number';
 
     protected $fillable = [
         'lab_order_number',

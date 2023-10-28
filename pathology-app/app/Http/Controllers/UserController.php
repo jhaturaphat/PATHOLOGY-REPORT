@@ -19,7 +19,7 @@ class UserController extends Controller
         if(Auth::check()) return back(); 
         $credentials = $request->only('email', 'password');         
         if (Auth::guard('web')->attempt($credentials)) {            
-            return redirect()->intended('/pathology-a/index');
+            return redirect()->intended('/surgical/index');
         }        
         return back()->withErrors(['email' => 'ข้อมูลเข้าสู่ระบบไม่ถูกต้อง'])->withInput();
     }
@@ -75,9 +75,9 @@ class UserController extends Controller
     public function chPassword(Request $request){
         try {
             $request->validate([
-                'password' => $data['password'],
-                'new_password' => $data['new_password'],
-                'contirm_passowrd' => $data['contirm_passowrd'],  
+                'password' => $request['password'],
+                'new_password' => $request['new_password'],
+                'contirm_passowrd' => $request['contirm_passowrd'],  
             ]);
             
         } catch (QueryException $ex) {            

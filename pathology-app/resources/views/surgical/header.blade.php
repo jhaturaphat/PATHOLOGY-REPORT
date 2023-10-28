@@ -9,7 +9,7 @@
 <hr style="border: 1px solid gainsboro;">
 <div style="text-align: center; margin-top: -10px; letter-spacing: 2px;">
     {{-- <h3>SURGICAL PHATOLOGY REPORT</h3> --}}
-    <h3>CYTOLOGICAL  PATHOLOGY REPORT</h3>
+    <h3>SURGICAL PATHOLOGY REPORT</h3>
 </div>
 <div class="pt-detail">
 

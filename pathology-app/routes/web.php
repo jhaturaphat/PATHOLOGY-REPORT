@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LabOrderImageController;
-use App\Http\Controllers\PathologyController;
+use App\Http\Controllers\SurgicalController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OpduserController;
 use App\Http\Controllers\TestController;
@@ -30,15 +30,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/laborderimage/index', [LabOrderImageController::class, 'index']);
     Route::get('/laborderimage/synctoimage', [LabOrderImageController::class, 'syncToImageHis'])->name('synctoimage');
     Route::get('/laborderimage/findlaborder', [LabOrderImageController::class, 'findLabOrder'])->name('findlaborder');
+    Route::get('/laborderimage/countImage', [LabOrderImageController::class, 'countImage'])->name('count-image');
 
-    Route::get('/pathology-a/index', [PathologyController::class, 'index'])->name('pathology-a.index');
-    Route::get('/pathology-a/report', [PathologyController::class, 'report']);
-    Route::get('/pathology-a/find-id', [PathologyController::class, 'findId'])->name('find-id');
-    Route::get('/pathology-a/edit/{id}', [PathologyController::class, 'edit'])->name('pathology-a.edit');
-    Route::post('/pathology-a', [PathologyController::class, 'store']);
-    Route::put('/pathology-a', [pathologyController::class, 'update']);
-    Route::PATCH('/pathology-a/{id}', [PathologyController::class, 'release'])->name('release');
-    Route::delete('/pathology-a/{id}', [PathologyController::class, 'destroy'])->name('delete');
+    Route::get('/surgical/index', [SurgicalController::class, 'index'])->name('surgical.index');
+    Route::get('/surgical/report', [SurgicalController::class, 'report']);
+    Route::get('/surgical/find-id', [SurgicalController::class, 'findId'])->name('find-id');
+    Route::get('/surgical/edit/{id}', [SurgicalController::class, 'edit'])->name('surgical.edit');
+    Route::post('/surgical', [SurgicalController::class, 'store']);
+    Route::put('/surgical', [SurgicalController::class, 'update']);
+    Route::PATCH('/surgical/{id}', [SurgicalController::class, 'release'])->name('release');
+    Route::delete('/surgical/{id}', [SurgicalController::class, 'destroy'])->name('delete');
     Route::post('/logout', [UserController::class,'logout'])->name('logout');
     // Route::get('/register',[UserController::class,'registerForm'])->name('register');
     // Route::post('/register',[UserController::class,'register']);

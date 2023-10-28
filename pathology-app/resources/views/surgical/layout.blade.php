@@ -22,19 +22,19 @@
                   @if (Auth::user()->is_admin)
                    <li class="nav-item"><a class="nav-link active" href="{{route('register')}}">เพิ่มผู้ใช้</a></li>
                   @endif            
-                  <li class="nav-item"><a class="nav-link active" href="/pathology-a/index">ผลรายงาน</a></li>            
+                  <li class="nav-item"><a class="nav-link active" href="/surgical/index">ผลรายงาน</a></li>            
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         ห้องทำงานแพทย์
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="/pathology-a/report">เทมเพลต A</a></li>
+                      <li><a class="dropdown-item" href="/surgical/report">SURGICAL</a></li>
                       <li><a class="dropdown-item" href="/pathology-b/report">เทมเพลต B</a></li>                      
                     </ul>
                   </li>
                 </ul>
                   @auth
-                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <ul class="navbar-nav m-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {{Auth::user()->name}}

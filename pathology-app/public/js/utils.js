@@ -131,6 +131,42 @@ const PageControl = {
             image64 = canvas.toDataURL('image/png');
         });
         return image64;
+    },
+
+    CountImage: function(lab_order_number){
+        $.ajax({
+            url:"/laborderimage/countImage",
+            dataType: "json",
+            data: {
+                lab_order_number:lab_order_number
+            },
+            success: function(data){
+                switch (data.count) {
+                    case 1:
+                        $('#cpage5').trigger('click').off('click').prop( "disabled", true );  
+                        break;
+                    case 2:
+                        $('#cpage4, #cpage5').trigger('click').off('click').prop( "disabled", true );  
+                        break;
+                    case 3:
+                        $('#cpage3, #cpage4, #cpage5').trigger('click').off('click').prop( "disabled", true );  
+                        break;
+                    case 4:
+                        $('#cpage2, #cpage3, #cpage4, #cpage5').trigger('click').off('click').prop( "disabled", true );  
+                        break;
+                    case 5:
+                        $('[id^="cpage"],#release,#update').trigger('click').off('click').prop( "disabled", true );  
+                        break;
+                    default:
+                        break;
+                };
+            },
+            error: function (jqXHR, textStatus, err){
+                if (jqXHR.status != 200){
+                    Alert.error(err, jqXHR.responseJSON.message);
+                }
+            }
+        });
     }
 }
 

@@ -13,10 +13,10 @@
     <link rel="stylesheet" href="/js/plugins/sweetalert2/sweetalert2.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/ckeditor.css">    
-    <link rel="stylesheet" href="/css/pathology-a/style.css">
-    <link rel="stylesheet" href="/css/pathology-a/header.css">
-    <link rel="stylesheet" href="/css/pathology-a/image1.css">
-    <link rel="stylesheet" href="/css/pathology-a/image2.css">
+    <link rel="stylesheet" href="/css/surgical/style.css">
+    <link rel="stylesheet" href="/css/surgical/header.css">
+    <link rel="stylesheet" href="/css/surgical/image1.css">
+    <link rel="stylesheet" href="/css/surgical/image2.css">
     <style>
         .active_drop{
             height: 15% !important;            
@@ -26,19 +26,19 @@
 <body>
     <div class="layout">
         <div id="">
-            @include('pathology-a.image1')  
-            @include('pathology-a.image2')
-            @include('pathology-a.image3')
-            @include('pathology-a.image4')
-            @include('pathology-a.image5')
+            @include('surgical.image1')  
+            @include('surgical.image2')
+            @include('surgical.image3')
+            @include('surgical.image4')
+            @include('surgical.image5')
         </div>
    
         {{-- ปุ่มบันทึก --}}
         <div class="menu-left" data-html2canvas-ignore> 
-            <form action="{{route('pathology-a.index')}}" method="GET">
+            <form action="{{route('surgical.index')}}" method="GET">
                 <button id="home" type="submit"><i class="fa-3x fa-solid fa-house"></i> HOME</button>
             </form>
-            <button id="release" class="disable" data-toggle="toggle" disabled><i class="fa-3x fa-regular fa-floppy-disk"></i> Release</button>
+            <button id="release" class="disable" data-toggle="toggle" disabled><i class="fa-3x fa-regular fa-floppy-disk"></i> SAVE</button>
             <button id="preview" data-toggle="toggle"><i class="fa-3x fa-regular fa-eye"></i> preview</button>
             <button id="udo" class="disable" data-toggle="toggle" disabled><i class="fa-3x fa-solid fa-lock-open"></i> Undo</button>
             <button id="update" class="disable" data-toggle="toggle" disabled><i class="fa-3x fa-regular fa-pen-to-square"></i> update</button>
@@ -70,7 +70,7 @@
     <script src="{{asset('js/plugins/html2canvas.js')}}"></script>
     <script src="{{asset('js/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('js/utils.js')}}"></script>
-    <script src="{{asset('js/pathology-a.js')}}"></script>
+    <script src="{{asset('js/surgical.js')}}"></script>
 
     @if(isset($id))
         <script>
@@ -154,7 +154,7 @@
                         }else if(data.status === 501){
                             Alert.error('Eror', data.responseJSON.message.errorInfo);
                             setTimeout(() => {
-                                window.location.replace("/pathology-a/index");
+                                window.location.replace("/surgical/index");
                             }, 2000);
                         }
                     }
@@ -298,8 +298,11 @@
                         });                        
                         $('[id="physician"]').each(function() {                        
                             $(this).text(ui.item.doctor_name);
-                        });    
-                        return false;   //ใส่บรรทัด return false; เพื่อให้สามารถกำหนดค่าให้กับ input ได้            
+                        }); 
+
+                        PageControl.CountImage(ui.item.lab_order_number);
+
+                        return false;   //ใส่บรรทัด return false; เพื่อให้สามารถกำหนดค่าให้กับ input ได้
                         
                     },
                     search:function(event){
