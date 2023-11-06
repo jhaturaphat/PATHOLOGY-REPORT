@@ -13,4 +13,8 @@ class TestController extends Controller
     function accept(){
         return view("test.accept");
     }
+
+    function card(){
+        return view("test.card");
+    }
 }

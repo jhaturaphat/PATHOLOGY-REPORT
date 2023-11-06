@@ -62,6 +62,8 @@ class LabOrderImageController extends Controller
                         case 4:
                             $data->image5 = $item->image1;
                         break;
+                        default:
+                            return Response()->json(['message'=>'พื้นที่ image 1-5 ไม่ว่างสำหรับข้อมูลใหม่'], 206);
                     }
 
                     // บันทึกการเปลี่ยนแปลง

@@ -48,7 +48,7 @@
             <td>{{$item->release}}</td>
             <td>
                 @if ($item->release !== "P")
-                    <a href="{{route('pathology-a.edit',[$item->id])}}">แก้ไข</a>   
+                    <a href="{{route('surgical.edit',[$item->id])}}">แก้ไข</a>   
                     @else
                     <a href="javascript:void(0)" style="cursor: not-allowed; color:rgb(161, 164, 164)">แก้ไข</a>   
                     @endif

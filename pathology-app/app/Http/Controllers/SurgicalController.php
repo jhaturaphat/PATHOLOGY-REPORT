@@ -71,16 +71,64 @@ class SurgicalController extends Controller
         try {
             $model = SurgicalReports::where("id", "=", $id)->where('release','!=' , "P")->first();
             if($model){
-                LabOrderImage::create([
-                    'lab_order_number' => $model->lab_order_number,
-                    'image1' => $model->image1,
-                    'image2' => $model->image2,
-                    'image3' => $model->image3,
-                    'image4' => $model->image4,
-                    'image5' => $model->image5,
-                ]);
-                $model->update(["release" => "P"]);
-                session()->flash('success', 'บันทึกสำเร็จ');
+                $data = LabOrderImage::where('lab_order_number', $model->lab_order_number)->first();
+                $iq = 0;
+                if($data){
+                    if ($data->image1) {
+                        $iq++;                        
+                    }
+                    if ($data->image2) {
+                        $iq++; 
+                    }
+                    if ($data->image3) {
+                        $iq++; 
+                    }
+                    if ($data->image4) {
+                        $iq++; 
+                    }
+                    if ($data->image5) {
+                        $iq++; 
+                    }
+
+                    switch($iq){
+                        case 1:
+                            $data->image2 = $model->image1;
+                            $data->image3 = $model->image2;
+                            $data->image4 = $model->image3;
+                            $data->image5 = $model->image4;
+                        break;
+                        case 2:
+                            $data->image3 = $model->image1;
+                            $data->image4 = $model->image2;
+                            $data->image5 = $model->image3;
+                        break;
+                        case 3:
+                            $data->image4 = $model->image1;
+                            $data->image5 = $model->image2;
+                        break;
+                        case 4:
+                            $data->image5 = $model->image1;
+                        break;
+                        default:
+                            return Response()->json(['message'=>'พื้นที่ image 1-5 ไม่ว่างสำหรับข้อมูลใหม่'], 206);
+                    }
+
+                    // บันทึกการเปลี่ยนแปลง
+                    $data->save(); $iq = 0;
+                    $model->update(["release" => "P"]);
+                    session()->flash('success', 'PATCH ข้อมูลสำเร็จ');
+                }else{
+                    LabOrderImage::create([
+                        'lab_order_number' => $model->lab_order_number,
+                        'image1' => $model->image1,
+                        'image2' => $model->image2,
+                        'image3' => $model->image3,
+                        'image4' => $model->image4,
+                        'image5' => $model->image5,
+                    ]);
+                    $model->update(["release" => "P"]);
+                    session()->flash('success', 'บันทึกข้อมูลสำเร็จ');
+                }
             }
             return $this->index();
         } catch (QueryException $ex) {

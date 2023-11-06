@@ -55,6 +55,7 @@ Route::post('/login', [UserController::class,'login']);
 
 Route::get('/test/drag', [TestController::class, 'drag']);
 Route::get('/test/accept', [TestController::class, 'accept']);
+Route::get('/test/card', [TestController::class, 'card']);
 
 
 

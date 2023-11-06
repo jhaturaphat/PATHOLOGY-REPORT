@@ -164,46 +164,7 @@
     @endif
 
     <script> 
-    // let $drag_editor_gross = $( "#editor_gross" ), $drop_editor_gross = $( "#drop_image1" );
-
-        $('#editor_gross,#microscropic').draggable({
-            cancel: "#tx_gross_examination, .gross_footer", //การคลิกไอคอนจะไม่เป็นการเริ่มต้นการลาก
-            revert: "invalid", //เมื่อไม่ดรอป ไอเทมจะกลับสู่ตำแหน่งเริ่มต้น
-            containment: "document",
-            helper: "clone",
-            cursor: "move",
-            zIndex: 10,
-            grid:[20,20],
-            snap: ["#drop_image1","#drop_image2","#drop_image3","#drop_image4","#drop_image5"],
-            // snapMode: "multiple", // ตั้งค่า snapMode เป็น "multiple" เพื่อให้วัตถุ "snap" ไปยังหลายเป้าหมาย
-            drag: function( event, ui ) {    
-                $.each($('[id^=drop_image'), function(index, ele){              
-                    $(ele).addClass('active_drop');
-                });
-            }
-        });
-       $('#drop_image1,#drop_image2,#drop_image3,#drop_image4,#drop_image5').droppable({
-            // accept: "#editor_gross",
-            classes: {
-                "ui-droppable-active": "ui-state-highlight"
-            },
-            drop: function( event, ui ) {
-                ui.draggable.appendTo("#"+event.target.id); 
-            },
-            deactivate: function( event, ui ) {
-                $.each($('[id^=drop_image'), function(index, ele){                    
-                    $(ele).removeClass('active_drop');
-                });
-            }
-        });
-
-        // const txt_image1 = `<p><strong>CLINICAL HISTORY: </strong></p>
-        // <p><strong>CLINICAL DIAGNOSIS:</strong><br></p> 
-        // <p style="text-align: center;"><strong>​​​​​​​PATHOLOGICAL DIAGNOSIS</strong><br></p>`;
-        // CKEDITOR.instances['txt_image1'].setData(txt_image1);
-        
-
-
+    
             const preview = document.getElementById('preview');
             const release = document.getElementById('release');
             const update = document.getElementById('update');
