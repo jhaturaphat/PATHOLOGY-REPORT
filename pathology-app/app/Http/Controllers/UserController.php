@@ -50,7 +50,7 @@ class UserController extends Controller
                 'password' => 'required|min:6',
             ]); 
             Auth::login($this->create($request->all()));
-            return redirect('/pathology-a/index');
+            return redirect('/surgical/index');
         } catch (\Throwable $th) {
             session()->flash('danger', "Email นี้มีผู้ใช้งานแล้ว");
             return back();
