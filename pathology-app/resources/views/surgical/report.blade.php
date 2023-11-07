@@ -18,9 +18,53 @@
     <link rel="stylesheet" href="/css/surgical/image1.css">
     <link rel="stylesheet" href="/css/surgical/image2.css">
     <style>
-        .active_drop{
-            height: 15% !important;            
+        .c{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            border:1px solid darkblue;
+            border-radius: 2px;
+            padding: 5px;
         }
+        .c > .c-t{
+            display: flex;    
+            flex-direction: row; 
+            text-align: center;
+            /* border: 1px solid black; */
+            padding: 2px;
+        }
+        .c > .c-t >div{
+            display: flex;
+            flex-direction: column;   
+            
+        }         
+        .c > .c-t >div:first-child{            
+            border-right: 1px solid;
+            padding-right: 11px;
+            width: 100%;
+        } 
+        .c > .c-t >div:last-child{   
+            padding-left: 11px;
+            width: 100%;
+        }       
+        .c >.c-t b{
+            color: rgb(52, 57, 57);
+        }
+        .c >.c-t label{
+            font-size: 11px;
+           color: rgb(92, 114, 114);
+        }
+        .c > .c-dt{
+            font-size: 13px;
+        }
+
+        /* Jquery Overide */
+                
+        .ui-menu-item .ui-menu-item-wrapper.ui-state-active {
+            background: #6693bc !important;
+            font-weight: bold !important;
+            color: #ffffff !important;
+        } 
     </style>
 </head>
 <body>
@@ -275,10 +319,32 @@
                         $(this).autocomplete("search", $(this).val());
                     }
                 }).autocomplete("instance")._renderItem = function (card, item) {
+
+                    const cardhtml = `<div class="c">
+                                        <div class="c-t">
+                                            <div>
+                                                <b>${item.lab_order_number}</b>
+                                                <label>lab order number</label>
+                                            </div>
+                                            <div>
+                                                <b>${item.hn}</b>
+                                                <label>HN</label>
+                                            </div>
+                                        </div>        
+                                        <div class="c-dt">
+                                            <strong>ชื่อ</strong> ${item.fname} ${item.lname}<strong>เพศ</strong> ${item.gender}<br>
+                                            <strong>อายุ</strong> ${item.age}
+                                        </div>
+                                        <div class="c-dt">
+                                            ${item.lab_items_name}
+                                            <strong>วันที่สั่ง</strong> ${item.order_date} <br>         
+                                            <strong>แพทย์ผู้สั่ง</strong> ${item.doctor_name}         
+                                        </div>
+                                    </div>`;
+
                     return $("<li>")
                     .data("item.autocomplete", item)
-                    .append("<div>" +item.hn +" "+ item.fname + " " + item.lname + " วันที่สั่ง " + item.order_date + "</div> ")
-                    .append("<div>OID:["+item.lab_order_number+"]  "+item.lab_items_name +" แพทย์ผู้สั่ง "+ item.doctor_name + "</div>")
+                    .append(cardhtml)
                     .appendTo(card);
                 };
             });
