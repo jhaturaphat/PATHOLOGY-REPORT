@@ -89,21 +89,25 @@
             <br>
             {{-- จัดการหน้า 1 2 3 4 5 --}}        
             <label for="cpage1">
-                <input type="checkbox" name="cpage1" id="cpage1" onclick="CKE.Choose(this, 'image1')" checked>1            
+                <input type="checkbox" name="cpage1" id="cpage1" onclick="CKE.Choose(this, 'image1')" checked>1       
+                <i id="dow-i" class="fa fa-download"></i>                  
             </label>
             <label for="cpage2">
                 <input type="checkbox" name="cpage2" id="cpage2" onclick="CKE.Choose(this, 'image2')" checked>2 
+                <i id="dow-i" class="fa fa-download"></i>
             </label>
             <label for="cpage3">
                 <input type="checkbox" name="cpage3" id="cpage3" onclick="CKE.Choose(this, 'image3')" checked>3 
+                <i id="dow-i" class="fa fa-download"></i>
             </label>
             <label for="cpage4">
                 <input type="checkbox" name="cpage4" id="cpage4" onclick="CKE.Choose(this, 'image4')" checked>4 
+                <i id="dow-i" class="fa fa-download"></i>
             </label>
             <label for="cpage5">
                 <input type="checkbox" name="cpage5" id="cpage5" onclick="CKE.Choose(this, 'image5')" checked>5 
-            </label> 
-            
+                <i id="dow-i" class="fa fa-download"></i>
+            </label>             
         </div>
     </div>
 
@@ -113,8 +117,8 @@
     <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('js/plugins/html2canvas.js')}}"></script>
     <script src="{{asset('js/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
-    <script src="{{asset('js/utils.js')}}"></script>
-    <script src="{{asset('js/surgical.js')}}"></script>
+    <script src="{{asset('js/surgical/utils.js')}}"></script>
+    <script src="{{asset('js/surgical/script.js')}}"></script>
 
     @if(isset($id))
         <script>
