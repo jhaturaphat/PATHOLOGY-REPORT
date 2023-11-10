@@ -164,6 +164,10 @@ blockquote{
     margin: 1px;
 }
 
+.menu-left label{
+    margin-bottom: 5px;
+}
+
 .disable{
     cursor: not-allowed;
 }
