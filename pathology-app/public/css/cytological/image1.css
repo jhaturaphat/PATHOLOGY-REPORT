@@ -4,6 +4,37 @@
     position: relative;
 }
 
+/* 
+#image1 textarea{
+    
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    color: rgb(73 227 157);
+    width:100%;    
+    border: none;   
+    resize: vertical;
+    background-color: rgb(51, 53, 54);
+}
+#image5 textarea{
+   
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    color: rgb(73 227 157);
+    width:100%;    
+    border: none;   
+    resize: vertical;
+    background-color: rgb(51, 53, 54);
+} */
+
+/* 
+#image1 [id^='tx_clinical_']{
+    position: relative;
+}
+#image1 [id^='tx_clinical_'] span{
+    position: absolute;
+    top: 1px;
+} */
+
 
 #image1 [id^='tx_clinical_']{    
     display: flex;

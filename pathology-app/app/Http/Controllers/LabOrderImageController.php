@@ -6,7 +6,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\models\LabOrderImage;
-use App\Models\SurgicalReports;
+use App\Models\Surgical;
 
 
 class LabOrderImageController extends Controller
@@ -19,7 +19,7 @@ class LabOrderImageController extends Controller
     }
 
     public function syncToImageHis(){
-        $model = SurgicalReports::where('release', 'A')->limit(1000)->get();      
+        $model = Surgical::where('release', 'A')->limit(1000)->get();      
         // dd($model); 
         $model = $model->makeVisible(['image1','image2','image3','image4','image5']);        
         try {  
@@ -78,7 +78,7 @@ class LabOrderImageController extends Controller
                         'image5' => $item->image5,
                     ]);
                 }
-                SurgicalReports::find($item->id)->update(["release" => "P"]);
+                Surgical::find($item->id)->update(["release" => "P"]);
             }
         } catch (QueryException $ex) { //Throwable   //QueryException                
             return Response()->json(['message'=>$ex], 501);

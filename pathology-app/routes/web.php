@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LabOrderImageController;
 use App\Http\Controllers\SurgicalController;
+use App\Http\Controllers\CytologicalController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OpduserController;
 use App\Http\Controllers\TestController;
@@ -26,6 +27,7 @@ Route::get('/', function () {
     return redirect('/login');
 })->name('home');
 
+// cytological
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/laborderimage/index', [LabOrderImageController::class, 'index']);
     Route::get('/laborderimage/synctoimage', [LabOrderImageController::class, 'syncToImageHis'])->name('synctoimage');
@@ -40,6 +42,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/surgical', [SurgicalController::class, 'update']);
     Route::PATCH('/surgical/{id}', [SurgicalController::class, 'release'])->name('release');
     Route::delete('/surgical/{id}', [SurgicalController::class, 'destroy'])->name('delete');
+
+    Route::get('/cytological/index', [CytologicalController::class, 'index'])->name('cytological.index');
+    Route::get('/cytological/report', [CytologicalController::class, 'report']);
+    Route::get('/cytological/find-id', [CytologicalController::class, 'findId'])->name('find-id');
+    Route::get('/cytological/edit/{id}', [CytologicalController::class, 'edit'])->name('cytological.edit');
+    Route::post('/cytological', [CytologicalController::class, 'store']);
+    Route::put('/cytological', [CytologicalController::class, 'update']);
+    Route::PATCH('/cytological/{id}', [CytologicalController::class, 'release'])->name('release');
+    Route::delete('/cytological/{id}', [CytologicalController::class, 'destroy'])->name('delete');
+
     Route::post('/logout', [UserController::class,'logout'])->name('logout');
     // Route::get('/register',[UserController::class,'registerForm'])->name('register');
     // Route::post('/register',[UserController::class,'register']);

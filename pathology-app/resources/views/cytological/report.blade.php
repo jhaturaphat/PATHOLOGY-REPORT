@@ -13,10 +13,10 @@
     <link rel="stylesheet" href="/js/plugins/sweetalert2/sweetalert2.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/ckeditor.css">    
-    <link rel="stylesheet" href="/css/surgical/style.css">
-    <link rel="stylesheet" href="/css/surgical/header.css">
-    <link rel="stylesheet" href="/css/surgical/image1.css">
-    <link rel="stylesheet" href="/css/surgical/image2.css">
+    <link rel="stylesheet" href="/css/cytological/style.css">
+    <link rel="stylesheet" href="/css/cytological/header.css">
+    <link rel="stylesheet" href="/css/cytological/image1.css">
+    <link rel="stylesheet" href="/css/cytological/image2.css">
     <style>
         .c{
             display: flex;
@@ -70,16 +70,16 @@
 <body>
     <div class="layout">
         <div id="">
-            @include('surgical.image1')  
-            @include('surgical.image2')
-            @include('surgical.image3')
-            @include('surgical.image4')
-            @include('surgical.image5')
+            @include('cytological.image1')  
+            @include('cytological.image2')
+            @include('cytological.image3')
+            @include('cytological.image4')
+            @include('cytological.image5')
         </div>
    
         {{-- ปุ่มบันทึก --}}
         <div class="menu-left" data-html2canvas-ignore> 
-            <form action="{{route('surgical.index')}}" method="GET">
+            <form action="{{route('cytological.index')}}" method="GET">
                 <button id="home" type="submit"><i class="fa-3x fa-solid fa-house"></i> HOME</button>
             </form>
             <button id="release" class="disable" data-toggle="toggle" disabled><i class="fa-3x fa-regular fa-floppy-disk"></i> SAVE</button>
@@ -128,8 +128,8 @@
     <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('js/plugins/html2canvas.js')}}"></script>
     <script src="{{asset('js/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
-    <script src="{{asset('js/surgical/utils.js')}}"></script>
-    <script src="{{asset('js/surgical/script.js')}}"></script>
+    <script src="{{asset('js/cytological/utils.js')}}"></script>
+    <script src="{{asset('js/cytological/script.js')}}"></script>
 
     @if(isset($id))
         <script>

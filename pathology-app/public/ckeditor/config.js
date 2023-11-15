@@ -37,9 +37,12 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 	config.extraPlugins = 'liststyle,justify';
 	config.autoGrow_onStartup = true;
-	config.stylesSet = [
-        { name: 'small', element: 'span', attributes: { 'style': 'font-size: small;' } },
-        { name: '12px', element: 'span', attributes: { 'style': 'font-size: 12px;' } }
+	config.stylesSet = [        
+        { name: '12px', element: 'span', attributes: { 'style': 'font-size: 12px;' } },
+		{ name: '14px', element: 'span', attributes: { 'style': 'font-size: 14px;' } },
+		{ name: '16px', element: 'span', attributes: { 'style': 'font-size: 16px;' } },
+		{ name: '18px', element: 'span', attributes: { 'style': 'font-size: 18px;' } },
+		{ name: '20px', element: 'span', attributes: { 'style': 'font-size: 20px;' } },
         // เพิ่มรูปแบบอื่น ๆ ตามที่คุณต้องการ
     ];
 };

@@ -8,19 +8,19 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\QueryException;
-use App\Models\Surgical;
+use App\Models\Cytological;
 use App\models\LabOrderImage;
 
 
-class SurgicalController extends Controller
+class CytologicalController extends Controller
 {
     //
     public function index(){          
         try {
-            $model = Surgical::where("user_id","=", Auth::user()->id)->orderBy('id', 'DESC')->paginate(15);  
+            $model = Cytological::where("user_id","=", Auth::user()->id)->orderBy('id', 'DESC')->paginate(15);  
             Session::regenerate();
                 
-            return view('surgical.index')->with('model',$model);
+            return view('cytological.index')->with('model',$model);
         } catch (QueryException $ex) {
             return Response()->json(['message'=>$ex], 501);
         }
@@ -28,9 +28,9 @@ class SurgicalController extends Controller
     public function findId(Request $request){
         //P=ยืนยันผลแล้ว, A=ยืนยันผลอัตโนมัติ, W=ยืนยันผลเอง
         try {           
-            $model = Surgical::where("id", "=", $request->id)->where('release','!=' , "P")->first();
+            $model = Cytological::where("id", "=", $request->id)->where('release','!=' , "P")->first();
             if($model){ 
-                Surgical::where('id', $request->id)->update(['release' => 'A']);
+                Cytological::where('id', $request->id)->update(['release' => 'A']);
                 $request->session()->put("id",$model->id); 
                 return $model->toJson();
             }
@@ -43,17 +43,17 @@ class SurgicalController extends Controller
 
     public function edit(string $id){
         
-        return view('surgical.report')->with('id',$id);
+        return view('cytological.report')->with('id',$id);
     }
 
     public function report(){
-        return view('surgical.report');
+        return view('cytological.report');
     }
 
     public function destroy(string $id){
         //P=ยืนยันผลแล้ว, A=ยืนยันผลอัตโนมัติ, W=ยืนยันผลเอง
         try {
-            $model = Surgical::where("id", "=", $id)->where('release','!=' , "P")->where("user_id" ,"=", Auth::user()->id)->delete();
+            $model = Cytological::where("id", "=", $id)->where('release','!=' , "P")->where("user_id" ,"=", Auth::user()->id)->delete();
             if($model){
                 session()->flash('success', 'ลบข้อมูลสำเร็จ');
                 return $this->index();
@@ -69,7 +69,7 @@ class SurgicalController extends Controller
     public function release(string $id){
         //P=ยืนยันผลแล้ว, A=ยืนยันผลอัตโนมัติ, W=ยืนยันผลเอง
         try {
-            $model = Surgical::where("id", "=", $id)->where('release','!=' , "P")->first();
+            $model = Cytological::where("id", "=", $id)->where('release','!=' , "P")->first();
             if($model){
                 $data = LabOrderImage::where('lab_order_number', $model->lab_order_number)->first();
                 $iq = 0;
@@ -144,7 +144,7 @@ class SurgicalController extends Controller
         
         $item = (object)$jsonDataObject['item'];
         $images = $jsonDataObject['image'];
-        $model = new Surgical();
+        $model = new Cytological();
 
         // รับวันที่และเวลาปัจจุบัน
         $currentDateTime = new \DateTime();
@@ -243,7 +243,7 @@ class SurgicalController extends Controller
             if($request->session()->has("id")){
                 $id = $request->session()->get("id"); 
                 $request->session()->forget('id');
-                $model = Surgical::find($id);  
+                $model = Cytological::find($id);  
             }else{
                 return Response()->json(['message'=>['errorInfo'=>'ไม่พบข้อมูล Session $id กลับไปหน้าเริ่มต้น']], 501);
             }
