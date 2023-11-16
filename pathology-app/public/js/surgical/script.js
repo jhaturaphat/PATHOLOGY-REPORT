@@ -88,11 +88,12 @@ async function save(type = 'GET'){
             type: type,
             dataType: 'json',   
             contentType: "application/json; charset=utf-8",         
-            url: '/pathology-a',
-            data: JSON.stringify({item: data_item, image: pngObj}),            
-            beforeSend: function(){
+            url: '/surgical',
+            data: JSON.stringify({ item: data_item, image: pngObj }),            
+            beforeSend: function(xhr){
+                // xhr.setRequestHeader ("Accept", "application/json");
                 Statloading = Alert.loading(0);
-                console.log(Statloading);
+                // console.log(Statloading);
             },
             complete: function(jqXHR, textStatus){                
                 Statloading.close();

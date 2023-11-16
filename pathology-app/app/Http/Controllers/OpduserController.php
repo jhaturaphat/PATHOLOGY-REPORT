@@ -21,7 +21,7 @@ class OpduserController extends Controller
         $credentials['password'] = md5($credentials['password']); // เข้ารหัสรหัสผ่านด้วย MD5
         dd(Auth::guard('hosxp_opduser')->attempt($credentials));
         if (Auth::guard('hosxp_opduser')->attempt(['loginname' => $request->loginname, 'passweb' => md5($request->passweb)])) {            
-            return redirect()->intended('/pathology-a/index');
+            return redirect()->intended('/surgical/index');
         }        
         return back()->withErrors(['email' => 'ข้อมูลเข้าสู่ระบบไม่ถูกต้อง'])->withInput();
     }
@@ -33,7 +33,7 @@ class OpduserController extends Controller
         $user = Opduser::where('loginname', $loginname)->first();    
         if ($user && md5($passweb) === $user->passweb) {            
             Auth::guard('hosxp_opduser')->login($user);
-            return redirect()->intended('/pathology-a/index');
+            return redirect()->intended('/surgical/index');
         }    
         // ไม่สำเร็จ: รีเดิมไปยังหน้าเข้าสู่ระบบพร้อมกับข้อความแจ้งเตือน
         return back()->withErrors(['email' => 'ข้อมูลเข้าสู่ระบบไม่ถูกต้อง'])->withInput();

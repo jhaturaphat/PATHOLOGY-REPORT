@@ -213,7 +213,7 @@
                         }else if(data.status === 501){
                             Alert.error('Eror', data.responseJSON.message.errorInfo);
                             setTimeout(() => {
-                                window.location.replace("/surgical/index");
+                                window.location.replace("/cytological/index");
                             }, 2000);
                         }
                     }

@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     if (Auth::check()){
-        return redirect('/pathology-a/index');
+        return redirect('/surgical/index');
     }
     return redirect('/login');
 })->name('home');

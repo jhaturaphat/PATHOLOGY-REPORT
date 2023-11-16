@@ -90,7 +90,7 @@ async function save(type = 'GET'){
             type: type,
             dataType: 'json',   
             contentType: "application/json; charset=utf-8",         
-            url: '/pathology-a',
+            url: '/cytological',
             data: JSON.stringify({item: data_item, image: pngObj}),            
             beforeSend: function(){
                 Statloading = Alert.loading(0);
