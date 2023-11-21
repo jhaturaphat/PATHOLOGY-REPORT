@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Surgical extends Model
 {
     use HasFactory;
-
+    
     protected $connection =  'mysql';
     protected $table = 'pathology_reports';
     // public $incrementing = false;  //ถ้าใช้ primary key เป็น String ให้เพิ่มบันทัดนี้ด้วย
@@ -65,6 +64,5 @@ class Surgical extends Model
     //         set: fn ($value) => json_encode($value),
     //     );
     // }
-
 
 }

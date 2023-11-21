@@ -203,6 +203,8 @@
                         CKEDITOR.instances['txt_image3'].setData(data.txt_image_3);
                         CKEDITOR.instances['txt_image4'].setData(data.txt_image_4);
                         CKEDITOR.instances['txt_image5'].setData(data.txt_image_5);
+
+                        if(data.txt_image_2 === "")
                         
                         
                     },

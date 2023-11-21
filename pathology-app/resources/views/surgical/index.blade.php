@@ -39,7 +39,7 @@
     <tbody>        
         @foreach ($model as $item)        
         <tr>
-            <td>{{$item->id}}</td>
+            <td>{{$item->outid}}</td>
             <td>{{$item->lab_order_number}}</td>
             <td>{{$item->hn}}</td>
             <td>{{$item->fname}}</td>

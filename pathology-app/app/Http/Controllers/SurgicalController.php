@@ -221,9 +221,12 @@ class SurgicalController extends Controller
         $model->image5 = $image5;
         $model->set_release_date = $set_release_date;
         $model->user_id = Auth::user()->id;
-            if($model->save()){
-                return Response()->json(['message'=>'success'], 200);
-            }
+        
+        if($model->save()){
+            return Response()->json(['message'=>'success'], 200);
+        }else{
+            return Response()->json(['message'=>'Error'], 501);
+        }
         } catch (QueryException $ex) {            
             return Response()->json(['message'=>$ex], 501);
         }
