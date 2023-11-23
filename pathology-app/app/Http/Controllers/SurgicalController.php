@@ -46,6 +46,17 @@ class SurgicalController extends Controller
         return view('surgical.report')->with('id',$id);
     }
 
+    public function view(string $id){
+        try {           
+            $model = Surgical::where("id", "=", $id)->get();
+            $model = $model->makeVisible(['image1','image2','image3','image4','image5']); 
+            dd($model);
+            return view('surgical.view')->with('model',$model);
+        } catch (QueryException $ex) {            
+            return Response()->json(['message'=>$ex], 501);
+        }
+    }
+
     public function report(){
         return view('surgical.report');
     }

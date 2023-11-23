@@ -204,7 +204,16 @@
                         CKEDITOR.instances['txt_image4'].setData(data.txt_image_4);
                         CKEDITOR.instances['txt_image5'].setData(data.txt_image_5);
 
-                        if(data.txt_image_2 === "")
+                        if(data.txt_image_1 === "") $('#cpage1').trigger('click'); 
+                        if(data.txt_image_2 === "") $('#cpage2').trigger('click');  
+                        if(data.txt_image_3 === "") $('#cpage3').trigger('click');  
+                        if(data.txt_image_4 === "") $('#cpage4').trigger('click');  
+                        if(data.txt_image_5 === "") $('#cpage5').trigger('click'); 
+
+                        //ตรวจสอบ ตาราง lab_order_image ว่ามีรูปภาพแล้วกี่รูปจากนั้นให้ disable checkbox ไม่ให้คลิกได้
+                        PageControl.CountImage(data.lab_order_number);
+
+                        // if(data.txt_image_2 === "")
                         
                         
                     },

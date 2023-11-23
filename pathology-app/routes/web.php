@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/laborderimage/countImage', [LabOrderImageController::class, 'countImage'])->name('count-image');
 
     Route::get('/surgical/index', [SurgicalController::class, 'index'])->name('surgical.index');
+    Route::get('/surgical/view/{id}', [SurgicalController::class, 'view'])->name('surgical.view');
     Route::get('/surgical/report', [SurgicalController::class, 'report']);
     Route::get('/surgical/find-id', [SurgicalController::class, 'findId'])->name('find-id');
     Route::get('/surgical/edit/{id}', [SurgicalController::class, 'edit'])->name('surgical.edit');
