@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/css/cytological/header.css">
     <link rel="stylesheet" href="/css/cytological/image1.css">
     <link rel="stylesheet" href="/css/cytological/image2.css">
+    {{-- Custom Css Jquery Autocomplete --}}
     <style>
         .c{
             display: flex;

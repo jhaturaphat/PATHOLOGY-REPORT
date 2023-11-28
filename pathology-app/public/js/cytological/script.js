@@ -80,14 +80,12 @@ async function save(type = 'GET'){
     }
  
     let Statloading = null;
-    setTimeout(() => {
-        $.ajaxSetup({
-            headers: {
-               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-         });
+    setTimeout(() => {        
         $.ajax({
             type: type,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             dataType: 'json',   
             contentType: "application/json; charset=utf-8",         
             url: '/cytological',

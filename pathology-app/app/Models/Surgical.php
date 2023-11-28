@@ -64,5 +64,4 @@ class Surgical extends Model
     //         set: fn ($value) => json_encode($value),
     //     );
     // }
-
 }

@@ -11,15 +11,13 @@ use Illuminate\Database\QueryException;
 use App\Models\Surgical;
 use App\models\LabOrderImage;
 
-
 class SurgicalController extends Controller
 {
-    //
     public function index(){          
         try {
             $model = Surgical::where("user_id","=", Auth::user()->id)->orderBy('id', 'DESC')->paginate(15);  
-            Session::regenerate();
-                
+            // Session::regenerate();
+            
             return view('surgical.index')->with('model',$model);
         } catch (QueryException $ex) {
             return Response()->json(['message'=>$ex], 501);
@@ -41,9 +39,8 @@ class SurgicalController extends Controller
         
     }
 
-    public function edit(string $id){
-        
-        return view('surgical.report')->with('id',$id);
+    public function edit(string $id){        
+        return view('surgical.report')->with('id',$id)->with('csrf',csrf_token());;
     }
 
     public function view(string $id){
@@ -248,7 +245,9 @@ class SurgicalController extends Controller
 
     public function Update(Request $request){
         try {           
-            $request->session()->regenerate();
+            // $request->session()->regenerate();
+
+            
             $jsonDataObject = $request->json()->all();
             
             $item = (object)$jsonDataObject['item'];
@@ -349,6 +348,4 @@ class SurgicalController extends Controller
         // Storage::disk('local')->put('images/'.$fileName, $imageBinary);      
         return $imageBinary;
     }
-
-    
 }

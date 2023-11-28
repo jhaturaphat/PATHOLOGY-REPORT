@@ -79,13 +79,11 @@ async function save(type = 'GET'){
  
     let Statloading = null;
     setTimeout(() => {
-        $.ajaxSetup({
-            headers: {
-               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-         });
         $.ajax({
             type: type,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             dataType: 'json',   
             contentType: "application/json; charset=utf-8",         
             url: '/surgical',
@@ -104,10 +102,16 @@ async function save(type = 'GET'){
                 } 
             },
             error: function (jqXHR, textStatus, err){
-                if (jqXHR.status != 200){
-                    console.log(jqXHR.responseJSON);
-                    Alert.error('Eror', jqXHR.responseJSON.message.errorInfo);
+                console.info(jqXHR.responseJSON);
+                switch(jqXHR.status){
+                    case 419 :
+                        Alert.error('Eror', jqXHR.responseJSON.message);
+                    break;
+                    default :
+                        Alert.error('Eror', jqXHR.responseJSON.message.errorInfo);
+                    break;
                 }
+                
             }          
           });
     }, 100);

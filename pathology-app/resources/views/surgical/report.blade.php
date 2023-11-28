@@ -69,7 +69,7 @@
 </head>
 <body>
     <div class="layout">
-        <div id="">
+        <div>
             @include('surgical.image1')  
             @include('surgical.image2')
             @include('surgical.image3')
@@ -122,14 +122,14 @@
         </div>
     </div>
 
-    <script src="{{asset('js/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('js/jquery/jquery.min.js?v=1.0')}}"></script>
     <script src="{{asset('js/jquery/jquery-ui/jquery-ui.min.js')}}"></script>
     <script src="{{asset('js/jquery/jquery-ui/i18n/datepicker-th.js')}}"></script>
     <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('js/plugins/html2canvas.js')}}"></script>
     <script src="{{asset('js/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
-    <script src="{{asset('js/surgical/utils.js')}}"></script>
-    <script src="{{asset('js/surgical/script.js')}}"></script>
+    <script src="{{asset('js/surgical/utils.js?v=1.0')}}"></script>
+    <script src="{{asset('js/surgical/script.js?v=1.0')}}"></script>
 
     @if(isset($id))
         <script>

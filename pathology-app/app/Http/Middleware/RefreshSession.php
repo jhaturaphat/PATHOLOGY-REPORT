@@ -18,7 +18,7 @@ class RefreshSession
     {
         // รีเฟรช session
         // $request->session()->regenerate();
-        Session::regenerate();
+        // Session::regenerate();
         return $next($request);
     }
 }
