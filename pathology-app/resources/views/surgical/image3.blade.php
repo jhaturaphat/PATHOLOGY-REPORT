@@ -1,4 +1,4 @@
-<page size="A4" id="image3" class="">
+<page size="A4" id="image3" >
     <div class="page-number">3/5</div>
     <div class="page-container">
         @include('surgical.header')

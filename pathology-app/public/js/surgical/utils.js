@@ -133,15 +133,18 @@ const PageControl = {
         return image64;
     },
 
-    SaveTolocal:function(ele){        
-        const eledownload = document.querySelector('#'+ele);
-        html2canvas(eledownload, {scale: 1.5, removeContainer:false}).then(function(canvas) {
-                const link = document.createElement('a');
-                const alias = $("#lab_order_number").val();
-                link.download = alias+"-"+ele+'.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-            });
+    SaveTolocal:function(ele){     //ส่งค่า string image1,image2, image3, image4, image5
+        const eledownload = document.querySelector('#'+ele); 
+        console.log(ele);
+        if($('#dow-'+ele).hasClass('fa-download')){
+            html2canvas(eledownload, {scale: 1.5, removeContainer:false}).then(function(canvas) {
+                    const link = document.createElement('a');
+                    const alias = $("#lab_order_number").val();
+                    link.download = alias+"-"+ele+'.png';
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                });
+        }
     },
 
     CountImage: function(lab_order_number){
@@ -154,19 +157,29 @@ const PageControl = {
             success: function(data){
                 switch (data.count) {
                     case 1:
-                        $('#cpage5').trigger('click').off('click').prop( "disabled", true );  
+                        $('#cpage5').trigger('click').off('click').prop( "disabled", true ); 
+                        $("#image5").css("display","none");
+                        $("#dow-image5").removeClass('fa-download').addClass('fa-eye');
                         break;
                     case 2:
                         $('#cpage4, #cpage5').trigger('click').off('click').prop( "disabled", true );  
+                        $("#image4, #image5").css("display","none");
+                        $("#dow-image4, #dow-image5").removeClass('fa-download').addClass('fa-eye');
                         break;
                     case 3:
                         $('#cpage3, #cpage4, #cpage5').trigger('click').off('click').prop( "disabled", true );  
+                        $("#image3, #image4, #image5").css("display","none");
+                        $("#dow-image3, #dow-image4, #dow-image5").removeClass('fa-download').addClass('fa-eye');
                         break;
                     case 4:
                         $('#cpage2, #cpage3, #cpage4, #cpage5').trigger('click').off('click').prop( "disabled", true );  
+                        $("#image2, #image3, #image4, #image5").css("display","none");
+                        $("#dow-image2, #dow-image3, #dow-image4, #dow-image5").removeClass('fa-download').addClass('fa-eye');
                         break;
                     case 5:
                         $('[id^="cpage"],#release,#update').trigger('click').off('click').prop( "disabled", true );  
+                        $('page').css("display","none");
+                        $('[id^="#dow-image"]').removeClass('fa-download').addClass('fa-eye');
                         break;
                     default:
                         break;
@@ -221,7 +234,7 @@ const CKE = {
         rx.forEach((ele)=>ele.style.display = 'block');          
     },
     Choose: function(ele, val){        
-        const select = document.getElementById(val);
+        const select = document.getElementById(val);        
         switch(ele.checked){
             case true :
                 select.style.display = 'block';

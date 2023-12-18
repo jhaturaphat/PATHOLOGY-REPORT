@@ -212,9 +212,6 @@
 
                         //ตรวจสอบ ตาราง lab_order_image ว่ามีรูปภาพแล้วกี่รูปจากนั้นให้ disable checkbox ไม่ให้คลิกได้
                         PageControl.CountImage(data.lab_order_number);
-
-                        // if(data.txt_image_2 === "")
-                        
                         
                     },
                     error:function(data, textStatus, status){

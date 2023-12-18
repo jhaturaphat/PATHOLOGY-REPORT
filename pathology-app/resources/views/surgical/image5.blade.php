@@ -1,4 +1,4 @@
-<page size="A4" id="image5" class="">
+<page size="A4" id="image5" >
     <div class="page-container">
         
         <div class="page-number">2/5</div>        

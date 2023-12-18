@@ -141,24 +141,30 @@ class LabOrderImageController extends Controller
     function countImage(Request $request){
         $data = LabOrderImage::where('lab_order_number', $request->lab_order_number)->first();
         // dd($data);
-        $count = 0;
+        $count = 0;  
+        $images = [];      
         if($data){
-            if ($data->image1) {
+            if ($data->image1) {   
+                $images['image1'] = base64_encode($data->image1);              
                 $count++;                        
             }
             if ($data->image2) {
+                $images['image2'] = base64_encode($data->image2);  
                 $count++; 
             }
             if ($data->image3) {
+                $images['image3'] = base64_encode($data->image3);  
                 $count++; 
             }
             if ($data->image4) {
+                $images['image4'] = base64_encode($data->image4);  
                 $count++; 
             }
             if ($data->image5) {
+                $images['image5'] = base64_encode($data->image5);  
                 $count++; 
             }
         }
-        return response()->json(['count'=>$count]);
+        return response()->json(['count'=>$count, 'images'=>$images]);
     }
 }

@@ -5,3 +5,7 @@ i{
 textarea{
     white-space: pre-line;
 }
+
+.page-hidden {
+    display:none !important;
+}
