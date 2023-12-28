@@ -8,17 +8,8 @@ html, body{
     /* font-family: 'Martian Mono', monospace; */
     font-family: 'Roboto', sans-serif;
 }
-#watermark{
-    display: none;
-    position: absolute;
-    top: 100px;
-    left: -5px;
-    width: 100%;
-    margin: 0 auto;
-    z-index: 99;
-    filter: grayscale(100%);
-    opacity: .1;
-}
+
+
 
 .layout{
     display: flex;

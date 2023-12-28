@@ -7,6 +7,7 @@
     <title> @yield('title')</title>
     <link rel="stylesheet" href="/css/fontawesome/css/all.min.css">    
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/surgical/index.css')}}">
 </head>
 <body>
     

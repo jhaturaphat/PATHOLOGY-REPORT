@@ -46,7 +46,7 @@
             <td>{{$item->lname}}</td>
             <td>{{$item->created_at}}</td>
             <td>{{$item->release}}</td>
-            <td>
+            <td class="cmd-action">
                 @if ($item->release !== "P")
                     <a href="{{route('surgical.edit',[$item->id])}}">แก้ไข</a>   
                     @else
