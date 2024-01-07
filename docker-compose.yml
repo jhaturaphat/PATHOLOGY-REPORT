@@ -16,7 +16,7 @@ services:
     ports:
       - 3307:3306
     networks:
-      - laravel
+      - kong-network
     restart: always
   
   app:    
@@ -33,7 +33,7 @@ services:
     depends_on: 
       - db   
     networks:
-      - laravel 
+      - kong-network 
     restart: always
 
   nginx:
@@ -45,7 +45,7 @@ services:
       - ./docker-nginx:/etc/nginx/conf.d # แนบไฟล์คอนฟิกของ Nginx ของคุณ
       - ./pathology-app:/var/www   
     networks:
-      - laravel
+      - kong-network
     restart: always
 
 networks:
