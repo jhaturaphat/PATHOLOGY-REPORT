@@ -48,6 +48,7 @@
             <td>{{$item->release}}</td>
             <td class="cmd-action">
                 @if ($item->release !== "P")
+                {{-- ตรวจสอบ ชนิดผลตรวจว่าเป็น  CYTOLOGICAL หรือ SURGICAL ก่อนส่งข้อมูลไป update ที่ controller--}}
                     @if($item->type === "CYTOLOGICAL")
                     <a href="{{route('cytological.edit',[$item->id])}}">แก้ไข</a>   
                     @elseif ($item->type === "SURGICAL")
@@ -56,7 +57,7 @@
                 @else
                 <a href="javascript:void(0)" style="cursor: not-allowed; color:rgb(161, 164, 164)">แก้ไข</a>   
                 @endif
-                
+                {{-- ตรวจสอบ ชนิดผลตรวจว่าเป็น  CYTOLOGICAL หรือ SURGICAL ก่อนส่งข้อมูลไป update ที่ controller--}}
                 @if($item->type === "CYTOLOGICAL")
                 <form action="{{route('cyt.confirm',$item->id)}}" method="POST">
                 @elseif ($item->type === "SURGICAL")
