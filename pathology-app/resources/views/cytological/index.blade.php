@@ -65,7 +65,11 @@
                     <input type="submit" value="ลบ" disabled>
                     @endif
                 </form> --}}
-                <form action="{{route('release',$item->id)}}" method="POST">
+                @if($item->type === "CYTOLOGICAL")
+                <form action="{{route('cyt.confirm',$item->id)}}" method="POST">
+                @elseif ($item->type === "SURGICAL")
+                <form action="{{route('sur.confirm',$item->id)}}" method="POST">
+                @endif
                     @method('PATCH')
                     @csrf
                     @if ($item->release !== "P")

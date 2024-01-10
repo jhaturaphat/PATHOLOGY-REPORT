@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/surgical/edit/{id}', [SurgicalController::class, 'edit'])->name('surgical.edit');
     Route::post('/surgical', [SurgicalController::class, 'store']);
     Route::put('/surgical', [SurgicalController::class, 'update']);
-    Route::PATCH('/surgical/{id}', [SurgicalController::class, 'release'])->name('release');
+    Route::PATCH('/surgical/{id}', [SurgicalController::class, 'release'])->name('sur.confirm');
     Route::delete('/surgical/{id}', [SurgicalController::class, 'destroy'])->name('delete');
 
     Route::get('/cytological/index', [CytologicalController::class, 'index'])->name('cytological.index');
@@ -50,7 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/cytological/edit/{id}', [CytologicalController::class, 'edit'])->name('cytological.edit');
     Route::post('/cytological', [CytologicalController::class, 'store']);
     Route::put('/cytological', [CytologicalController::class, 'update']);
-    Route::PATCH('/cytological/{id}', [CytologicalController::class, 'release'])->name('release');
+    Route::PATCH('/cytological/{id}', [CytologicalController::class, 'release'])->name('cyt.confirm');
     Route::delete('/cytological/{id}', [CytologicalController::class, 'destroy'])->name('delete');
 
     Route::post('/logout', [UserController::class,'logout'])->name('logout');
