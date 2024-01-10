@@ -48,10 +48,14 @@
             <td>{{$item->release}}</td>
             <td class="cmd-action">
                 @if ($item->release !== "P")
-                    <a href="{{route('surgical.edit',[$item->id])}}">แก้ไข</a>   
-                    @else
-                    <a href="javascript:void(0)" style="cursor: not-allowed; color:rgb(161, 164, 164)">แก้ไข</a>   
-                    @endif
+                    @if($item->type === "CYTOLOGICAL")
+                    <a href="{{route('cytological.edit',[$item->id])}}">แก้ไข</a>   
+                    @elseif ($item->type === "SURGICAL")
+                    <a href="{{route('surgical.edit',[$item->id])}}">แก้ไข</a>
+                    @endif   
+                @else
+                <a href="javascript:void(0)" style="cursor: not-allowed; color:rgb(161, 164, 164)">แก้ไข</a>   
+                @endif
                 {{-- <form action="{{route('delete',$item->id)}}" method="POST">
                     @method('delete')
                     @csrf

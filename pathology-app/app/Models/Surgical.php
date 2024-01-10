@@ -26,16 +26,7 @@ class Surgical extends Model
         'speci_received_at',
         'date_of_report',
         'physician',
-        // 'clinical_history',
-        // 'clinical_diagnosis',
-        // 'phatology_diag_1',
-        // 'phatology_diag_2',
-        // 'phatology_diag_3',
-        // 'phatology_diag_4',
-        // 'gross_examination',
-        // 'gross_examiner',
-        // 'gross_date',
-        // 'microscopic_description',
+        'type',        
         'txt_image_1',
         'txt_image_2',
         'txt_image_3',
@@ -56,6 +47,11 @@ class Surgical extends Model
         'image3',
         'image4',
         'image5',
+    ];
+
+    // ค่าตัวแปรเริ่มต้นกำหนดใน ฐานข้อมูล
+    protected $sttribute = [
+        'type' => 'SURGICAL'
     ];
 
     // protected function phatology_diag(): Attribute{

@@ -206,6 +206,7 @@ class CytologicalController extends Controller
         $model->speci_received_at = $item->speci_received_at;
         $model->date_of_report = $item->date_of_report;
         $model->physician = $item->physician;
+        $model->type = "CYTOLOGICAL";
         
         $model->txt_image_1 = (!empty($item->txt_image1)) ? $item->txt_image1 : "" ;
         $model->txt_image_2 = (!empty($item->txt_image2)) ? $item->txt_image2 : "" ;

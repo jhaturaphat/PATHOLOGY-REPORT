@@ -27,7 +27,7 @@ return new class extends Migration
             $table->dateTime('speci_received_at')->nullable(false)->comment('วันที่ได้รับสิ่งส่งตรวจ เอามาจาก outlab');
             $table->dateTime('date_of_report')->nullable(false)->comment('วันที่ออกรายงาน');
             $table->string('physician')->nullable()->comment('แพทย์ผู้สั่งตรวจ doctor_code');
-
+            $table->enum('type', ['CYTOLOGICAL','SURGICAL'])->comment("CYTOLOGICAL=>เซลล์วิทยา, SURGICAL=> เกี่ยวกับการผ่าตัด");
 
             // $table->text('clinical_history')->nullable()->comment('ประวัติทางคลินิก');
             // $table->text('clinical_diagnosis')->nullable()->comment('การวินิจฉัยทางคลินิก');
@@ -51,7 +51,7 @@ return new class extends Migration
             $table->binary('image5')->nullable()->comment('รูปที่ 5');
             $table->dateTime('set_release_date')->comment('กำหนดช่วงเวลาปล่อย');
             $table->enum('release', ['P','A','W'])->default("A")->comment("P=ยืนยันผลแล้ว, A=ยืนยันผลอัตโนมัติ, W=ยืนยันผลเอง");
-            $table->integer('user_id')->nullable(false)->comment('ผู้บันทึก');
+            $table->integer('user_id')->nullable(false)->comment('ผู้บันทึก');            
             $table->timestamps();
 
             $table->unique(['outid']);
